@@ -1,0 +1,517 @@
+{
+    "format": "audiosurf-visualizer-resource",
+    "schemaVersion": 2,
+    "id": "fy-corona-cathedral",
+    "version": 1,
+    "algorithms": [
+        {
+            "id": "fy-corona-cathedral",
+            "version": 1,
+            "apiVersion": 1,
+            "contract": {
+                "kind": "visual",
+                "inputParameter": "spectrum",
+                "parameters": [
+                    {
+                        "id": "spectrum",
+                        "valueKind": "vector",
+                        "allowedSourceKinds": [
+                            "analysis",
+                            "constant",
+                            "native"
+                        ],
+                        "allowEmptyVector": true,
+                        "vectorElementRange": {
+                            "min": 0,
+                            "max": 1000000
+                        },
+                        "allowedAnalysisComponents": [
+                            "default"
+                        ],
+                        "allowedAnalysisProjections": [
+                            "full"
+                        ]
+                    },
+                    {
+                        "id": "color",
+                        "valueKind": "color",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ]
+                    },
+                    {
+                        "id": "accent",
+                        "valueKind": "color",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ]
+                    },
+                    {
+                        "id": "glass",
+                        "valueKind": "color",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ]
+                    },
+                    {
+                        "id": "opacity",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "sensitivity",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 4,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "glow",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 3,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "count",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 3,
+                            "max": 9,
+                            "integer": true,
+                            "editingPrecision": 0
+                        }
+                    },
+                    {
+                        "id": "radius",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0.15,
+                            "max": 0.5,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "speed",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": -1,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 3
+                        }
+                    },
+                    {
+                        "id": "x",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 3
+                        }
+                    },
+                    {
+                        "id": "y",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 3
+                        }
+                    },
+                    {
+                        "id": "depth",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0.2,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "fill",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "twist",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": -1,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "height",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0.3,
+                            "max": 1.2,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "thickness",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0.2,
+                            "max": 3,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    }
+                ],
+                "sharedParameters": [
+                    "sensitivity",
+                    "glow"
+                ],
+                "historyParameters": []
+            },
+            "entry": "source/algorithms/corona-cathedral.mjs",
+            "includes": [
+                "source/shared/corona-cathedral.js"
+            ],
+            "programs": {
+                "draw": {
+                    "geometry": "triangles",
+                    "vertexFile": "source/shaders/mesh.vert.glsl",
+                    "fragmentFile": "source/shaders/mesh.frag.glsl",
+                    "uniforms": {}
+                }
+            }
+        }
+    ],
+    "elements": [
+        {
+            "id": "fy-corona-cathedral",
+            "version": 1,
+            "kind": "visual",
+            "title": "日冕圣殿（肥鱼测试）",
+            "icon": "arcs",
+            "inputParameter": "spectrum",
+            "parameters": [
+                {
+                    "id": "spectrum",
+                    "label": "频谱输入",
+                    "valueKind": "vector",
+                    "defaultValue": [],
+                    "allowedSourceKinds": [
+                        "analysis",
+                        "constant",
+                        "native"
+                    ],
+                    "allowEmptyVector": true,
+                    "vectorElementRange": {
+                        "min": 0,
+                        "max": 1000000
+                    },
+                    "allowedAnalysisComponents": [
+                        "default"
+                    ],
+                    "allowedAnalysisProjections": [
+                        "full"
+                    ],
+                    "defaultBinding": {
+                        "source": {
+                            "kind": "analysis",
+                            "featureId": "amplitudeSpectrum",
+                            "projection": {
+                                "kind": "full"
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": "color",
+                    "label": "主结构色",
+                    "valueKind": "color",
+                    "defaultValue": "#ffd36b",
+                    "allowedSourceKinds": [
+                        "constant"
+                    ]
+                },
+                {
+                    "id": "accent",
+                    "label": "冷青高光",
+                    "valueKind": "color",
+                    "defaultValue": "#6fe6ff",
+                    "allowedSourceKinds": [
+                        "constant"
+                    ]
+                },
+                {
+                    "id": "glass",
+                    "label": "彩窗颜色",
+                    "valueKind": "color",
+                    "defaultValue": "#ff9a3c",
+                    "allowedSourceKinds": [
+                        "constant"
+                    ]
+                },
+                {
+                    "id": "opacity",
+                    "label": "不透明度",
+                    "valueKind": "number",
+                    "defaultValue": 1,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "sensitivity",
+                    "label": "响应系数",
+                    "valueKind": "number",
+                    "defaultValue": 1,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 4,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "glow",
+                    "label": "线框辉光",
+                    "valueKind": "number",
+                    "defaultValue": 1.3,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 3,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "count",
+                    "label": "拱廊跨数",
+                    "valueKind": "number",
+                    "defaultValue": 6,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 3,
+                        "max": 9,
+                        "integer": true,
+                        "editingPrecision": 0
+                    }
+                },
+                {
+                    "id": "radius",
+                    "label": "玫瑰窗半径",
+                    "valueKind": "number",
+                    "defaultValue": 0.33,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0.15,
+                        "max": 0.5,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "speed",
+                    "label": "旋转速度",
+                    "valueKind": "number",
+                    "defaultValue": 0.12,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": -1,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 3
+                    }
+                },
+                {
+                    "id": "x",
+                    "label": "水平位置",
+                    "valueKind": "number",
+                    "defaultValue": 0.5,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 3
+                    }
+                },
+                {
+                    "id": "y",
+                    "label": "垂直位置",
+                    "valueKind": "number",
+                    "defaultValue": 0.54,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 3
+                    }
+                },
+                {
+                    "id": "depth",
+                    "label": "透视强度",
+                    "valueKind": "number",
+                    "defaultValue": 0.62,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0.2,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "fill",
+                    "label": "彩窗填充",
+                    "valueKind": "number",
+                    "defaultValue": 0.16,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "twist",
+                    "label": "扭转",
+                    "valueKind": "number",
+                    "defaultValue": 0.12,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": -1,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "height",
+                    "label": "拱顶高度",
+                    "valueKind": "number",
+                    "defaultValue": 0.82,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0.3,
+                        "max": 1.2,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "thickness",
+                    "label": "线宽",
+                    "valueKind": "number",
+                    "defaultValue": 1,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0.2,
+                        "max": 3,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                }
+            ],
+            "algorithm": {
+                "id": "fy-corona-cathedral",
+                "version": 1,
+                "hash": ""
+            }
+        }
+    ],
+    "presets": []
+}

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "fy-ember-choir",
+    "version": 1,
+    "hash": "cf89fd1cdda16e88f34b2b1bceff05a8df983071aa7acd00c530cda63fade21a"
+  },
+  "kind": "visual",
+  "title": "余烬圣咏（肥鱼测试）",
+  "description": "从圣殿底部升起的金色与洋红余烬，随频谱脉冲、螺旋上浮。",
+  "creator": "default",
+  "createdAt": "2026-10-21T05:08:12.874Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 17
+}

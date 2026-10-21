@@ -1,0 +1,516 @@
+{
+  "format": "audiosurf-visualizer-resource",
+  "schemaVersion": 2,
+  "id": "fy-corona-cathedral",
+  "version": 1,
+  "algorithms": [
+    {
+      "id": "fy-corona-cathedral",
+      "version": 1,
+      "hash": "46e3502ce3d0ac3509380fb5f05643ee1d5e64f32c1616a7eb83b69ea1295ebe",
+      "apiVersion": 1,
+      "contract": {
+        "kind": "visual",
+        "parameters": [
+          {
+            "id": "spectrum",
+            "valueKind": "vector",
+            "allowedSourceKinds": [
+              "analysis",
+              "constant",
+              "native"
+            ],
+            "allowEmptyVector": true,
+            "vectorElementRange": {
+              "min": 0,
+              "max": 1000000
+            },
+            "allowedAnalysisComponents": [
+              "default"
+            ],
+            "allowedAnalysisProjections": [
+              "full"
+            ]
+          },
+          {
+            "id": "color",
+            "valueKind": "color",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "accent",
+            "valueKind": "color",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "glass",
+            "valueKind": "color",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "opacity",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "sensitivity",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 4,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "glow",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 3,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "count",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 3,
+              "max": 9,
+              "integer": true,
+              "editingPrecision": 0
+            }
+          },
+          {
+            "id": "radius",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.15,
+              "max": 0.5,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "speed",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": -1,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "x",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "y",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "depth",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.2,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "fill",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "twist",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": -1,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "height",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.3,
+              "max": 1.2,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "thickness",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.2,
+              "max": 3,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          }
+        ],
+        "sharedParameters": [
+          "sensitivity",
+          "glow"
+        ],
+        "historyParameters": [],
+        "inputParameter": "spectrum"
+      },
+      "source": "const REFERENCE = 128;\r\nconst TAU = Math.PI * 2;\r\nconst FLOOR = -0.18;\r\nconst COLUMN_TOP = 0.12;\r\nconst ARCH_APEX = 0.5;\r\nconst RIDGE = 0.56;\r\nconst ROSE_Y = 0.3;\r\nconst HALF_WIDTH = 0.45;\r\nconst NAVE_BACK = 0.9;\r\nconst NAVE_FRONT = -0.9;\r\nconst MAX_VERTICES = 65536;\r\n\r\nconst clamp01 = value => Math.max(0, Math.min(1, value));\r\n\r\nfunction smoothstep(edge0, edge1, value) {\r\n    const t = clamp01((value - edge0) / Math.max(1e-9, edge1 - edge0));\r\n    return t * t * (3 - 2 * t);\r\n}\r\n\r\nfunction rangeEnvelope(frame, edge) {\r\n    const range = frame.range;\r\n    if (!range) return 1;\r\n    const span = Math.max(1e-6, range.endSeconds - range.startSeconds);\r\n    const progress = (frame.time - range.startSeconds) / span;\r\n    return smoothstep(0, edge, progress) * smoothstep(0, edge, 1 - progress);\r\n}\r\n\r\nfunction fillBands(input, sensitivity, output, unit) {\r\n    output.fill(0);\r\n    const gain = Number.isFinite(sensitivity) ? sensitivity : 1;\r\n    if (!Array.isArray(input) || input.length === 0) return output;\r\n\r\n    if (unit === 'we-strength') {\r\n        for (let i = 0; i < output.length; i++) {\r\n            const value = input[i];\r\n            output[i] = (typeof value === 'number' && Number.isFinite(value) ? value : 0) * gain;\r\n        }\r\n        return output;\r\n    }\r\n\r\n    if (unit === 'byte-frequency') {\r\n        const sourceBands = Math.floor(input.length / 2);\r\n        for (let band = 0; band < output.length; band++) {\r\n            const start = Math.floor((band * sourceBands) / output.length);\r\n            const end = Math.max(start + 1, Math.floor(((band + 1) * sourceBands) / output.length));\r\n            let peak = 0;\r\n            for (let channel = 0; channel < 2; channel++) {\r\n                for (let i = start; i < end; i++) {\r\n                    const value = input[channel * sourceBands + i];\r\n                    if (typeof value === 'number' && Number.isFinite(value)) peak = Math.max(peak, value);\r\n                }\r\n            }\r\n            output[band] = (peak / 255) * gain;\r\n        }\r\n        return output;\r\n    }\r\n\r\n    for (let band = 0; band < output.length; band++) {\r\n        const start = Math.floor((band * input.length) / output.length);\r\n        const end = Math.max(start + 1, Math.floor(((band + 1) * input.length) / output.length));\r\n        let peak = 0;\r\n        for (let i = start; i < end; i++) {\r\n            const value = input[i];\r\n            if (typeof value !== 'number' || !Number.isFinite(value)) continue;\r\n            const magnitude = unit === 'signed-waveform' ? Math.abs(value) : value;\r\n            if (magnitude > peak) peak = magnitude;\r\n        }\r\n        output[band] =\r\n            (unit === 'signed-waveform' ? peak : Math.min(1, Math.log1p(peak) / Math.log1p(REFERENCE))) * gain;\r\n    }\r\n    return output;\r\n}\r\n\r\nfunction averageRange(values, start, end) {\r\n    let total = 0;\r\n    for (let i = start; i < end; i++) total += values[i] ?? 0;\r\n    return total / Math.max(1, end - start);\r\n}\r\n\r\nfunction numberParameter(frame, id, fallback) {\r\n    const value = frame.parameters?.[id]?.value;\r\n    return typeof value === 'number' && Number.isFinite(value) ? value : fallback;\r\n}\r\n\r\nfunction stringParameter(frame, id, fallback) {\r\n    const value = frame.parameters?.[id]?.value;\r\n    return typeof value === 'string' && value ? value : fallback;\r\n}\r\n\r\nfunction rgb(hex, alpha = 1) {\r\n    if (typeof hex !== 'string' || !/^#[0-9a-f]{6}$/i.test(hex)) return [1, 1, 1, alpha];\r\n    return [\r\n        parseInt(hex.slice(1, 3), 16) / 255,\r\n        parseInt(hex.slice(3, 5), 16) / 255,\r\n        parseInt(hex.slice(5, 7), 16) / 255,\r\n        alpha,\r\n    ];\r\n}\r\n\r\nfunction mixColor(a, b, t) {\r\n    return [\r\n        a[0] * (1 - t) + b[0] * t,\r\n        a[1] * (1 - t) + b[1] * t,\r\n        a[2] * (1 - t) + b[2] * t,\r\n        a[3] * (1 - t) + b[3] * t,\r\n    ];\r\n}\r\n\r\nclass MeshBatch {\r\n    constructor() {\r\n        this.positions = new Float32Array(MAX_VERTICES * 3);\r\n        this.colors = new Float32Array(MAX_VERTICES * 4);\r\n        this.edges = new Float32Array(MAX_VERTICES * 2);\r\n        this.pixelSize = 1 / 1080;\r\n        this.count = 0;\r\n    }\r\n\r\n    reset() {\r\n        this.count = 0;\r\n    }\r\n\r\n    vertex(x, y, color, distance = 0, halfWidth = 1) {\r\n        if (this.count >= MAX_VERTICES) return;\r\n        const index = this.count;\r\n        this.positions[index * 3] = x;\r\n        this.positions[index * 3 + 1] = y;\r\n        this.positions[index * 3 + 2] = 0;\r\n        this.colors[index * 4] = color[0];\r\n        this.colors[index * 4 + 1] = color[1];\r\n        this.colors[index * 4 + 2] = color[2];\r\n        this.colors[index * 4 + 3] = color[3];\r\n        this.edges[index * 2] = distance;\r\n        this.edges[index * 2 + 1] = halfWidth;\r\n        this.count++;\r\n    }\r\n\r\n    line(a, b, width, color) {\r\n        const dx = b[0] - a[0];\r\n        const dy = b[1] - a[1];\r\n        const length = Math.hypot(dx, dy);\r\n        if (length < 1e-9 || this.count + 6 > MAX_VERTICES) return;\r\n        const half = Math.max(0.00002, width / 2);\r\n        const outer = half + this.pixelSize;\r\n        const nx = (-dy / length) * outer;\r\n        const ny = (dx / length) * outer;\r\n        const p = [a[0] + nx, a[1] + ny];\r\n        const q = [b[0] + nx, b[1] + ny];\r\n        const r = [b[0] - nx, b[1] - ny];\r\n        const s = [a[0] - nx, a[1] - ny];\r\n        this.vertex(p[0], p[1], color, outer, half);\r\n        this.vertex(q[0], q[1], color, outer, half);\r\n        this.vertex(r[0], r[1], color, -outer, half);\r\n        this.vertex(p[0], p[1], color, outer, half);\r\n        this.vertex(r[0], r[1], color, -outer, half);\r\n        this.vertex(s[0], s[1], color, -outer, half);\r\n    }\r\n\r\n    triangle(a, b, c, color) {\r\n        if (this.count + 3 > MAX_VERTICES) return;\r\n        this.vertex(a[0], a[1], color);\r\n        this.vertex(b[0], b[1], color);\r\n        this.vertex(c[0], c[1], color);\r\n    }\r\n}\r\n\r\nfunction createCoronaCathedral() {\r\n    const batch = new MeshBatch();\r\n    const levels = new Float32Array(64);\r\n    const segments = Array.from({ length: 4096 }, () => ({\r\n        ax: 0,\r\n        ay: 0,\r\n        bx: 0,\r\n        by: 0,\r\n        z: 0,\r\n        r: 1,\r\n        g: 1,\r\n        b: 1,\r\n        a: 0,\r\n        width: 0.001,\r\n        overlay: false,\r\n    }));\r\n    const fills = Array.from({ length: 1024 }, () => ({\r\n        ax: 0,\r\n        ay: 0,\r\n        bx: 0,\r\n        by: 0,\r\n        cx: 0,\r\n        cy: 0,\r\n        z: 0,\r\n        r: 1,\r\n        g: 1,\r\n        b: 1,\r\n        a: 0,\r\n    }));\r\n    let segmentCount = 0;\r\n    let fillCount = 0;\r\n    let overlayMode = false;\r\n    let angle = 0;\r\n    let pitch = 0;\r\n    let centerX = 0;\r\n    let centerY = 0;\r\n    let perspective = 0.34;\r\n    let heightScale = 1;\r\n\r\n    const project = (x, y, z) => {\r\n        const ca = Math.cos(angle);\r\n        const sa = Math.sin(angle);\r\n        const x1 = x * ca + z * sa;\r\n        const z1 = -x * sa + z * ca;\r\n        const cb = Math.cos(pitch);\r\n        const sb = Math.sin(pitch);\r\n        const y1 = y * cb - z1 * sb;\r\n        const z2 = y * sb + z1 * cb;\r\n        const scale = 1 / (1 + z2 * perspective);\r\n        return [centerX + x1 * scale, centerY + y1 * scale, z2];\r\n    };\r\n\r\n    const stretchedY = value => FLOOR + (value - FLOOR) * heightScale;\r\n\r\n    const pushSegment = (a, b, zHint, color, width) => {\r\n        if (segmentCount >= segments.length) return;\r\n        const pointA = project(a[0], a[1], a[2]);\r\n        const pointB = project(b[0], b[1], b[2]);\r\n        const dx = pointB[0] - pointA[0];\r\n        const dy = pointB[1] - pointA[1];\r\n        if (dx * dx + dy * dy < 1e-12) return;\r\n        const segment = segments[segmentCount++];\r\n        segment.ax = pointA[0];\r\n        segment.ay = pointA[1];\r\n        segment.bx = pointB[0];\r\n        segment.by = pointB[1];\r\n        segment.z = zHint ?? (pointA[2] + pointB[2]) * 0.5;\r\n        segment.r = color[0];\r\n        segment.g = color[1];\r\n        segment.b = color[2];\r\n        const low = Math.min(a[1], b[1]);\r\n        const fade = 0.22 + 0.78 * smoothstep(FLOOR, FLOOR + 0.24, low);\r\n        segment.a = color[3] * fade;\r\n        segment.width = width;\r\n        segment.overlay = overlayMode;\r\n    };\r\n\r\n    const pushFill = (a, b, c, color) => {\r\n        if (fillCount >= fills.length) return;\r\n        const pointA = project(a[0], a[1], a[2]);\r\n        const pointB = project(b[0], b[1], b[2]);\r\n        const pointC = project(c[0], c[1], c[2]);\r\n        const fill = fills[fillCount++];\r\n        fill.ax = pointA[0];\r\n        fill.ay = pointA[1];\r\n        fill.bx = pointB[0];\r\n        fill.by = pointB[1];\r\n        fill.cx = pointC[0];\r\n        fill.cy = pointC[1];\r\n        fill.z = (pointA[2] + pointB[2] + pointC[2]) / 3;\r\n        fill.r = color[0];\r\n        fill.g = color[1];\r\n        fill.b = color[2];\r\n        fill.a = color[3];\r\n    };\r\n\r\n    const line = (a, b, width, color) => pushSegment(a, b, undefined, color, width);\r\n\r\n    const bezier = (a, b, c, width, color, steps = 12) => {\r\n        let previous = a;\r\n        for (let i = 1; i <= steps; i++) {\r\n            const t = i / steps;\r\n            const u = 1 - t;\r\n            const point = [\r\n                u * u * a[0] + 2 * u * t * b[0] + t * t * c[0],\r\n                u * u * a[1] + 2 * u * t * b[1] + t * t * c[1],\r\n                u * u * a[2] + 2 * u * t * b[2] + t * t * c[2],\r\n            ];\r\n            line(previous, point, width, color);\r\n            previous = point;\r\n        }\r\n    };\r\n\r\n    const arc = (cx, cy, cz, radiusX, radiusY, start, sweep, width, color, steps = 48) => {\r\n        let previous = [\r\n            cx + Math.cos(start) * radiusX,\r\n            cy + Math.sin(start) * radiusY,\r\n            cz,\r\n        ];\r\n        for (let i = 1; i <= steps; i++) {\r\n            const a = start + (sweep * i) / steps;\r\n            const point = [cx + Math.cos(a) * radiusX, cy + Math.sin(a) * radiusY, cz];\r\n            line(previous, point, width, color);\r\n            previous = point;\r\n        }\r\n    };\r\n\r\n    return {\r\n        prepareFrame(frame) {\r\n            const spectrum = frame.parameters?.spectrum;\r\n            fillBands(\r\n                Array.isArray(spectrum?.value) ? spectrum.value : [],\r\n                numberParameter(frame, 'sensitivity', 1),\r\n                levels,\r\n                spectrum?.unit,\r\n            );\r\n            let peak = 0;\r\n            for (let i = 0; i < levels.length; i++) peak = Math.max(peak, levels[i]);\r\n            const envelope = rangeEnvelope(frame, 0.1);\r\n            if (envelope <= 0) return { passes: [], state: [peak, 0, 0] };\r\n\r\n            const width = Math.max(1, frame.width);\r\n            const height = Math.max(1, frame.height);\r\n            const aspect = width / height;\r\n            const time = frame.time;\r\n            const speed = numberParameter(frame, 'speed', 0.12);\r\n            const x = clamp01(numberParameter(frame, 'x', 0.5));\r\n            const y = clamp01(numberParameter(frame, 'y', 0.54));\r\n            const depth = Math.max(0.05, numberParameter(frame, 'depth', 0.62));\r\n            const radius = Math.max(0.05, numberParameter(frame, 'radius', 0.33));\r\n            const count = Math.max(3, Math.min(9, Math.round(numberParameter(frame, 'count', 6))));\r\n            const fill = clamp01(numberParameter(frame, 'fill', 0.16));\r\n            const twist = numberParameter(frame, 'twist', 0.12);\r\n            const thickness = Math.max(0.05, numberParameter(frame, 'thickness', 1));\r\n            const glow = Math.max(0, numberParameter(frame, 'glow', 1.3));\r\n            const opacity = clamp01(numberParameter(frame, 'opacity', 1));\r\n            const sensitivity = numberParameter(frame, 'sensitivity', 1);\r\n            const gold = rgb(stringParameter(frame, 'color', '#ffd36b'), 1);\r\n            const cyan = rgb(stringParameter(frame, 'accent', '#6fe6ff'), 1);\r\n            const glass = rgb(stringParameter(frame, 'glass', '#ff9a3c'), 1);\r\n            const alphaBase = clamp01(opacity * envelope * (0.4 + 0.85 * peak));\r\n            const baseWidth = Math.max(0.00025, thickness * 0.00115 * (0.85 + peak * 0.4));\r\n\r\n            centerX = (x - 0.5) * aspect;\r\n            centerY = 0.5 - y;\r\n            perspective = depth * 0.55;\r\n            heightScale = Math.max(0.2, numberParameter(frame, 'height', 0.82));\r\n            angle = Math.sin(time * speed * 0.9) * 0.35 + twist * 0.2;\r\n            pitch = 0.03 * Math.sin(time * 0.13);\r\n\r\n            batch.reset();\r\n            batch.pixelSize = 1 / height;\r\n            segmentCount = 0;\r\n            fillCount = 0;\r\n\r\n            const tint = (z, offset = 0) =>\r\n                mixColor(gold, cyan, clamp01(0.1 + 0.42 * (0.5 + 0.5 * Math.sin(z * 5.2 - time * 1.9 + offset))));\r\n            const colored = (base, alpha, z, offset = 0) => {\r\n                const mix = tint(z, offset);\r\n                return [mix[0], mix[1], mix[2], alpha];\r\n            };\r\n            const widthAt = factor => baseWidth * factor;\r\n\r\n            const zCount = count;\r\n            const dz = (NAVE_BACK - NAVE_FRONT) / zCount;\r\n\r\n            for (let i = 0; i <= zCount; i++) {\r\n                const z = NAVE_FRONT + i * dz;\r\n                const alpha = alphaBase * 0.82;\r\n                const accent = i % 3 === 0 ? cyan : gold;\r\n                for (const side of [-1, 1]) {\r\n                    const xSide = side * HALF_WIDTH;\r\n                    line(\r\n                        [xSide, stretchedY(FLOOR), z],\r\n                        [xSide, stretchedY(COLUMN_TOP), z],\r\n                        widthAt(1.1),\r\n                        colored(accent, alpha, z, side * 0.6),\r\n                    );\r\n                    line(\r\n                        [xSide, stretchedY(FLOOR), z],\r\n                        [xSide * 1.06, stretchedY(FLOOR), z],\r\n                        widthAt(0.7),\r\n                        colored(accent, alpha * 0.65, z, 1.2),\r\n                    );\r\n                    line(\r\n                        [xSide, stretchedY(COLUMN_TOP), z],\r\n                        [xSide * 1.08, stretchedY(COLUMN_TOP), z],\r\n                        widthAt(0.75),\r\n                        colored(accent, alpha * 0.7, z, 2.1),\r\n                    );\r\n                }\r\n\r\n                line(\r\n                    [-HALF_WIDTH, stretchedY(COLUMN_TOP), z],\r\n                    [HALF_WIDTH, stretchedY(COLUMN_TOP), z],\r\n                    widthAt(0.8),\r\n                    colored(gold, alpha * 0.7, z, 0.4),\r\n                );\r\n                line(\r\n                    [-HALF_WIDTH, stretchedY(FLOOR), z],\r\n                    [HALF_WIDTH, stretchedY(FLOOR), z],\r\n                    widthAt(0.55),\r\n                    colored(gold, alpha * 0.45, z, 1.4),\r\n                );\r\n                line(\r\n                    [-HALF_WIDTH, stretchedY(0.29), z],\r\n                    [HALF_WIDTH, stretchedY(0.29), z],\r\n                    widthAt(0.4),\r\n                    colored(gold, alpha * 0.28, z, 2.6),\r\n                );\r\n\r\n                bezier(\r\n                    [-HALF_WIDTH, stretchedY(COLUMN_TOP), z],\r\n                    [-HALF_WIDTH * 0.92, stretchedY(0.4), z],\r\n                    [0, stretchedY(ARCH_APEX), z],\r\n                    widthAt(1.35),\r\n                    colored(gold, alpha, z, 0.2),\r\n                    14,\r\n                );\r\n                bezier(\r\n                    [0, stretchedY(ARCH_APEX), z],\r\n                    [HALF_WIDTH * 0.92, stretchedY(0.4), z],\r\n                    [HALF_WIDTH, stretchedY(COLUMN_TOP), z],\r\n                    widthAt(1.35),\r\n                    colored(gold, alpha, z, 0.2),\r\n                    14,\r\n                );\r\n\r\n                if (i < zCount) {\r\n                    for (const side of [-1, 1]) {\r\n                        bezier(\r\n                            [side * HALF_WIDTH, stretchedY(COLUMN_TOP), z],\r\n                            [side * HALF_WIDTH * 0.55, stretchedY(0.46), z + dz * 0.55],\r\n                            [0, stretchedY(RIDGE), z + dz],\r\n                            widthAt(0.9),\r\n                            colored(cyan, alpha * 0.75, z + dz * 0.5, 1.8),\r\n                            12,\r\n                        );\r\n                    }\r\n                    line(\r\n                        [0, stretchedY(RIDGE), z],\r\n                        [0, stretchedY(RIDGE), z + dz],\r\n                        widthAt(0.65),\r\n                        colored(cyan, alpha * 0.55, z + dz * 0.5, 2.7),\r\n                    );\r\n                }\r\n\r\n                for (const side of [-1, 1]) {\r\n                    const pinnacleX = side * HALF_WIDTH;\r\n                    line(\r\n                        [pinnacleX, stretchedY(COLUMN_TOP), z],\r\n                        [pinnacleX, stretchedY(COLUMN_TOP + 0.08), z],\r\n                        widthAt(0.45),\r\n                        colored(cyan, alpha * 0.6, z, side * 1.5),\r\n                    );\r\n                    line(\r\n                        [pinnacleX - 0.032, stretchedY(COLUMN_TOP), z],\r\n                        [pinnacleX, stretchedY(COLUMN_TOP + 0.08), z],\r\n                        widthAt(0.35),\r\n                        colored(gold, alpha * 0.5, z, side * 2.4),\r\n                    );\r\n                    line(\r\n                        [pinnacleX + 0.032, stretchedY(COLUMN_TOP), z],\r\n                        [pinnacleX, stretchedY(COLUMN_TOP + 0.08), z],\r\n                        widthAt(0.35),\r\n                        colored(gold, alpha * 0.5, z, side * 2.4),\r\n                    );\r\n                }\r\n\r\n                if (i % 2 === 0) {\r\n                    for (const side of [-1, 1]) {\r\n                        bezier(\r\n                            [side * HALF_WIDTH * 1.42, stretchedY(FLOOR), z],\r\n                            [side * HALF_WIDTH * 1.75, stretchedY(0.3), z],\r\n                            [side * HALF_WIDTH, stretchedY(COLUMN_TOP), z],\r\n                            widthAt(0.75),\r\n                            colored(gold, alpha * 0.52, z, side * 2.2),\r\n                            10,\r\n                        );\r\n                    }\r\n                }\r\n            }\r\n\r\n            for (const side of [-1, 1]) {\r\n                line(\r\n                    [side * HALF_WIDTH, stretchedY(COLUMN_TOP), NAVE_FRONT],\r\n                    [side * HALF_WIDTH, stretchedY(COLUMN_TOP), NAVE_BACK],\r\n                    widthAt(0.75),\r\n                    colored(gold, alphaBase * 0.65, 0, 0.8),\r\n                );\r\n                line(\r\n                    [side * HALF_WIDTH, stretchedY(FLOOR), NAVE_FRONT],\r\n                    [side * HALF_WIDTH, stretchedY(FLOOR), NAVE_BACK],\r\n                    widthAt(0.55),\r\n                    colored(gold, alphaBase * 0.45, 0, 1.7),\r\n                );\r\n            }\r\n            line(\r\n                [0, stretchedY(RIDGE), NAVE_FRONT],\r\n                [0, stretchedY(RIDGE), NAVE_BACK],\r\n                widthAt(0.9),\r\n                colored(cyan, alphaBase * 0.7, 0, 2.3),\r\n            );\r\n            line(\r\n                [0, stretchedY(FLOOR), NAVE_FRONT],\r\n                [0, stretchedY(FLOOR), NAVE_BACK],\r\n                widthAt(0.45),\r\n                colored(gold, alphaBase * 0.32, 0, 3.1),\r\n            );\r\n\r\n            overlayMode = true;\r\n            const roseZ = NAVE_BACK - 0.03;\r\n            const roseX = 0;\r\n            const roseY = stretchedY(ROSE_Y);\r\n            arc(\r\n                roseX,\r\n                roseY,\r\n                roseZ,\r\n                radius * 1.16,\r\n                radius * 1.16 * Math.max(0.55, heightScale),\r\n                0,\r\n                TAU,\r\n                widthAt(0.55),\r\n                colored(gold, alphaBase * 0.35, roseZ, 0.7),\r\n                64,\r\n            );\r\n            for (const ring of [0.28, 0.52, 0.76, 1]) {\r\n                arc(\r\n                    roseX,\r\n                    roseY,\r\n                    roseZ,\r\n                    radius * ring,\r\n                    radius * ring * Math.max(0.55, heightScale),\r\n                    0,\r\n                    TAU,\r\n                    widthAt(ring === 1 ? 1.25 : 0.8),\r\n                    colored(ring === 1 ? gold : cyan, alphaBase * (ring === 1 ? 0.9 : 0.55), roseZ, ring),\r\n                    64,\r\n                );\r\n            }\r\n            for (let i = 0; i < 16; i++) {\r\n                const a = (i / 16) * TAU;\r\n                line(\r\n                    [roseX + Math.cos(a) * radius * 0.18, roseY + Math.sin(a) * radius * 0.18 * Math.max(0.55, heightScale), roseZ],\r\n                    [roseX + Math.cos(a) * radius, roseY + Math.sin(a) * radius * Math.max(0.55, heightScale), roseZ],\r\n                    widthAt(0.55),\r\n                    colored(i % 4 === 0 ? cyan : gold, alphaBase * 0.62, roseZ, i * 0.4),\r\n                );\r\n            }\r\n            for (let i = 0; i < 12; i++) {\r\n                const a = (i / 12) * TAU;\r\n                arc(\r\n                    roseX,\r\n                    roseY,\r\n                    roseZ,\r\n                    radius * 0.66,\r\n                    radius * 0.66 * Math.max(0.55, heightScale),\r\n                    a,\r\n                    0.55,\r\n                    widthAt(0.7),\r\n                    colored(i % 3 === 0 ? cyan : gold, alphaBase * 0.75, roseZ, i),\r\n                    10,\r\n                );\r\n            }\r\n            for (let i = 0; i < 4; i++) {\r\n                const a = (i / 4) * TAU;\r\n                arc(\r\n                    roseX,\r\n                    roseY,\r\n                    roseZ,\r\n                    radius * 0.34,\r\n                    radius * 0.34 * Math.max(0.55, heightScale),\r\n                    a,\r\n                    Math.PI * 0.5,\r\n                    widthAt(0.55),\r\n                    colored(cyan, alphaBase * 0.55, roseZ, i * 1.3),\r\n                    10,\r\n                );\r\n            }\r\n            if (fill > 0) {\r\n                for (let i = 0; i < 16; i++) {\r\n                    const a0 = (i / 16) * TAU;\r\n                    const a1 = ((i + 1) / 16) * TAU;\r\n                    pushFill(\r\n                        [roseX, roseY, roseZ],\r\n                        [roseX + Math.cos(a0) * radius, roseY + Math.sin(a0) * radius * Math.max(0.55, heightScale), roseZ],\r\n                        [roseX + Math.cos(a1) * radius, roseY + Math.sin(a1) * radius * Math.max(0.55, heightScale), roseZ],\r\n                        [glass[0], glass[1], glass[2], alphaBase * fill * (i % 2 === 0 ? 0.09 : 0.05)],\r\n                    );\r\n                }\r\n            }\r\n\r\n            overlayMode = false;\r\n            const altarZ = 0.45;\r\n            line(\r\n                [-0.12, stretchedY(FLOOR), altarZ],\r\n                [-0.12, stretchedY(0.32), altarZ],\r\n                widthAt(0.8),\r\n                colored(gold, alphaBase * 0.8, altarZ, 0.2),\r\n            );\r\n            line(\r\n                [0.12, stretchedY(FLOOR), altarZ],\r\n                [0.12, stretchedY(0.32), altarZ],\r\n                widthAt(0.8),\r\n                colored(gold, alphaBase * 0.8, altarZ, 0.2),\r\n            );\r\n            line(\r\n                [-0.12, stretchedY(0.32), altarZ],\r\n                [0, stretchedY(0.42), altarZ],\r\n                widthAt(0.8),\r\n                colored(cyan, alphaBase * 0.85, altarZ, 1.1),\r\n            );\r\n            line(\r\n                [0, stretchedY(0.42), altarZ],\r\n                [0.12, stretchedY(0.32), altarZ],\r\n                widthAt(0.8),\r\n                colored(cyan, alphaBase * 0.85, altarZ, 1.1),\r\n            );\r\n\r\n            const order = new Int32Array(segmentCount);\r\n            for (let i = 0; i < segmentCount; i++) order[i] = i;\r\n            order.subarray(0, segmentCount).sort((a, b) => {\r\n                const overlayA = segments[a].overlay ? 1 : 0;\r\n                const overlayB = segments[b].overlay ? 1 : 0;\r\n                if (overlayA !== overlayB) return overlayA - overlayB;\r\n                return segments[b].z - segments[a].z;\r\n            });\r\n\r\n            for (let i = 0; i < fillCount; i++) {\r\n                const fill = fills[i];\r\n                batch.triangle(\r\n                    [fill.ax, fill.ay],\r\n                    [fill.bx, fill.by],\r\n                    [fill.cx, fill.cy],\r\n                    [fill.r, fill.g, fill.b, fill.a],\r\n                );\r\n            }\r\n            for (let i = 0; i < segmentCount; i++) {\r\n                const segment = segments[order[i]];\r\n                const coreWidth = Math.max(0.00022, segment.width * (0.8 + peak * 0.35));\r\n                if (glow > 0.01) {\r\n                    batch.line(\r\n                        [segment.ax, segment.ay],\r\n                        [segment.bx, segment.by],\r\n                        coreWidth * (4.8 + glow * 2.2),\r\n                        [segment.r, segment.g, segment.b, segment.a * 0.04 * glow],\r\n                    );\r\n                    batch.line(\r\n                        [segment.ax, segment.ay],\r\n                        [segment.bx, segment.by],\r\n                        coreWidth * 2.35,\r\n                        [segment.r, segment.g, segment.b, segment.a * 0.16 * glow],\r\n                    );\r\n                }\r\n                batch.line(\r\n                    [segment.ax, segment.ay],\r\n                    [segment.bx, segment.by],\r\n                    coreWidth,\r\n                    [segment.r, segment.g, segment.b, segment.a],\r\n                );\r\n            }\r\n\r\n            return {\r\n                passes: [\r\n                    {\r\n                        program: 'draw',\r\n                        uniforms: {},\r\n                        mesh: {\r\n                            positions: batch.positions.slice(0, batch.count * 3),\r\n                            colors: batch.colors.slice(0, batch.count * 4),\r\n                            edges: batch.edges.slice(0, batch.count * 2),\r\n                        },\r\n                    },\r\n                ],\r\n                state: [peak, averageRange(levels, 0, 8), segmentCount, batch.count],\r\n            };\r\n        },\r\n        reset() {},\r\n        dispose() {},\r\n    };\r\n}\r\n\nexport function create() {\n    return createCoronaCathedral();\n}\n",
+      "programs": {
+        "draw": {
+          "geometry": "triangles",
+          "uniforms": {},
+          "vertex": "attribute vec4 ink;\nattribute vec2 edge;\nvarying vec4 vInk;\nvarying vec2 vEdge;\nvoid main() {\n    vInk = ink;\n    vEdge = edge;\n    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n}\n",
+          "fragment": "varying vec4 vInk;\nvarying vec2 vEdge;\nvoid main() {\n    float aa = max(fwidth(vEdge.x), 0.000001);\n    float alpha = vInk.a * (1.0 - smoothstep(vEdge.y - aa * 0.5, vEdge.y + aa * 0.5, abs(vEdge.x)));\n    gl_FragColor = vec4(vInk.rgb * alpha, alpha);\n}\n"
+        }
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": "fy-corona-cathedral",
+      "version": 1,
+      "hash": "627f7e9ded5b2ccdd5200411c463d339c8e1c16d4a56e19c565564aa55314dc8",
+      "algorithm": {
+        "id": "fy-corona-cathedral",
+        "version": 1,
+        "hash": "46e3502ce3d0ac3509380fb5f05643ee1d5e64f32c1616a7eb83b69ea1295ebe"
+      },
+      "kind": "visual",
+      "title": "日冕圣殿（肥鱼测试）",
+      "icon": "arcs",
+      "inputParameter": "spectrum",
+      "parameters": [
+        {
+          "id": "spectrum",
+          "label": "频谱输入",
+          "valueKind": "vector",
+          "defaultValue": [],
+          "allowedSourceKinds": [
+            "analysis",
+            "constant",
+            "native"
+          ],
+          "allowEmptyVector": true,
+          "vectorElementRange": {
+            "min": 0,
+            "max": 1000000
+          },
+          "allowedAnalysisComponents": [
+            "default"
+          ],
+          "allowedAnalysisProjections": [
+            "full"
+          ],
+          "defaultBinding": {
+            "source": {
+              "kind": "analysis",
+              "featureId": "amplitudeSpectrum",
+              "projection": {
+                "kind": "full"
+              }
+            }
+          }
+        },
+        {
+          "id": "color",
+          "label": "主结构色",
+          "valueKind": "color",
+          "defaultValue": "#ffd36b",
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "accent",
+          "label": "冷青高光",
+          "valueKind": "color",
+          "defaultValue": "#6fe6ff",
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "glass",
+          "label": "彩窗颜色",
+          "valueKind": "color",
+          "defaultValue": "#ff9a3c",
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "opacity",
+          "label": "不透明度",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "sensitivity",
+          "label": "响应系数",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 4,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "glow",
+          "label": "线框辉光",
+          "valueKind": "number",
+          "defaultValue": 1.3,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 3,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "count",
+          "label": "拱廊跨数",
+          "valueKind": "number",
+          "defaultValue": 6,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 3,
+            "max": 9,
+            "integer": true,
+            "editingPrecision": 0
+          }
+        },
+        {
+          "id": "radius",
+          "label": "玫瑰窗半径",
+          "valueKind": "number",
+          "defaultValue": 0.33,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.15,
+            "max": 0.5,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "speed",
+          "label": "旋转速度",
+          "valueKind": "number",
+          "defaultValue": 0.12,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": -1,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "x",
+          "label": "水平位置",
+          "valueKind": "number",
+          "defaultValue": 0.5,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "y",
+          "label": "垂直位置",
+          "valueKind": "number",
+          "defaultValue": 0.54,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "depth",
+          "label": "透视强度",
+          "valueKind": "number",
+          "defaultValue": 0.62,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.2,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "fill",
+          "label": "彩窗填充",
+          "valueKind": "number",
+          "defaultValue": 0.16,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "twist",
+          "label": "扭转",
+          "valueKind": "number",
+          "defaultValue": 0.12,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": -1,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "height",
+          "label": "拱顶高度",
+          "valueKind": "number",
+          "defaultValue": 0.82,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.3,
+            "max": 1.2,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "thickness",
+          "label": "线宽",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.2,
+            "max": 3,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        }
+      ]
+    }
+  ],
+  "presets": []
+}

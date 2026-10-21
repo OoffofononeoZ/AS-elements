@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "fy-solar-grade",
+    "version": 1,
+    "hash": "d44e0d91dc3fe49320dec8f943de71856d7ffae43de55c8d7bc257b9a2901c33"
+  },
+  "kind": "modifier",
+  "title": "日冕色散（肥鱼测试）",
+  "description": "把整幅合成熔成一束光的电影级调色：暖金高光、冷青阴影、辉光、径向色散、热浪与颗粒。",
+  "creator": "default",
+  "createdAt": "2026-10-21T05:08:12.874Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 18
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "prismatic-voyage",
+    "version": 3,
+    "hash": "10ad79b64e818bc05ce2101903ec6a493c0bc34d3af5e5c3c254d781b734a751"
+  },
+  "kind": "preset",
+  "title": "棱镜航行",
+  "description": "光轨隧道与跃迁星尘 · 四段动态构图",
+  "creator": "default",
+  "createdAt": "2026-10-19T17:39:30.954Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [
+    {
+      "id": "solid",
+      "version": 2,
+      "hash": "3bcbf3c1103bd35f96e5af1efd88732a92125cca12de741fe2818663984f55ef"
+    },
+    {
+      "id": "starfield",
+      "version": 2,
+      "hash": "34030a5862a5c94ec156500fd35bcf70a87ca4b5574bed87c0729d921dd8a116"
+    },
+    {
+      "id": "light-tunnel",
+      "version": 2,
+      "hash": "3b8444cf73fb807df7a1c0b0ebdced3401edfb7c0a658653494cdfb3b35f12b6"
+    },
+    {
+      "id": "radial-spectrum",
+      "version": 2,
+      "hash": "dc902d582f151d2bd1bbcc641779f2caeab7dc8d5f600ec4496381ca64752b75"
+    },
+    {
+      "id": "arc-lattice",
+      "version": 2,
+      "hash": "0692a003aeaed249ec37d842787b369d13fea97a2c0143ebcce0dc2dc9a45f21"
+    },
+    {
+      "id": "wireform",
+      "version": 2,
+      "hash": "cadcd8bc729340ac2b8175de40140a40ba0328b6a12f8c4df28bcb8d800dbfca"
+    },
+    {
+      "id": "orbit-solids",
+      "version": 2,
+      "hash": "0a44ecd7992bb90b9d4e504defe1b8fff8b596d24fad6df9f717ad8d88ffa0d2"
+    }
+  ],
+  "order": 14
+}

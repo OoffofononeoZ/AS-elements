@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "geometric-0.6",
+    "version": 3,
+    "hash": "186d17f34b990e915dadded5d7ad4641adea73b3f32f234a305bda68f6be8209"
+  },
+  "kind": "preset",
+  "title": "几何律动",
+  "description": "双环频谱与旋转几何 · 响应系数 0.6",
+  "creator": "default",
+  "createdAt": "2026-10-19T17:39:30.954Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [
+    {
+      "id": "solid",
+      "version": 2,
+      "hash": "3bcbf3c1103bd35f96e5af1efd88732a92125cca12de741fe2818663984f55ef"
+    },
+    {
+      "id": "radial-spectrum",
+      "version": 2,
+      "hash": "dc902d582f151d2bd1bbcc641779f2caeab7dc8d5f600ec4496381ca64752b75"
+    },
+    {
+      "id": "orbit-solids",
+      "version": 2,
+      "hash": "0a44ecd7992bb90b9d4e504defe1b8fff8b596d24fad6df9f717ad8d88ffa0d2"
+    },
+    {
+      "id": "arc-lattice",
+      "version": 2,
+      "hash": "0692a003aeaed249ec37d842787b369d13fea97a2c0143ebcce0dc2dc9a45f21"
+    },
+    {
+      "id": "wireform",
+      "version": 2,
+      "hash": "cadcd8bc729340ac2b8175de40140a40ba0328b6a12f8c4df28bcb8d800dbfca"
+    }
+  ],
+  "order": 13
+}

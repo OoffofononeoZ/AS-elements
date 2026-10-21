@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "point-line-vertical",
+    "version": 1,
+    "hash": "a502d3fe211e705a99910c08f187ef7b42da97b335e8f0af2b122d8bf68f5e9b"
+  },
+  "kind": "visual",
+  "title": "点标记竖线（测试）",
+  "description": "由点轨道内一个分类触发的随机位置竖线，贯穿画面，点时刻最亮并短暂渐显渐隐。",
+  "creator": "default",
+  "createdAt": "2026-10-20T07:53:44.431Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 14
+}

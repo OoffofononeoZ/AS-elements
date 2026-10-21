@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "fy-corona-cathedral",
+    "version": 1,
+    "hash": "627f7e9ded5b2ccdd5200411c463d339c8e1c16d4a56e19c565564aa55314dc8"
+  },
+  "kind": "visual",
+  "title": "日冕圣殿（肥鱼测试）",
+  "description": "由金色线框、尖拱、玫瑰窗与飞扶壁构成的哥特圣殿，在日冕中缓慢旋转。",
+  "creator": "default",
+  "createdAt": "2026-10-21T05:08:12.874Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 16
+}

@@ -1,0 +1,369 @@
+{
+    "format": "audiosurf-visualizer-resource",
+    "schemaVersion": 2,
+    "id": "fy-solar-grade",
+    "version": 1,
+    "algorithms": [
+        {
+            "id": "fy-solar-grade",
+            "version": 1,
+            "apiVersion": 1,
+            "contract": {
+                "kind": "modifier",
+                "parameters": [
+                    {
+                        "id": "amount",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "bloom",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 2,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "aberration",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 8,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "vignette",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 2,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "grain",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "temperature",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": -1,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "warp",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "exposure",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0.5,
+                            "max": 2,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "pulse",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant",
+                            "analysis"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 2
+                        },
+                        "allowedAnalysisComponents": [
+                            "default"
+                        ],
+                        "allowedAnalysisProjections": [
+                            "scalar"
+                        ]
+                    }
+                ],
+                "sharedParameters": [],
+                "historyParameters": []
+            },
+            "entry": "source/algorithms/solar-grade.mjs",
+            "includes": [],
+            "programs": {
+                "draw": {
+                    "geometry": "quad",
+                    "vertexFile": "source/shaders/quad.glsl",
+                    "fragmentFile": "source/shaders/grade.frag.glsl",
+                    "uniforms": {
+                        "uImage": {
+                            "type": "source"
+                        },
+                        "uAmount": {
+                            "type": "number"
+                        },
+                        "uBloom": {
+                            "type": "number"
+                        },
+                        "uAberration": {
+                            "type": "number"
+                        },
+                        "uVignette": {
+                            "type": "number"
+                        },
+                        "uGrain": {
+                            "type": "number"
+                        },
+                        "uTemperature": {
+                            "type": "number"
+                        },
+                        "uWarp": {
+                            "type": "number"
+                        },
+                        "uExposure": {
+                            "type": "number"
+                        },
+                        "uPulse": {
+                            "type": "number"
+                        },
+                        "uTime": {
+                            "type": "number"
+                        },
+                        "uViewport": {
+                            "type": "vec2"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "elements": [
+        {
+            "id": "fy-solar-grade",
+            "version": 1,
+            "kind": "modifier",
+            "title": "日冕色散（肥鱼测试）",
+            "icon": "blur",
+            "parameters": [
+                {
+                    "id": "amount",
+                    "label": "效果强度",
+                    "valueKind": "number",
+                    "defaultValue": 0.65,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "bloom",
+                    "label": "辉光",
+                    "valueKind": "number",
+                    "defaultValue": 0.72,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 2,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "aberration",
+                    "label": "色散",
+                    "valueKind": "number",
+                    "defaultValue": 2.2,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 8,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "vignette",
+                    "label": "暗角",
+                    "valueKind": "number",
+                    "defaultValue": 0.6,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 2,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "grain",
+                    "label": "颗粒",
+                    "valueKind": "number",
+                    "defaultValue": 0.05,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "temperature",
+                    "label": "色温",
+                    "valueKind": "number",
+                    "defaultValue": 0.22,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": -1,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "warp",
+                    "label": "热浪",
+                    "valueKind": "number",
+                    "defaultValue": 0.1,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "exposure",
+                    "label": "曝光",
+                    "valueKind": "number",
+                    "defaultValue": 1.04,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0.5,
+                        "max": 2,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "pulse",
+                    "label": "能量脉冲",
+                    "valueKind": "number",
+                    "defaultValue": 0,
+                    "allowedSourceKinds": [
+                        "constant",
+                        "analysis"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 2
+                    },
+                    "allowedAnalysisComponents": [
+                        "default"
+                    ],
+                    "allowedAnalysisProjections": [
+                        "scalar"
+                    ],
+                    "defaultBinding": {
+                        "source": {
+                            "kind": "analysis",
+                            "featureId": "energy",
+                            "projection": {
+                                "kind": "scalar"
+                            }
+                        },
+                        "transform": {
+                            "inputMin": 0,
+                            "inputMax": 30,
+                            "outputMin": 0,
+                            "outputMax": 1,
+                            "clamp": true,
+                            "invert": false,
+                            "attackSeconds": 0.08,
+                            "releaseSeconds": 0.3
+                        }
+                    }
+                }
+            ],
+            "algorithm": {
+                "id": "fy-solar-grade",
+                "version": 1,
+                "hash": ""
+            }
+        }
+    ],
+    "presets": []
+}

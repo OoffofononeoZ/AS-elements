@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "arc-lattice",
+    "version": 2,
+    "hash": "0692a003aeaed249ec37d842787b369d13fea97a2c0143ebcce0dc2dc9a45f21"
+  },
+  "kind": "visual",
+  "title": "旋转弧簇",
+  "description": "旋转弧簇",
+  "creator": "default",
+  "createdAt": "2026-10-19T17:39:30.954Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 10
+}

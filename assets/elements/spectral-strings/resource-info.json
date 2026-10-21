@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "spectral-strings",
+    "version": 2,
+    "hash": "5dffa53fd97976e511da787f169445870de16feee8c078f16153563b4e2d4d2c"
+  },
+  "kind": "visual",
+  "title": "频谱弦线",
+  "description": "频谱弦线",
+  "creator": "default",
+  "createdAt": "2026-10-19T17:39:30.954Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 1
+}

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "solid",
+    "version": 2,
+    "hash": "3bcbf3c1103bd35f96e5af1efd88732a92125cca12de741fe2818663984f55ef"
+  },
+  "kind": "visual",
+  "title": "纯色背景",
+  "description": "纯色背景",
+  "creator": "default",
+  "createdAt": "2026-10-19T17:39:30.954Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 0
+}

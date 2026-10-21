@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "reactive-rings",
+    "version": 2,
+    "hash": "88a5109e9a6ce7828d77191d31fc3387fbf37b61980758327d7d8624117e1d12"
+  },
+  "kind": "visual",
+  "title": "响应圆环",
+  "description": "响应圆环",
+  "creator": "default",
+  "createdAt": "2026-10-19T17:39:30.954Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 3
+}

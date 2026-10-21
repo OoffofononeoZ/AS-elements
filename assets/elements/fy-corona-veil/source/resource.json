@@ -1,0 +1,485 @@
+{
+    "format": "audiosurf-visualizer-resource",
+    "schemaVersion": 2,
+    "id": "fy-corona-veil",
+    "version": 1,
+    "algorithms": [
+        {
+            "id": "fy-corona-veil",
+            "version": 1,
+            "apiVersion": 1,
+            "contract": {
+                "kind": "visual",
+                "inputParameter": "spectrum",
+                "parameters": [
+                    {
+                        "id": "spectrum",
+                        "valueKind": "vector",
+                        "allowedSourceKinds": [
+                            "analysis",
+                            "constant",
+                            "native"
+                        ],
+                        "allowEmptyVector": true,
+                        "vectorElementRange": {
+                            "min": 0,
+                            "max": 1000000
+                        },
+                        "allowedAnalysisComponents": [
+                            "default"
+                        ],
+                        "allowedAnalysisProjections": [
+                            "full"
+                        ]
+                    },
+                    {
+                        "id": "colorHot",
+                        "valueKind": "color",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ]
+                    },
+                    {
+                        "id": "colorCool",
+                        "valueKind": "color",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ]
+                    },
+                    {
+                        "id": "colorVoid",
+                        "valueKind": "color",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ]
+                    },
+                    {
+                        "id": "opacity",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "sensitivity",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 4,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "glow",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 3,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "density",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0.4,
+                            "max": 2.4,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "rays",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 4,
+                            "max": 24,
+                            "integer": true,
+                            "editingPrecision": 0
+                        }
+                    },
+                    {
+                        "id": "speed",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": -1,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 3
+                        }
+                    },
+                    {
+                        "id": "x",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 3
+                        }
+                    },
+                    {
+                        "id": "y",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 3
+                        }
+                    },
+                    {
+                        "id": "idle",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    },
+                    {
+                        "id": "exposure",
+                        "valueKind": "number",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ],
+                        "range": {
+                            "min": 0.4,
+                            "max": 2,
+                            "integer": false,
+                            "editingPrecision": 2
+                        }
+                    }
+                ],
+                "sharedParameters": [
+                    "sensitivity",
+                    "glow"
+                ],
+                "historyParameters": []
+            },
+            "entry": "source/algorithms/corona-veil.mjs",
+            "includes": [
+                "source/shared/corona-veil.js"
+            ],
+            "programs": {
+                "draw": {
+                    "geometry": "quad",
+                    "vertexFile": "source/shaders/quad.glsl",
+                    "fragmentFile": "source/shaders/veil.frag.glsl",
+                    "uniforms": {
+                        "uTime": {
+                            "type": "number"
+                        },
+                        "uAspect": {
+                            "type": "number"
+                        },
+                        "uHot": {
+                            "type": "color"
+                        },
+                        "uCool": {
+                            "type": "color"
+                        },
+                        "uVoid": {
+                            "type": "color"
+                        },
+                        "uOpacity": {
+                            "type": "number"
+                        },
+                        "uGlow": {
+                            "type": "number"
+                        },
+                        "uDensity": {
+                            "type": "number"
+                        },
+                        "uRays": {
+                            "type": "number"
+                        },
+                        "uCenter": {
+                            "type": "vec2"
+                        },
+                        "uBass": {
+                            "type": "number"
+                        },
+                        "uMid": {
+                            "type": "number"
+                        },
+                        "uTreble": {
+                            "type": "number"
+                        },
+                        "uPeak": {
+                            "type": "number"
+                        },
+                        "uIdle": {
+                            "type": "number"
+                        },
+                        "uExposure": {
+                            "type": "number"
+                        },
+                        "uEnvelope": {
+                            "type": "number"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "elements": [
+        {
+            "id": "fy-corona-veil",
+            "version": 1,
+            "kind": "visual",
+            "title": "日冕纱幕（肥鱼测试）",
+            "icon": "radial",
+            "inputParameter": "spectrum",
+            "parameters": [
+                {
+                    "id": "spectrum",
+                    "label": "频谱输入",
+                    "valueKind": "vector",
+                    "defaultValue": [],
+                    "allowedSourceKinds": [
+                        "analysis",
+                        "constant",
+                        "native"
+                    ],
+                    "allowEmptyVector": true,
+                    "vectorElementRange": {
+                        "min": 0,
+                        "max": 1000000
+                    },
+                    "allowedAnalysisComponents": [
+                        "default"
+                    ],
+                    "allowedAnalysisProjections": [
+                        "full"
+                    ],
+                    "defaultBinding": {
+                        "source": {
+                            "kind": "analysis",
+                            "featureId": "amplitudeSpectrum",
+                            "projection": {
+                                "kind": "full"
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": "colorHot",
+                    "label": "内焰颜色",
+                    "valueKind": "color",
+                    "defaultValue": "#ff5a1f",
+                    "allowedSourceKinds": [
+                        "constant"
+                    ]
+                },
+                {
+                    "id": "colorCool",
+                    "label": "边缘冷光",
+                    "valueKind": "color",
+                    "defaultValue": "#6fe6ff",
+                    "allowedSourceKinds": [
+                        "constant"
+                    ]
+                },
+                {
+                    "id": "colorVoid",
+                    "label": "虚空底色",
+                    "valueKind": "color",
+                    "defaultValue": "#03040a",
+                    "allowedSourceKinds": [
+                        "constant"
+                    ]
+                },
+                {
+                    "id": "opacity",
+                    "label": "不透明度",
+                    "valueKind": "number",
+                    "defaultValue": 1,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "sensitivity",
+                    "label": "响应系数",
+                    "valueKind": "number",
+                    "defaultValue": 1,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 4,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "glow",
+                    "label": "光晕",
+                    "valueKind": "number",
+                    "defaultValue": 1.2,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 3,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "density",
+                    "label": "湍流密度",
+                    "valueKind": "number",
+                    "defaultValue": 1.1,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0.4,
+                        "max": 2.4,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "rays",
+                    "label": "射线数",
+                    "valueKind": "number",
+                    "defaultValue": 14,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 4,
+                        "max": 24,
+                        "integer": true,
+                        "editingPrecision": 0
+                    }
+                },
+                {
+                    "id": "speed",
+                    "label": "旋转速度",
+                    "valueKind": "number",
+                    "defaultValue": 0.16,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": -1,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 3
+                    }
+                },
+                {
+                    "id": "x",
+                    "label": "水平位置",
+                    "valueKind": "number",
+                    "defaultValue": 0.5,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 3
+                    }
+                },
+                {
+                    "id": "y",
+                    "label": "垂直位置",
+                    "valueKind": "number",
+                    "defaultValue": 0.46,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 3
+                    }
+                },
+                {
+                    "id": "idle",
+                    "label": "静音呼吸",
+                    "valueKind": "number",
+                    "defaultValue": 0.22,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                },
+                {
+                    "id": "exposure",
+                    "label": "曝光",
+                    "valueKind": "number",
+                    "defaultValue": 1.05,
+                    "allowedSourceKinds": [
+                        "constant"
+                    ],
+                    "range": {
+                        "min": 0.4,
+                        "max": 2,
+                        "integer": false,
+                        "editingPrecision": 2
+                    }
+                }
+            ],
+            "algorithm": {
+                "id": "fy-corona-veil",
+                "version": 1,
+                "hash": ""
+            }
+        }
+    ],
+    "presets": []
+}

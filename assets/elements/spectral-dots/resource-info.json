@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "spectral-dots",
+    "version": 2,
+    "hash": "cc83eb9a8964703ae24ed1f071063afc1bf3778620b368eb79c90958742da7cd"
+  },
+  "kind": "visual",
+  "title": "频谱点阵",
+  "description": "频谱点阵",
+  "creator": "default",
+  "createdAt": "2026-10-19T17:39:30.954Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 2
+}

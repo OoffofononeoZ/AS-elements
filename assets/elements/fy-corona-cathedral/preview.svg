@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="54%" r="70%">
+      <stop offset="0%" stop-color="#24150e"/>
+      <stop offset="52%" stop-color="#08070c"/>
+      <stop offset="100%" stop-color="#02030a"/>
+    </radialGradient>
+    <radialGradient id="rose" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe8a8" stop-opacity="0.65"/>
+      <stop offset="45%" stop-color="#ffb84d" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#ff7a1a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.4"/>
+    </filter>
+    <filter id="haze" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+    <radialGradient id="vig" cx="50%" cy="54%" r="72%">
+      <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.86"/>
+    </radialGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#bg)"/>
+  <circle cx="160" cy="78" r="46" fill="url(#rose)" filter="url(#haze)"/>
+  <g fill="none" stroke="#ffd36b" stroke-linecap="round">
+    <g opacity="0.32" filter="url(#glow)">
+      <path d="M48 166 C70 88 110 40 160 38 C210 40 250 88 272 166" stroke-width="5"/>
+      <path d="M76 166 C92 100 122 62 160 60 C198 62 228 100 244 166" stroke-width="4"/>
+      <path d="M104 166 C114 114 134 88 160 86 C186 88 206 114 216 166" stroke-width="3"/>
+    </g>
+    <g stroke-width="1.1">
+      <path d="M48 166 C70 88 110 40 160 38 C210 40 250 88 272 166"/>
+      <path d="M76 166 C92 100 122 62 160 60 C198 62 228 100 244 166"/>
+      <path d="M104 166 C114 114 134 88 160 86 C186 88 206 114 216 166"/>
+      <path d="M48 166 L76 166 M104 166 L216 166 M244 166 L272 166"/>
+      <path d="M66 140 L254 140 M92 112 L228 112 M120 88 L200 88"/>
+      <path d="M70 166 L74 136 M250 166 L246 136"/>
+      <path d="M96 166 L100 112 M224 166 L220 112"/>
+      <path d="M124 166 L128 88 M196 166 L192 88"/>
+      <path d="M160 166 L160 38"/>
+      <path d="M76 100 L104 128 M244 100 L216 128"/>
+      <path d="M92 78 L120 108 M228 78 L200 108"/>
+    </g>
+    <g stroke="#6fe6ff" stroke-width="0.9" opacity="0.8">
+      <path d="M66 140 L92 112 L120 88 M254 140 L228 112 L200 88"/>
+      <path d="M160 166 L160 60"/>
+      <path d="M104 166 L134 88 M216 166 L186 88"/>
+    </g>
+  </g>
+  <g fill="none" stroke="#ffd36b">
+    <circle cx="160" cy="78" r="30" stroke-width="1.2"/>
+    <circle cx="160" cy="78" r="22" stroke-width="0.8" opacity="0.75"/>
+    <circle cx="160" cy="78" r="14" stroke-width="0.8" opacity="0.9"/>
+    <circle cx="160" cy="78" r="6" stroke-width="1.2"/>
+    <g stroke-width="0.7" opacity="0.8">
+      <path d="M160 48 L160 108 M130 78 L190 78 M139 57 L181 99 M181 57 L139 99"/>
+      <path d="M160 54 L174 78 L160 102 L146 78 Z"/>
+    </g>
+    <g stroke="#6fe6ff" stroke-width="0.7" opacity="0.8">
+      <circle cx="160" cy="78" r="26" stroke-dasharray="3 4"/>
+      <path d="M160 52 L167 78 L160 104 L153 78 Z"/>
+    </g>
+  </g>
+  <g fill="#ff9a3c" opacity="0.12">
+    <path d="M160 78 L190 78 L181 99 Z"/>
+    <path d="M160 78 L181 57 L190 78 Z"/>
+    <path d="M160 78 L160 48 L181 57 Z"/>
+  </g>
+  <g stroke="#ffd36b" stroke-width="1" opacity="0.75" fill="none">
+    <path d="M26 166 L54 166 L58 134"/>
+    <path d="M294 166 L266 166 L262 134"/>
+    <path d="M42 166 C28 130 38 104 58 96"/>
+    <path d="M278 166 C292 130 282 104 262 96"/>
+  </g>
+  <rect width="320" height="180" fill="url(#vig)"/>
+</svg>

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#09060d"/>
+      <stop offset="55%" stop-color="#05040a"/>
+      <stop offset="100%" stop-color="#010208"/>
+    </linearGradient>
+    <radialGradient id="source" cx="50%" cy="66%" r="44%">
+      <stop offset="0%" stop-color="#ffcf8a" stop-opacity="0.42"/>
+      <stop offset="45%" stop-color="#ff7a3c" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#ff4f8b" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="2.6"/>
+    </filter>
+    <filter id="haze" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <radialGradient id="vig" cx="50%" cy="55%" r="70%">
+      <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.88"/>
+    </radialGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#bg)"/>
+  <ellipse cx="160" cy="122" rx="92" ry="46" fill="url(#source)" filter="url(#haze)"/>
+  <g fill="none" stroke-linecap="round">
+    <g filter="url(#glow)" opacity="0.7">
+      <path d="M112 154 L108 134" stroke="#ffb15a" stroke-width="3"/>
+      <path d="M138 162 L134 138" stroke="#ff7a4d" stroke-width="3"/>
+      <path d="M166 158 L162 126" stroke="#ffd36b" stroke-width="4"/>
+      <path d="M192 164 L188 140" stroke="#ff4f8b" stroke-width="3"/>
+      <path d="M214 150 L210 128" stroke="#ff8b5a" stroke-width="3"/>
+      <path d="M86 146 L82 126" stroke="#ff4f8b" stroke-width="2.5"/>
+      <path d="M240 142 L236 120" stroke="#ffb15a" stroke-width="2.5"/>
+      <path d="M126 126 L122 106" stroke="#ffd36b" stroke-width="2"/>
+      <path d="M154 120 L150 98" stroke="#ff4f8b" stroke-width="2.5"/>
+      <path d="M182 132 L178 108" stroke="#ffb15a" stroke-width="2"/>
+      <path d="M206 118 L202 96" stroke="#ffd36b" stroke-width="2"/>
+      <path d="M224 106 L220 86" stroke="#ff4f8b" stroke-width="2"/>
+      <path d="M102 108 L98 88" stroke="#ffb15a" stroke-width="2"/>
+      <path d="M72 116 L68 96" stroke="#ffd36b" stroke-width="2"/>
+      <path d="M246 96 L242 78" stroke="#ffb15a" stroke-width="2"/>
+    </g>
+    <g>
+      <path d="M112 154 L108 134" stroke="#ffd9a0" stroke-width="1"/>
+      <path d="M138 162 L134 138" stroke="#ffcf8a" stroke-width="1"/>
+      <path d="M166 158 L162 126" stroke="#fff0c8" stroke-width="1.2"/>
+      <path d="M192 164 L188 140" stroke="#ff9ab5" stroke-width="1"/>
+      <path d="M214 150 L210 128" stroke="#ffd9a0" stroke-width="1"/>
+      <path d="M86 146 L82 126" stroke="#ff9ab5" stroke-width="0.9"/>
+      <path d="M240 142 L236 120" stroke="#ffd9a0" stroke-width="0.9"/>
+      <path d="M126 126 L122 106" stroke="#fff0c8" stroke-width="0.8"/>
+      <path d="M154 120 L150 98" stroke="#ff9ab5" stroke-width="0.9"/>
+      <path d="M182 132 L178 108" stroke="#ffd9a0" stroke-width="0.8"/>
+      <path d="M206 118 L202 96" stroke="#fff0c8" stroke-width="0.8"/>
+      <path d="M224 106 L220 86" stroke="#ff9ab5" stroke-width="0.7"/>
+      <path d="M102 108 L98 88" stroke="#ffd9a0" stroke-width="0.7"/>
+      <path d="M72 116 L68 96" stroke="#fff0c8" stroke-width="0.7"/>
+      <path d="M246 96 L242 78" stroke="#ffd9a0" stroke-width="0.7"/>
+    </g>
+  </g>
+  <g fill="#ffe8b0">
+    <circle cx="108" cy="132" r="1.4"/><circle cx="134" cy="136" r="1.2"/><circle cx="162" cy="124" r="1.8"/>
+    <circle cx="188" cy="138" r="1.3"/><circle cx="210" cy="126" r="1.5"/><circle cx="82" cy="124" r="1.1"/>
+    <circle cx="236" cy="118" r="1.2"/><circle cx="122" cy="104" r="1"/><circle cx="150" cy="96" r="1.2"/>
+    <circle cx="178" cy="106" r="1"/><circle cx="202" cy="94" r="1.1"/><circle cx="220" cy="84" r="0.9"/>
+    <circle cx="98" cy="86" r="0.9"/><circle cx="68" cy="94" r="0.8"/><circle cx="242" cy="76" r="0.8"/>
+  </g>
+  <g fill="#ff6f9d">
+    <circle cx="138" cy="130" r="0.8"/><circle cx="192" cy="132" r="0.7"/><circle cx="154" cy="108" r="0.8"/>
+    <circle cx="224" cy="104" r="0.7"/><circle cx="102" cy="116" r="0.7"/><circle cx="246" cy="94" r="0.6"/>
+  </g>
+  <g stroke="#8fe9ff" stroke-width="0.5" opacity="0.55">
+    <path d="M36 40 L44 36"/><path d="M278 52 L286 48"/><path d="M52 74 L60 70"/>
+    <path d="M266 132 L274 128"/><path d="M28 124 L36 120"/>
+  </g>
+  <rect width="320" height="180" fill="url(#vig)"/>
+</svg>

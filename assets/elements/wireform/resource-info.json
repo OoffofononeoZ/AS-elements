@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "wireform",
+    "version": 2,
+    "hash": "cadcd8bc729340ac2b8175de40140a40ba0328b6a12f8c4df28bcb8d800dbfca"
+  },
+  "kind": "visual",
+  "title": "旋转线框",
+  "description": "旋转线框",
+  "creator": "default",
+  "createdAt": "2026-10-19T17:39:30.954Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 9
+}

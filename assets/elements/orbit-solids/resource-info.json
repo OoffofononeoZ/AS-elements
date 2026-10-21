@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "orbit-solids",
+    "version": 2,
+    "hash": "0a44ecd7992bb90b9d4e504defe1b8fff8b596d24fad6df9f717ad8d88ffa0d2"
+  },
+  "kind": "visual",
+  "title": "轨道几何体",
+  "description": "轨道几何体",
+  "creator": "default",
+  "createdAt": "2026-10-19T17:39:30.954Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 8
+}

@@ -1,0 +1,370 @@
+{
+  "format": "audiosurf-visualizer-resource",
+  "schemaVersion": 2,
+  "id": "fy-solar-grade",
+  "version": 1,
+  "algorithms": [
+    {
+      "id": "fy-solar-grade",
+      "version": 1,
+      "hash": "98d31157fc4600ccddc230fae37d6ff3449ec685e41dccf8fe85a0731fc73c44",
+      "apiVersion": 1,
+      "contract": {
+        "kind": "modifier",
+        "parameters": [
+          {
+            "id": "amount",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "bloom",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 2,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "aberration",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 8,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "vignette",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 2,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "grain",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "temperature",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": -1,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "warp",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "exposure",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.5,
+              "max": 2,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "pulse",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant",
+              "analysis"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            },
+            "allowedAnalysisComponents": [
+              "default"
+            ],
+            "allowedAnalysisProjections": [
+              "scalar"
+            ]
+          }
+        ],
+        "sharedParameters": [],
+        "historyParameters": []
+      },
+      "source": "export function create() {\n    return {\n        prepareFrame(frame) {\n            const number = (id, fallback) => {\n                const value = frame.parameters?.[id]?.value;\n                return typeof value === 'number' && Number.isFinite(value) ? value : fallback;\n            };\n            const width = Math.max(1, frame.width);\n            const height = Math.max(1, frame.height);\n            const pulse = Math.max(0, Math.min(1, number('pulse', 0)));\n            return {\n                passes: [\n                    {\n                        program: 'draw',\n                        uniforms: {\n                            uImage: 'source',\n                            uAmount: Math.max(0, Math.min(1, number('amount', 0.65))),\n                            uBloom: Math.max(0, number('bloom', 0.72)),\n                            uAberration: Math.max(0, number('aberration', 2.2)),\n                            uVignette: Math.max(0, number('vignette', 0.6)),\n                            uGrain: Math.max(0, Math.min(1, number('grain', 0.05))),\n                            uTemperature: Math.max(-1, Math.min(1, number('temperature', 0.22))),\n                            uWarp: Math.max(0, Math.min(1, number('warp', 0.1))),\n                            uExposure: Math.max(0.01, number('exposure', 1.04)),\n                            uPulse: pulse,\n                            uTime: frame.time,\n                            uViewport: [width, height],\n                        },\n                    },\n                ],\n                state: [pulse],\n            };\n        },\n        reset() {},\n        dispose() {},\n    };\n}\n",
+      "programs": {
+        "draw": {
+          "geometry": "quad",
+          "uniforms": {
+            "uImage": {
+              "type": "source"
+            },
+            "uAmount": {
+              "type": "number"
+            },
+            "uBloom": {
+              "type": "number"
+            },
+            "uAberration": {
+              "type": "number"
+            },
+            "uVignette": {
+              "type": "number"
+            },
+            "uGrain": {
+              "type": "number"
+            },
+            "uTemperature": {
+              "type": "number"
+            },
+            "uWarp": {
+              "type": "number"
+            },
+            "uExposure": {
+              "type": "number"
+            },
+            "uPulse": {
+              "type": "number"
+            },
+            "uTime": {
+              "type": "number"
+            },
+            "uViewport": {
+              "type": "vec2"
+            }
+          },
+          "vertex": "varying vec2 vUv;\nvoid main() { vUv = uv; gl_Position = vec4(position, 1.0); }\n",
+          "fragment": "precision highp float;\n\nvarying vec2 vUv;\n\nuniform sampler2D uImage;\nuniform float uAmount;\nuniform float uBloom;\nuniform float uAberration;\nuniform float uVignette;\nuniform float uGrain;\nuniform float uTemperature;\nuniform float uWarp;\nuniform float uExposure;\nuniform float uPulse;\nuniform float uTime;\nuniform vec2 uViewport;\n\nfloat hash21(vec2 p) {\n    p = fract(p * vec2(123.34, 456.21));\n    p += vec2(dot(p, p + 45.32));\n    return fract(p.x * p.y);\n}\n\nvec4 sampleImage(vec2 point) {\n    return texture2D(uImage, clamp(point, vec2(0.0), vec2(1.0)));\n}\n\nvoid main() {\n    vec2 uv = vUv;\n    float pulse = clamp(uPulse, 0.0, 1.0);\n    float warp = uWarp * (0.0007 + 0.0012 * pulse);\n    uv += vec2(\n        sin(vUv.y * 40.0 + uTime * 1.6),\n        cos(vUv.x * 34.0 + uTime * 1.3)\n    ) * warp;\n\n    vec2 direction = uv - 0.5;\n    float radial = dot(direction, direction);\n    vec2 offset = direction * (uAberration / 1000.0) * (0.35 + 1.8 * radial) * (1.0 + pulse * 0.8);\n\n    vec3 color;\n    color.r = sampleImage(uv + offset).r;\n    color.g = sampleImage(uv).g;\n    color.b = sampleImage(uv - offset).b;\n\n    vec3 bloom = vec3(0.0);\n    float radius = 2.4 / uViewport.y;\n    for (int i = 0; i < 8; i++) {\n        float angle = float(i) * 0.7853981634;\n        bloom += sampleImage(uv + vec2(cos(angle), sin(angle)) * radius).rgb;\n    }\n    for (int i = 0; i < 4; i++) {\n        float angle = float(i) * 1.5707963268 + 0.3926990817;\n        bloom += sampleImage(uv + vec2(cos(angle), sin(angle)) * radius * 2.2).rgb;\n    }\n    bloom /= 12.0;\n    float bloomLuma = dot(bloom, vec3(0.2126, 0.7152, 0.0722));\n    bloom *= smoothstep(0.15, 0.65, bloomLuma);\n    color += bloom * uBloom * (1.0 + pulse * 0.7);\n\n    float luma = dot(color, vec3(0.2126, 0.7152, 0.0722));\n    if (uTemperature > 0.0) {\n        color = mix(color, color * vec3(1.08, 1.0, 0.86), uTemperature);\n    } else {\n        color = mix(color, color * vec3(0.88, 0.98, 1.16), -uTemperature);\n    }\n    color = mix(color, color * vec3(1.0, 1.0, 1.04), (1.0 - luma) * 0.05);\n\n    color = color / (1.0 + color * 0.16);\n    color = pow(max(color, vec3(0.0)), vec3(0.95));\n\n    vec2 vignettePoint = (vUv - 0.5) * vec2(uViewport.x / uViewport.y, 1.0);\n    float vignette = smoothstep(0.25, 0.95, length(vignettePoint));\n    color *= 1.0 - uVignette * 0.55 * vignette;\n\n    float grain = hash21(vUv * uViewport + uTime * 60.0);\n    color += (grain - 0.5) * uGrain * 0.12;\n    color *= uExposure * (1.0 + pulse * 0.06);\n\n    vec3 original = sampleImage(vUv).rgb;\n    color = mix(original, color, clamp(uAmount, 0.0, 1.0));\n    float alpha = sampleImage(vUv).a;\n    gl_FragColor = vec4(color * alpha, alpha);\n}\n"
+        }
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": "fy-solar-grade",
+      "version": 1,
+      "hash": "d44e0d91dc3fe49320dec8f943de71856d7ffae43de55c8d7bc257b9a2901c33",
+      "algorithm": {
+        "id": "fy-solar-grade",
+        "version": 1,
+        "hash": "98d31157fc4600ccddc230fae37d6ff3449ec685e41dccf8fe85a0731fc73c44"
+      },
+      "kind": "modifier",
+      "title": "日冕色散（肥鱼测试）",
+      "icon": "blur",
+      "parameters": [
+        {
+          "id": "amount",
+          "label": "效果强度",
+          "valueKind": "number",
+          "defaultValue": 0.65,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "bloom",
+          "label": "辉光",
+          "valueKind": "number",
+          "defaultValue": 0.72,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 2,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "aberration",
+          "label": "色散",
+          "valueKind": "number",
+          "defaultValue": 2.2,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 8,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "vignette",
+          "label": "暗角",
+          "valueKind": "number",
+          "defaultValue": 0.6,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 2,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "grain",
+          "label": "颗粒",
+          "valueKind": "number",
+          "defaultValue": 0.05,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "temperature",
+          "label": "色温",
+          "valueKind": "number",
+          "defaultValue": 0.22,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": -1,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "warp",
+          "label": "热浪",
+          "valueKind": "number",
+          "defaultValue": 0.1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "exposure",
+          "label": "曝光",
+          "valueKind": "number",
+          "defaultValue": 1.04,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.5,
+            "max": 2,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "pulse",
+          "label": "能量脉冲",
+          "valueKind": "number",
+          "defaultValue": 0,
+          "allowedSourceKinds": [
+            "constant",
+            "analysis"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          },
+          "allowedAnalysisComponents": [
+            "default"
+          ],
+          "allowedAnalysisProjections": [
+            "scalar"
+          ],
+          "defaultBinding": {
+            "source": {
+              "kind": "analysis",
+              "featureId": "energy",
+              "projection": {
+                "kind": "scalar"
+              }
+            },
+            "transform": {
+              "inputMin": 0,
+              "inputMax": 30,
+              "outputMin": 0,
+              "outputMax": 1,
+              "clamp": true,
+              "invert": false,
+              "attackSeconds": 0.08,
+              "releaseSeconds": 0.3
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "presets": []
+}

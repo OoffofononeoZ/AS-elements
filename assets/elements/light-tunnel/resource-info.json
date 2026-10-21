@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "light-tunnel",
+    "version": 2,
+    "hash": "3b8444cf73fb807df7a1c0b0ebdced3401edfb7c0a658653494cdfb3b35f12b6"
+  },
+  "kind": "visual",
+  "title": "光轨隧道",
+  "description": "光轨隧道",
+  "creator": "default",
+  "createdAt": "2026-10-19T17:39:30.954Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 11
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "fy-helios-cathedral",
+    "version": 1,
+    "hash": "80ddd9519559504a1362c537377ea04f3a9c94d6597f2fd46a93fea92b6e5b92"
+  },
+  "kind": "preset",
+  "title": "赫利俄斯圣殿（肥鱼测试）",
+  "description": "四幕式日冕圣殿：日冕纱幕、哥特光之圣殿、上升余烬与棱镜色散。",
+  "creator": "default",
+  "createdAt": "2026-10-21T05:17:45.040Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [
+    {
+      "id": "fy-corona-veil",
+      "version": 1,
+      "hash": "e28d0e76422cd710e00e365dcc457975af913c69b1358453912dfba91044c18e"
+    },
+    {
+      "id": "fy-corona-cathedral",
+      "version": 1,
+      "hash": "627f7e9ded5b2ccdd5200411c463d339c8e1c16d4a56e19c565564aa55314dc8"
+    },
+    {
+      "id": "fy-ember-choir",
+      "version": 1,
+      "hash": "cf89fd1cdda16e88f34b2b1bceff05a8df983071aa7acd00c530cda63fade21a"
+    },
+    {
+      "id": "fy-solar-grade",
+      "version": 1,
+      "hash": "d44e0d91dc3fe49320dec8f943de71856d7ffae43de55c8d7bc257b9a2901c33"
+    }
+  ],
+  "order": 15
+}

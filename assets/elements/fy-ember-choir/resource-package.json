@@ -1,0 +1,528 @@
+{
+  "format": "audiosurf-visualizer-resource",
+  "schemaVersion": 2,
+  "id": "fy-ember-choir",
+  "version": 1,
+  "algorithms": [
+    {
+      "id": "fy-ember-choir",
+      "version": 1,
+      "hash": "21df0b8e0c868fd3b9436691611b6b5eb918a80c4db36239f033c19ff3de6e5d",
+      "apiVersion": 1,
+      "contract": {
+        "kind": "visual",
+        "parameters": [
+          {
+            "id": "spectrum",
+            "valueKind": "vector",
+            "allowedSourceKinds": [
+              "analysis",
+              "constant",
+              "native"
+            ],
+            "allowEmptyVector": true,
+            "vectorElementRange": {
+              "min": 0,
+              "max": 1000000
+            },
+            "allowedAnalysisComponents": [
+              "default"
+            ],
+            "allowedAnalysisProjections": [
+              "full"
+            ]
+          },
+          {
+            "id": "color",
+            "valueKind": "color",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "accent",
+            "valueKind": "color",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "opacity",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "sensitivity",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 4,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "glow",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 3,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "count",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 40,
+              "max": 900,
+              "integer": true,
+              "editingPrecision": 0
+            }
+          },
+          {
+            "id": "size",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.0005,
+              "max": 0.02,
+              "integer": false,
+              "editingPrecision": 5
+            }
+          },
+          {
+            "id": "speed",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": -1,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "spread",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.2,
+              "max": 1.4,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "x",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "y",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "rise",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.2,
+              "max": 1.5,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "swirl",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": -1,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "burst",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 2,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "thickness",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.2,
+              "max": 3,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "exposure",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.4,
+              "max": 2,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          }
+        ],
+        "sharedParameters": [
+          "sensitivity",
+          "glow"
+        ],
+        "historyParameters": [],
+        "inputParameter": "spectrum"
+      },
+      "source": "const REFERENCE = 128;\nconst TAU = Math.PI * 2;\nconst MAX_VERTICES = 65536;\n\nconst clamp01 = value => Math.max(0, Math.min(1, value));\n\nfunction smoothstep(edge0, edge1, value) {\n    const t = clamp01((value - edge0) / Math.max(1e-9, edge1 - edge0));\n    return t * t * (3 - 2 * t);\n}\n\nfunction rangeEnvelope(frame, edge) {\n    const range = frame.range;\n    if (!range) return 1;\n    const span = Math.max(1e-6, range.endSeconds - range.startSeconds);\n    const progress = (frame.time - range.startSeconds) / span;\n    return smoothstep(0, edge, progress) * smoothstep(0, edge, 1 - progress);\n}\n\nfunction fillBands(input, sensitivity, output, unit) {\n    output.fill(0);\n    const gain = Number.isFinite(sensitivity) ? sensitivity : 1;\n    if (!Array.isArray(input) || input.length === 0) return output;\n\n    if (unit === 'we-strength') {\n        for (let i = 0; i < output.length; i++) {\n            const value = input[i];\n            output[i] = (typeof value === 'number' && Number.isFinite(value) ? value : 0) * gain;\n        }\n        return output;\n    }\n\n    if (unit === 'byte-frequency') {\n        const sourceBands = Math.floor(input.length / 2);\n        for (let band = 0; band < output.length; band++) {\n            const start = Math.floor((band * sourceBands) / output.length);\n            const end = Math.max(start + 1, Math.floor(((band + 1) * sourceBands) / output.length));\n            let peak = 0;\n            for (let channel = 0; channel < 2; channel++) {\n                for (let i = start; i < end; i++) {\n                    const value = input[channel * sourceBands + i];\n                    if (typeof value === 'number' && Number.isFinite(value)) peak = Math.max(peak, value);\n                }\n            }\n            output[band] = (peak / 255) * gain;\n        }\n        return output;\n    }\n\n    for (let band = 0; band < output.length; band++) {\n        const start = Math.floor((band * input.length) / output.length);\n        const end = Math.max(start + 1, Math.floor(((band + 1) * input.length) / output.length));\n        let peak = 0;\n        for (let i = start; i < end; i++) {\n            const value = input[i];\n            if (typeof value !== 'number' || !Number.isFinite(value)) continue;\n            const magnitude = unit === 'signed-waveform' ? Math.abs(value) : value;\n            if (magnitude > peak) peak = magnitude;\n        }\n        output[band] =\n            (unit === 'signed-waveform' ? peak : Math.min(1, Math.log1p(peak) / Math.log1p(REFERENCE))) * gain;\n    }\n    return output;\n}\n\nfunction numberParameter(frame, id, fallback) {\n    const value = frame.parameters?.[id]?.value;\n    return typeof value === 'number' && Number.isFinite(value) ? value : fallback;\n}\n\nfunction stringParameter(frame, id, fallback) {\n    const value = frame.parameters?.[id]?.value;\n    return typeof value === 'string' && value ? value : fallback;\n}\n\nfunction rgb(hex, alpha = 1) {\n    if (typeof hex !== 'string' || !/^#[0-9a-f]{6}$/i.test(hex)) return [1, 1, 1, alpha];\n    return [\n        parseInt(hex.slice(1, 3), 16) / 255,\n        parseInt(hex.slice(3, 5), 16) / 255,\n        parseInt(hex.slice(5, 7), 16) / 255,\n        alpha,\n    ];\n}\n\nfunction mixColor(a, b, t) {\n    return [\n        a[0] * (1 - t) + b[0] * t,\n        a[1] * (1 - t) + b[1] * t,\n        a[2] * (1 - t) + b[2] * t,\n    ];\n}\n\nconst fract = value => value - Math.floor(value);\n\nfunction randomUnit(seed, index) {\n    let n = Math.imul(seed ^ Math.imul(index + 1, 0x9e3779b9), 0x85ebca6b);\n    n = Math.imul(n ^ (n >>> 13), 0xc2b2ae35);\n    return ((n ^ (n >>> 16)) >>> 0) / 4294967296;\n}\n\nclass MeshBatch {\n    constructor() {\n        this.positions = new Float32Array(MAX_VERTICES * 3);\n        this.colors = new Float32Array(MAX_VERTICES * 4);\n        this.edges = new Float32Array(MAX_VERTICES * 2);\n        this.pixelSize = 1 / 1080;\n        this.count = 0;\n    }\n\n    reset() {\n        this.count = 0;\n    }\n\n    vertex(x, y, color, distance = 0, halfWidth = 1) {\n        if (this.count >= MAX_VERTICES) return;\n        const index = this.count;\n        this.positions[index * 3] = x;\n        this.positions[index * 3 + 1] = y;\n        this.positions[index * 3 + 2] = 0;\n        this.colors[index * 4] = color[0];\n        this.colors[index * 4 + 1] = color[1];\n        this.colors[index * 4 + 2] = color[2];\n        this.colors[index * 4 + 3] = color[3];\n        this.edges[index * 2] = distance;\n        this.edges[index * 2 + 1] = halfWidth;\n        this.count++;\n    }\n\n    line(a, b, width, color) {\n        const dx = b[0] - a[0];\n        const dy = b[1] - a[1];\n        const length = Math.hypot(dx, dy);\n        if (length < 1e-9 || this.count + 6 > MAX_VERTICES) return;\n        const half = Math.max(0.00002, width / 2);\n        const outer = half + this.pixelSize;\n        const nx = (-dy / length) * outer;\n        const ny = (dx / length) * outer;\n        const p = [a[0] + nx, a[1] + ny];\n        const q = [b[0] + nx, b[1] + ny];\n        const r = [b[0] - nx, b[1] - ny];\n        const s = [a[0] - nx, a[1] - ny];\n        this.vertex(p[0], p[1], color, outer, half);\n        this.vertex(q[0], q[1], color, outer, half);\n        this.vertex(r[0], r[1], color, -outer, half);\n        this.vertex(p[0], p[1], color, outer, half);\n        this.vertex(r[0], r[1], color, -outer, half);\n        this.vertex(s[0], s[1], color, -outer, half);\n    }\n}\n\nfunction createEmberChoir() {\n    const batch = new MeshBatch();\n    const levels = new Float32Array(64);\n    return {\n        prepareFrame(frame) {\n            const spectrum = frame.parameters?.spectrum;\n            fillBands(\n                Array.isArray(spectrum?.value) ? spectrum.value : [],\n                numberParameter(frame, 'sensitivity', 1),\n                levels,\n                spectrum?.unit,\n            );\n            let peak = 0;\n            for (let i = 0; i < levels.length; i++) peak = Math.max(peak, levels[i]);\n            const envelope = rangeEnvelope(frame, 0.08);\n            if (envelope <= 0) return { passes: [], state: [peak, 0, 0] };\n\n            const width = Math.max(1, frame.width);\n            const height = Math.max(1, frame.height);\n            const aspect = width / height;\n            const time = frame.time;\n            const count = Math.max(40, Math.min(900, Math.round(numberParameter(frame, 'count', 420))));\n            const baseSize = Math.max(0.0002, numberParameter(frame, 'size', 0.004));\n            const speed = numberParameter(frame, 'speed', 0.22);\n            const spread = Math.max(0.05, numberParameter(frame, 'spread', 0.95));\n            const x = clamp01(numberParameter(frame, 'x', 0.5));\n            const y = clamp01(numberParameter(frame, 'y', 0.64));\n            const rise = Math.max(0.05, numberParameter(frame, 'rise', 1));\n            const swirl = numberParameter(frame, 'swirl', 0.45);\n            const burst = Math.max(0, numberParameter(frame, 'burst', 1));\n            const thickness = Math.max(0.05, numberParameter(frame, 'thickness', 1));\n            const glow = Math.max(0, numberParameter(frame, 'glow', 1.2));\n            const opacity = clamp01(numberParameter(frame, 'opacity', 1));\n            const exposure = Math.max(0.01, numberParameter(frame, 'exposure', 1.1));\n            const main = rgb(stringParameter(frame, 'color', '#ffb15a'));\n            const accent = rgb(stringParameter(frame, 'accent', '#ff4f8b'));\n            const seed = frame.seed | 0;\n            const centerX = (x - 0.5) * aspect;\n            const centerY = 0.5 - y;\n\n            batch.reset();\n            batch.pixelSize = 1 / height;\n\n            for (let i = 0; i < count; i++) {\n                const u1 = randomUnit(seed, i * 9 + 1);\n                const u2 = randomUnit(seed, i * 9 + 2);\n                const u3 = randomUnit(seed, i * 9 + 3);\n                const u4 = randomUnit(seed, i * 9 + 4);\n                const u5 = randomUnit(seed, i * 9 + 5);\n                const u6 = randomUnit(seed, i * 9 + 6);\n                const u7 = randomUnit(seed, i * 9 + 7);\n                const u8 = randomUnit(seed, i * 9 + 8);\n\n                const life = fract(u1 + time * speed * (0.035 + u2 * 0.055) * rise);\n                const fadeIn = smoothstep(0, 0.12, life);\n                const fadeOut = 1 - smoothstep(0.68, 1, life);\n                const fade = fadeIn * fadeOut;\n                if (fade <= 0) continue;\n\n                const band = levels[Math.min(63, Math.floor(u3 * 64))] ?? 0;\n                const angle = u4 * TAU + time * (0.15 + u5 * 0.35) * swirl + life * 1.4 * swirl;\n                const px =\n                    centerX +\n                    (u6 - 0.5) * spread * aspect * 0.85 +\n                    Math.sin(angle) * 0.045 * spread +\n                    (life - 0.5) * 0.08 * swirl;\n                const py = centerY - 0.36 + life * 0.94 + Math.cos(angle * 0.7) * 0.015;\n                const alpha = clamp01(\n                    opacity * envelope * fade * (0.22 + band * 0.95) * (0.55 + 0.45 * peak) * exposure,\n                );\n                if (alpha <= 0.0005) continue;\n\n                const size =\n                    baseSize *\n                    (0.35 + u7 * 1.05) *\n                    (1 + band * burst * 2.4) *\n                    (0.55 + fade * 0.45);\n                const trail = size * (3.0 + band * 7.0) * (0.8 + 0.2 * Math.sin(time * 2.0 + u4 * TAU));\n                const dx = Math.sin(angle) * trail * 0.22 * swirl + Math.sin(time * 0.7 + u5 * TAU) * trail * 0.08;\n                const dy = trail * (0.85 + 0.15 * Math.cos(angle));\n                const ink = mixColor(main, accent, clamp01(u5 * 0.85 + band * 0.2));\n                const coreWidth = Math.max(0.00018, thickness * 0.0008 * (0.7 + band * 1.2));\n                const color = [ink[0], ink[1], ink[2], alpha];\n\n                if (glow > 0.01) {\n                    batch.line([px, py], [px - dx, py - dy], coreWidth * (4.5 + glow * 2.0), [\n                        ink[0],\n                        ink[1],\n                        ink[2],\n                        alpha * 0.05 * glow,\n                    ]);\n                    batch.line([px, py], [px - dx, py - dy], coreWidth * 2.2, [\n                        ink[0],\n                        ink[1],\n                        ink[2],\n                        alpha * 0.18 * glow,\n                    ]);\n                }\n                batch.line([px, py], [px - dx, py - dy], coreWidth, color);\n\n                if (band > 0.5 && u8 > 0.55) {\n                    const flare = size * (5.0 + band * 8.0);\n                    batch.line([px - flare, py], [px + flare, py], coreWidth * 0.8, [\n                        ink[0],\n                        ink[1],\n                        ink[2],\n                        alpha * 0.35,\n                    ]);\n                    batch.line([px, py - flare], [px, py + flare], coreWidth * 0.8, [\n                        ink[0],\n                        ink[1],\n                        ink[2],\n                        alpha * 0.35,\n                    ]);\n                }\n            }\n\n            return {\n                passes: [\n                    {\n                        program: 'draw',\n                        uniforms: {},\n                        mesh: {\n                            positions: batch.positions.slice(0, batch.count * 3),\n                            colors: batch.colors.slice(0, batch.count * 4),\n                            edges: batch.edges.slice(0, batch.count * 2),\n                        },\n                    },\n                ],\n                state: [peak, envelope, batch.count],\n            };\n        },\n        reset() {},\n        dispose() {},\n    };\n}\n\nexport function create() {\n    return createEmberChoir();\n}\n",
+      "programs": {
+        "draw": {
+          "geometry": "triangles",
+          "uniforms": {},
+          "vertex": "attribute vec4 ink;\nattribute vec2 edge;\nvarying vec4 vInk;\nvarying vec2 vEdge;\nvoid main() {\n    vInk = ink;\n    vEdge = edge;\n    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n}\n",
+          "fragment": "varying vec4 vInk;\nvarying vec2 vEdge;\nvoid main() {\n    float aa = max(fwidth(vEdge.x), 0.000001);\n    float alpha = vInk.a * (1.0 - smoothstep(vEdge.y - aa * 0.5, vEdge.y + aa * 0.5, abs(vEdge.x)));\n    gl_FragColor = vec4(vInk.rgb * alpha, alpha);\n}\n"
+        }
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": "fy-ember-choir",
+      "version": 1,
+      "hash": "cf89fd1cdda16e88f34b2b1bceff05a8df983071aa7acd00c530cda63fade21a",
+      "algorithm": {
+        "id": "fy-ember-choir",
+        "version": 1,
+        "hash": "21df0b8e0c868fd3b9436691611b6b5eb918a80c4db36239f033c19ff3de6e5d"
+      },
+      "kind": "visual",
+      "title": "余烬圣咏（肥鱼测试）",
+      "icon": "stars",
+      "inputParameter": "spectrum",
+      "parameters": [
+        {
+          "id": "spectrum",
+          "label": "频谱输入",
+          "valueKind": "vector",
+          "defaultValue": [],
+          "allowedSourceKinds": [
+            "analysis",
+            "constant",
+            "native"
+          ],
+          "allowEmptyVector": true,
+          "vectorElementRange": {
+            "min": 0,
+            "max": 1000000
+          },
+          "allowedAnalysisComponents": [
+            "default"
+          ],
+          "allowedAnalysisProjections": [
+            "full"
+          ],
+          "defaultBinding": {
+            "source": {
+              "kind": "analysis",
+              "featureId": "amplitudeSpectrum",
+              "projection": {
+                "kind": "full"
+              }
+            }
+          }
+        },
+        {
+          "id": "color",
+          "label": "余烬主色",
+          "valueKind": "color",
+          "defaultValue": "#ffb15a",
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "accent",
+          "label": "尾焰/爆闪色",
+          "valueKind": "color",
+          "defaultValue": "#ff4f8b",
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "opacity",
+          "label": "不透明度",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "sensitivity",
+          "label": "响应系数",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 4,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "glow",
+          "label": "光晕",
+          "valueKind": "number",
+          "defaultValue": 1.2,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 3,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "count",
+          "label": "粒子数",
+          "valueKind": "number",
+          "defaultValue": 420,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 40,
+            "max": 900,
+            "integer": true,
+            "editingPrecision": 0
+          }
+        },
+        {
+          "id": "size",
+          "label": "基础尺寸",
+          "valueKind": "number",
+          "defaultValue": 0.004,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.0005,
+            "max": 0.02,
+            "integer": false,
+            "editingPrecision": 5
+          }
+        },
+        {
+          "id": "speed",
+          "label": "上升速度",
+          "valueKind": "number",
+          "defaultValue": 0.22,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": -1,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "spread",
+          "label": "横向散布",
+          "valueKind": "number",
+          "defaultValue": 0.95,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.2,
+            "max": 1.4,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "x",
+          "label": "发射中心 X",
+          "valueKind": "number",
+          "defaultValue": 0.5,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "y",
+          "label": "发射中心 Y",
+          "valueKind": "number",
+          "defaultValue": 0.64,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "rise",
+          "label": "上升幅度",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.2,
+            "max": 1.5,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "swirl",
+          "label": "螺旋强度",
+          "valueKind": "number",
+          "defaultValue": 0.45,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": -1,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "burst",
+          "label": "爆闪响应",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 2,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "thickness",
+          "label": "拖尾线宽",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.2,
+            "max": 3,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "exposure",
+          "label": "曝光",
+          "valueKind": "number",
+          "defaultValue": 1.1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.4,
+            "max": 2,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        }
+      ]
+    }
+  ],
+  "presets": []
+}

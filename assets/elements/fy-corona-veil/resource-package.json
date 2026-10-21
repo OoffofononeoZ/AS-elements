@@ -1,0 +1,484 @@
+{
+  "format": "audiosurf-visualizer-resource",
+  "schemaVersion": 2,
+  "id": "fy-corona-veil",
+  "version": 1,
+  "algorithms": [
+    {
+      "id": "fy-corona-veil",
+      "version": 1,
+      "hash": "e8f753e4321ec979007ee837d4f4a2122aa9b54c035c8f3da43f54812ea2c91d",
+      "apiVersion": 1,
+      "contract": {
+        "kind": "visual",
+        "parameters": [
+          {
+            "id": "spectrum",
+            "valueKind": "vector",
+            "allowedSourceKinds": [
+              "analysis",
+              "constant",
+              "native"
+            ],
+            "allowEmptyVector": true,
+            "vectorElementRange": {
+              "min": 0,
+              "max": 1000000
+            },
+            "allowedAnalysisComponents": [
+              "default"
+            ],
+            "allowedAnalysisProjections": [
+              "full"
+            ]
+          },
+          {
+            "id": "colorHot",
+            "valueKind": "color",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "colorCool",
+            "valueKind": "color",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "colorVoid",
+            "valueKind": "color",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "opacity",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "sensitivity",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 4,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "glow",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 3,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "density",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.4,
+              "max": 2.4,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "rays",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 4,
+              "max": 24,
+              "integer": true,
+              "editingPrecision": 0
+            }
+          },
+          {
+            "id": "speed",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": -1,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "x",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "y",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "idle",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "exposure",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.4,
+              "max": 2,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          }
+        ],
+        "sharedParameters": [
+          "sensitivity",
+          "glow"
+        ],
+        "historyParameters": [],
+        "inputParameter": "spectrum"
+      },
+      "source": "const REFERENCE = 128;\nconst TAU = Math.PI * 2;\n\nconst clamp01 = value => Math.max(0, Math.min(1, value));\n\nfunction smoothstep(edge0, edge1, value) {\n    const t = clamp01((value - edge0) / Math.max(1e-9, edge1 - edge0));\n    return t * t * (3 - 2 * t);\n}\n\nfunction rangeEnvelope(frame, edge) {\n    const range = frame.range;\n    if (!range) return 1;\n    const span = Math.max(1e-6, range.endSeconds - range.startSeconds);\n    const progress = (frame.time - range.startSeconds) / span;\n    return smoothstep(0, edge, progress) * smoothstep(0, edge, 1 - progress);\n}\n\nfunction fillBands(input, sensitivity, output, unit) {\n    output.fill(0);\n    const gain = Number.isFinite(sensitivity) ? sensitivity : 1;\n    if (!Array.isArray(input) || input.length === 0) return output;\n\n    if (unit === 'we-strength') {\n        for (let i = 0; i < output.length; i++) {\n            const value = input[i];\n            output[i] = (typeof value === 'number' && Number.isFinite(value) ? value : 0) * gain;\n        }\n        return output;\n    }\n\n    if (unit === 'byte-frequency') {\n        const sourceBands = Math.floor(input.length / 2);\n        for (let band = 0; band < output.length; band++) {\n            const start = Math.floor((band * sourceBands) / output.length);\n            const end = Math.max(start + 1, Math.floor(((band + 1) * sourceBands) / output.length));\n            let peak = 0;\n            for (let channel = 0; channel < 2; channel++) {\n                for (let i = start; i < end; i++) {\n                    const value = input[channel * sourceBands + i];\n                    if (typeof value === 'number' && Number.isFinite(value)) peak = Math.max(peak, value);\n                }\n            }\n            output[band] = (peak / 255) * gain;\n        }\n        return output;\n    }\n\n    for (let band = 0; band < output.length; band++) {\n        const start = Math.floor((band * input.length) / output.length);\n        const end = Math.max(start + 1, Math.floor(((band + 1) * input.length) / output.length));\n        let peak = 0;\n        for (let i = start; i < end; i++) {\n            const value = input[i];\n            if (typeof value !== 'number' || !Number.isFinite(value)) continue;\n            const magnitude = unit === 'signed-waveform' ? Math.abs(value) : value;\n            if (magnitude > peak) peak = magnitude;\n        }\n        output[band] =\n            (unit === 'signed-waveform' ? peak : Math.min(1, Math.log1p(peak) / Math.log1p(REFERENCE))) * gain;\n    }\n    return output;\n}\n\nfunction averageRange(values, start, end) {\n    let total = 0;\n    for (let i = start; i < end; i++) total += values[i] ?? 0;\n    return total / Math.max(1, end - start);\n}\n\nfunction numberParameter(frame, id, fallback) {\n    const value = frame.parameters?.[id]?.value;\n    return typeof value === 'number' && Number.isFinite(value) ? value : fallback;\n}\n\nfunction colorParameter(frame, id, fallback) {\n    const value = frame.parameters?.[id]?.value;\n    return typeof value === 'string' && value ? value : fallback;\n}\n\nfunction createCoronaVeil() {\n    const levels = new Float32Array(64);\n    return {\n        prepareFrame(frame) {\n            const spectrum = frame.parameters?.spectrum;\n            fillBands(\n                Array.isArray(spectrum?.value) ? spectrum.value : [],\n                numberParameter(frame, 'sensitivity', 1),\n                levels,\n                spectrum?.unit,\n            );\n            let peak = 0;\n            for (let i = 0; i < levels.length; i++) peak = Math.max(peak, levels[i]);\n            const bass = averageRange(levels, 0, 8);\n            const mid = averageRange(levels, 8, 32);\n            const treble = averageRange(levels, 32, 64);\n            const envelope = rangeEnvelope(frame, 0.08);\n            const width = Math.max(1, frame.width);\n            const height = Math.max(1, frame.height);\n            const speed = numberParameter(frame, 'speed', 0.16);\n            const x = clamp01(numberParameter(frame, 'x', 0.5));\n            const y = clamp01(numberParameter(frame, 'y', 0.46));\n            const opacity = clamp01(numberParameter(frame, 'opacity', 1));\n\n            return {\n                passes: [\n                    {\n                        program: 'draw',\n                        uniforms: {\n                            uTime: frame.time * speed,\n                            uAspect: width / height,\n                            uHot: colorParameter(frame, 'colorHot', '#ff5a1f'),\n                            uCool: colorParameter(frame, 'colorCool', '#6fe6ff'),\n                            uVoid: colorParameter(frame, 'colorVoid', '#03040a'),\n                            uOpacity: opacity,\n                            uGlow: Math.max(0, numberParameter(frame, 'glow', 1.2)),\n                            uDensity: Math.max(0.05, numberParameter(frame, 'density', 1.1)),\n                            uRays: Math.max(4, Math.min(24, Math.round(numberParameter(frame, 'rays', 14)))),\n                            uCenter: [x, y],\n                            uBass: bass,\n                            uMid: mid,\n                            uTreble: treble,\n                            uPeak: peak,\n                            uIdle: clamp01(numberParameter(frame, 'idle', 0.22)),\n                            uExposure: Math.max(0.01, numberParameter(frame, 'exposure', 1.05)),\n                            uEnvelope: envelope,\n                        },\n                    },\n                ],\n                state: [peak, envelope],\n            };\n        },\n        reset() {},\n        dispose() {},\n    };\n}\n\nexport function create() {\n    return createCoronaVeil();\n}\n",
+      "programs": {
+        "draw": {
+          "geometry": "quad",
+          "uniforms": {
+            "uTime": {
+              "type": "number"
+            },
+            "uAspect": {
+              "type": "number"
+            },
+            "uHot": {
+              "type": "color"
+            },
+            "uCool": {
+              "type": "color"
+            },
+            "uVoid": {
+              "type": "color"
+            },
+            "uOpacity": {
+              "type": "number"
+            },
+            "uGlow": {
+              "type": "number"
+            },
+            "uDensity": {
+              "type": "number"
+            },
+            "uRays": {
+              "type": "number"
+            },
+            "uCenter": {
+              "type": "vec2"
+            },
+            "uBass": {
+              "type": "number"
+            },
+            "uMid": {
+              "type": "number"
+            },
+            "uTreble": {
+              "type": "number"
+            },
+            "uPeak": {
+              "type": "number"
+            },
+            "uIdle": {
+              "type": "number"
+            },
+            "uExposure": {
+              "type": "number"
+            },
+            "uEnvelope": {
+              "type": "number"
+            }
+          },
+          "vertex": "varying vec2 vUv;\nvoid main() { vUv = uv; gl_Position = vec4(position, 1.0); }\n",
+          "fragment": "precision highp float;\n\nvarying vec2 vUv;\n\nuniform float uTime;\nuniform float uAspect;\nuniform vec3 uHot;\nuniform vec3 uCool;\nuniform vec3 uVoid;\nuniform float uOpacity;\nuniform float uGlow;\nuniform float uDensity;\nuniform float uRays;\nuniform vec2 uCenter;\nuniform float uBass;\nuniform float uMid;\nuniform float uTreble;\nuniform float uPeak;\nuniform float uIdle;\nuniform float uExposure;\nuniform float uEnvelope;\n\nfloat hash21(vec2 p) {\n    p = fract(p * vec2(123.34, 456.21));\n    p += vec2(dot(p, p + 45.32));\n    return fract(p.x * p.y);\n}\n\nfloat valueNoise(vec2 p) {\n    vec2 i = floor(p);\n    vec2 f = fract(p);\n    f = f * f * (3.0 - 2.0 * f);\n    float a = hash21(i);\n    float b = hash21(i + vec2(1.0, 0.0));\n    float c = hash21(i + vec2(0.0, 1.0));\n    float d = hash21(i + vec2(1.0, 1.0));\n    return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);\n}\n\nfloat fbm(vec2 p) {\n    float value = 0.0;\n    float amplitude = 0.5;\n    for (int i = 0; i < 5; i++) {\n        value += amplitude * valueNoise(p);\n        p = p * 2.03 + vec2(1.7, 9.2);\n        amplitude *= 0.5;\n    }\n    return value;\n}\n\nvoid main() {\n    vec2 uv = vUv;\n    vec2 p = (uv - uCenter) * vec2(uAspect, 1.0);\n    float radius = length(p);\n    float angle = atan(p.y, p.x + 1e-6);\n    vec2 q = p * uDensity;\n    float time = uTime;\n\n    float turbulence = fbm(q * 2.4 + vec2(time * 0.06, -time * 0.045));\n    float rayShape = pow(max(0.0, sin(angle * uRays + turbulence * 4.6 + time * 0.32)), 9.0);\n    float rayFalloff = exp(-radius * 2.2);\n    float corona = (0.26 + rayShape * 0.74) * rayFalloff * (0.5 + uMid * 1.35 + uPeak * 0.45);\n    float core = exp(-radius * radius * 24.0) * (0.72 + uBass * 1.6);\n    float rim = exp(-abs(radius - 0.23) * 52.0) * (0.32 + uBass * 0.9);\n    float halo = exp(-radius * 2.8) * (0.16 + uTreble * 0.6);\n\n    vec3 color = uVoid;\n    color += uHot * core * (0.8 + uGlow * 0.5);\n    color += mix(uHot, vec3(1.0, 0.82, 0.55), 0.35) * rim * (0.8 + uGlow * 0.4);\n    color += uHot * corona * (0.55 + uGlow * 0.45);\n    color += uCool * halo * (0.5 + uGlow * 0.5);\n\n    vec2 starCell = floor(uv * vec2(uAspect, 1.0) * 180.0);\n    vec2 starLocal = fract(uv * vec2(uAspect, 1.0) * 180.0) - 0.5;\n    float starHash = hash21(starCell);\n    float star = (1.0 - smoothstep(0.0, 0.12, length(starLocal))) * step(0.988, starHash);\n    star *= 0.35 + 0.65 * (0.5 + 0.5 * sin(time * 3.0 + starHash * 40.0));\n    color += vec3(0.75, 0.85, 1.0) * star * 0.5 * (0.4 + uTreble * 0.8);\n\n    float idle = uIdle * (0.55 + 0.45 * sin(time * 0.7));\n    color += uHot * idle * 0.12 * exp(-radius * 2.0);\n\n    color *= 1.0 - 0.55 * smoothstep(0.35, 1.15, radius);\n    color = color / (1.0 + color * 0.28);\n    color = pow(max(color, vec3(0.0)), vec3(0.92));\n    color *= uExposure * (0.35 + 0.65 * uEnvelope);\n\n    float alpha = clamp(uOpacity * uEnvelope, 0.0, 1.0);\n    gl_FragColor = vec4(color * alpha, alpha);\n}\n"
+        }
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": "fy-corona-veil",
+      "version": 1,
+      "hash": "e28d0e76422cd710e00e365dcc457975af913c69b1358453912dfba91044c18e",
+      "algorithm": {
+        "id": "fy-corona-veil",
+        "version": 1,
+        "hash": "e8f753e4321ec979007ee837d4f4a2122aa9b54c035c8f3da43f54812ea2c91d"
+      },
+      "kind": "visual",
+      "title": "日冕纱幕（肥鱼测试）",
+      "icon": "radial",
+      "inputParameter": "spectrum",
+      "parameters": [
+        {
+          "id": "spectrum",
+          "label": "频谱输入",
+          "valueKind": "vector",
+          "defaultValue": [],
+          "allowedSourceKinds": [
+            "analysis",
+            "constant",
+            "native"
+          ],
+          "allowEmptyVector": true,
+          "vectorElementRange": {
+            "min": 0,
+            "max": 1000000
+          },
+          "allowedAnalysisComponents": [
+            "default"
+          ],
+          "allowedAnalysisProjections": [
+            "full"
+          ],
+          "defaultBinding": {
+            "source": {
+              "kind": "analysis",
+              "featureId": "amplitudeSpectrum",
+              "projection": {
+                "kind": "full"
+              }
+            }
+          }
+        },
+        {
+          "id": "colorHot",
+          "label": "内焰颜色",
+          "valueKind": "color",
+          "defaultValue": "#ff5a1f",
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "colorCool",
+          "label": "边缘冷光",
+          "valueKind": "color",
+          "defaultValue": "#6fe6ff",
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "colorVoid",
+          "label": "虚空底色",
+          "valueKind": "color",
+          "defaultValue": "#03040a",
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "opacity",
+          "label": "不透明度",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "sensitivity",
+          "label": "响应系数",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 4,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "glow",
+          "label": "光晕",
+          "valueKind": "number",
+          "defaultValue": 1.2,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 3,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "density",
+          "label": "湍流密度",
+          "valueKind": "number",
+          "defaultValue": 1.1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.4,
+            "max": 2.4,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "rays",
+          "label": "射线数",
+          "valueKind": "number",
+          "defaultValue": 14,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 4,
+            "max": 24,
+            "integer": true,
+            "editingPrecision": 0
+          }
+        },
+        {
+          "id": "speed",
+          "label": "旋转速度",
+          "valueKind": "number",
+          "defaultValue": 0.16,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": -1,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "x",
+          "label": "水平位置",
+          "valueKind": "number",
+          "defaultValue": 0.5,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "y",
+          "label": "垂直位置",
+          "valueKind": "number",
+          "defaultValue": 0.46,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "idle",
+          "label": "静音呼吸",
+          "valueKind": "number",
+          "defaultValue": 0.22,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "exposure",
+          "label": "曝光",
+          "valueKind": "number",
+          "defaultValue": 1.05,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.4,
+            "max": 2,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        }
+      ]
+    }
+  ],
+  "presets": []
+}

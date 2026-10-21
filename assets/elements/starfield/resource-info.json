@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "starfield",
+    "version": 2,
+    "hash": "34030a5862a5c94ec156500fd35bcf70a87ca4b5574bed87c0729d921dd8a116"
+  },
+  "kind": "visual",
+  "title": "跃迁星尘",
+  "description": "跃迁星尘",
+  "creator": "default",
+  "createdAt": "2026-10-19T17:39:30.954Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 12
+}

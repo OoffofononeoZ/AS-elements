@@ -1,0 +1,211 @@
+{
+    "format": "audiosurf-visualizer-resource",
+    "schemaVersion": 2,
+    "id": "point-line-horizontal",
+    "version": 1,
+    "algorithms": [
+        {
+            "id": "point-line-horizontal",
+            "version": 1,
+            "apiVersion": 2,
+            "contract": {
+                "kind": "visual",
+                "parameters": [
+                    {
+                        "id": "color",
+                        "valueKind": "color",
+                        "allowedSourceKinds": [
+                            "constant"
+                        ]
+                    },
+                    {
+                        "id": "lineWidth",
+                        "valueKind": "number",
+                        "range": {
+                            "min": 0.0005,
+                            "max": 0.02,
+                            "integer": false,
+                            "editingPrecision": 4
+                        },
+                        "allowedSourceKinds": [
+                            "constant"
+                        ]
+                    },
+                    {
+                        "id": "fadeInSeconds",
+                        "valueKind": "number",
+                        "range": {
+                            "min": 0.01,
+                            "max": 0.5,
+                            "integer": false,
+                            "editingPrecision": 3
+                        },
+                        "allowedSourceKinds": [
+                            "constant"
+                        ]
+                    },
+                    {
+                        "id": "holdSeconds",
+                        "valueKind": "number",
+                        "range": {
+                            "min": 0,
+                            "max": 1,
+                            "integer": false,
+                            "editingPrecision": 3
+                        },
+                        "allowedSourceKinds": [
+                            "constant"
+                        ]
+                    },
+                    {
+                        "id": "fadeOutSeconds",
+                        "valueKind": "number",
+                        "range": {
+                            "min": 0.01,
+                            "max": 0.5,
+                            "integer": false,
+                            "editingPrecision": 3
+                        },
+                        "allowedSourceKinds": [
+                            "constant"
+                        ]
+                    }
+                ],
+                "sharedParameters": [],
+                "historyParameters": [],
+                "markerInputs": [
+                    {
+                        "id": "points",
+                        "eventKind": "point",
+                        "selectionModes": [
+                            "collection"
+                        ],
+                        "categorySelection": "single"
+                    }
+                ]
+            },
+            "entry": "source/algorithms/point-line-horizontal.mjs",
+            "includes": [
+                "source/shared/point-line.js"
+            ],
+            "programs": {
+                "draw": {
+                    "geometry": "triangles",
+                    "vertexFile": "source/shaders/line.vert.glsl",
+                    "fragmentFile": "source/shaders/line.frag.glsl",
+                    "uniforms": {
+                        "uColor": {
+                            "type": "color"
+                        },
+                        "uImage": {
+                            "type": "source"
+                        },
+                        "uHasImage": {
+                            "type": "boolean"
+                        },
+                        "uAspect": {
+                            "type": "number"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "elements": [
+        {
+            "id": "point-line-horizontal",
+            "version": 1,
+            "kind": "visual",
+            "title": "点标记横线（测试）",
+            "icon": "strings",
+            "parameters": [
+                {
+                    "id": "color",
+                    "label": "颜色",
+                    "valueKind": "color",
+                    "defaultValue": "#ffffff",
+                    "allowedSourceKinds": [
+                        "constant"
+                    ]
+                },
+                {
+                    "id": "lineWidth",
+                    "label": "线宽（短边比例）",
+                    "valueKind": "number",
+                    "defaultValue": 0.003,
+                    "range": {
+                        "min": 0.0005,
+                        "max": 0.02,
+                        "integer": false,
+                        "editingPrecision": 4
+                    },
+                    "allowedSourceKinds": [
+                        "constant"
+                    ]
+                },
+                {
+                    "id": "fadeInSeconds",
+                    "label": "渐显（秒）",
+                    "valueKind": "number",
+                    "defaultValue": 0.04,
+                    "range": {
+                        "min": 0.01,
+                        "max": 0.5,
+                        "integer": false,
+                        "editingPrecision": 3
+                    },
+                    "allowedSourceKinds": [
+                        "constant"
+                    ]
+                },
+                {
+                    "id": "holdSeconds",
+                    "label": "停留（秒）",
+                    "valueKind": "number",
+                    "defaultValue": 0.06,
+                    "range": {
+                        "min": 0,
+                        "max": 1,
+                        "integer": false,
+                        "editingPrecision": 3
+                    },
+                    "allowedSourceKinds": [
+                        "constant"
+                    ]
+                },
+                {
+                    "id": "fadeOutSeconds",
+                    "label": "渐隐（秒）",
+                    "valueKind": "number",
+                    "defaultValue": 0.1,
+                    "range": {
+                        "min": 0.01,
+                        "max": 0.5,
+                        "integer": false,
+                        "editingPrecision": 3
+                    },
+                    "allowedSourceKinds": [
+                        "constant"
+                    ]
+                }
+            ],
+            "algorithm": {
+                "id": "point-line-horizontal",
+                "version": 1,
+                "hash": ""
+            },
+            "markerInputs": [
+                {
+                    "id": "points",
+                    "eventKind": "point",
+                    "selectionModes": [
+                        "collection"
+                    ],
+                    "categorySelection": "single",
+                    "label": "点标记"
+                }
+            ]
+        }
+    ],
+    "presets": []
+}

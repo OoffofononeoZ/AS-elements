@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "fade",
+    "version": 3,
+    "hash": "ae957f7adaadd4721ce914249eda54d97874e7fb0460fa9b6941de99b7599593"
+  },
+  "kind": "transition",
+  "title": "淡入淡出",
+  "description": "按工程内所选的单个 Editor 范围过渡透明度，结束后保持终值。",
+  "creator": "default",
+  "createdAt": "2026-10-19T17:39:30.954Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 6
+}

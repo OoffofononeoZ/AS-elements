@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "fy-corona-veil",
+    "version": 1,
+    "hash": "e28d0e76422cd710e00e365dcc457975af913c69b1358453912dfba91044c18e"
+  },
+  "kind": "visual",
+  "title": "日冕纱幕（肥鱼测试）",
+  "description": "黑曜石虚空中的日冕纱幕：金橙核心、青蓝边缘光、缓慢旋转的射线与星尘。",
+  "creator": "default",
+  "createdAt": "2026-10-21T05:08:12.874Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 15
+}

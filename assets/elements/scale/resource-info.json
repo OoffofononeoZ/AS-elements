@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "scale",
+    "version": 2,
+    "hash": "197d4d52d3f34d75a314d3f6111f4321e0c54c5e3061749b7745fdfa7357ea28"
+  },
+  "kind": "modifier",
+  "title": "缩放",
+  "description": "缩放",
+  "creator": "default",
+  "createdAt": "2026-10-19T17:39:30.954Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 4
+}
