@@ -96,3 +96,7 @@ markerInputs 可选 `categorySelection:'single'`，仅当 selectionModes 包含 
 - 不输出 `AWAITING_APPROVAL`。INPUT_INCOMPLETE 时先完善可自主决定的设计，只有真正阻塞明确需求的必要用户信息才询问。
 
 不接受 VisualizerContentBriefV1 或 SceneBriefV1，也不转换旧 brief。完整性校验之后仍须核对 registry、数据单位/维度、工程预算和当前渲染实现。
+
+## 媒体与执行模式
+
+元素意图可增加 executionModes（非空 timeline/realtime 数组）和 mediaInputs（非空数组，每项 id、kinds、multiple、purpose、emptyBehavior）；id 唯一，kinds 为 image/video 的非空去重数组，multiple 为布尔，其余为非空文本。仅声明能力和空输入视觉，不传真实用户媒体。运行时合同见[媒体输入](media-inputs.md)。

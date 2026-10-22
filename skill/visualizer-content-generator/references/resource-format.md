@@ -19,7 +19,7 @@ assets/elements/<id>/ 和 assets/presets/<id>/ 各包含：
 
 ## 算法
 
-AlgorithmDefinition 为 {id,version,hash,apiVersion:1或2,contract,source,programs}。contract 为 kind、parameters、可选 inputParameter、sharedParameters、historyParameters。参数为 id、valueKind、allowedSourceKinds 和适用的 range/vectorElementRange/allowEmptyVector/allowedAnalysisComponents/allowedAnalysisProjections。元素参数另含 label、defaultValue、可选 defaultBinding，能力只能收窄算法声明。
+AlgorithmDefinition 为 {id,version,hash,apiVersion:1、2或3,contract,source,programs}。contract 为 kind、parameters、可选 inputParameter、sharedParameters、historyParameters。参数为 id、valueKind、allowedSourceKinds 和适用的 range/vectorElementRange/allowEmptyVector/allowedAnalysisComponents/allowedAnalysisProjections。元素参数另含 label、defaultValue、可选 defaultBinding，能力只能收窄算法声明。
 
 source 是自包含 ES Module，禁止 import/export-from/dynamic-import。同步 create() 返回有 prepareFrame(frame,input) 的实例，可选 reset()/dispose()。不得获取 DOM、网络、存储或自建 Worker/Canvas/音频对象。
 

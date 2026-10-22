@@ -1,12 +1,12 @@
 ---
 name: visualizer-content-generator
 description: 自主设计、生成带展示图的外部 V2 算法元素包与预设；预设仅组合已有元素，明确需求缺少关键条件时再询问。
-version: 2.4.0
+version: 2.5.0
 ---
 
 # Visualizer 内容生成
 
-本 skill 独立运行，不依赖应用仓库。资源位于用户指定的 assets 文件夹：elements/<id>/、presets/<id>/。输出 V2 运行包，工程和草稿仍为 V5 自包含快照。已有算法使用 ABI 1；声明标记输入的算法使用 ABI 2。不生成 ZIP。允许按所在仓库的规则使用 Git，不默认创建历史副本或版本目录，不自动推送、发布或重写历史。
+本 skill 独立运行，不依赖应用仓库。资源位于用户指定的 assets 文件夹：elements/<id>/、presets/<id>/。输出 V2 运行包，工程和草稿仍为 V5 自包含快照。已有算法使用 ABI 1；声明标记输入的算法使用 ABI 2；媒体输入或显式歌曲／实时执行模式使用 ABI 3，详见 [媒体输入](references/media-inputs.md)。不生成 ZIP。允许按所在仓库的规则使用 Git，不默认创建历史副本或版本目录，不自动推送、发布或重写历史。
 
 ## 工作流
 

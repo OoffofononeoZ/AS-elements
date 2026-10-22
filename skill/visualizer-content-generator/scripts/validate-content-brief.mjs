@@ -151,6 +151,8 @@ export function validateContentBrief(input) {
                 'resource',
                 'markerInputs',
                 'timingInput',
+                'mediaInputs',
+                'executionModes',
                 'type',
                 'kind',
                 'appearance',
@@ -163,6 +165,34 @@ export function validateContentBrief(input) {
             path,
         );
         if (!e) return;
+        if (e.executionModes !== undefined) {
+            const modes = array(e.executionModes, path + '.executionModes');
+            if (modes && (!modes.length || new Set(modes).size !== modes.length))
+                issue(path + '.executionModes', 'must be non-empty and unique');
+            modes?.forEach((mode, i) =>
+                enumeration(mode, ['timeline', 'realtime'], path + '.executionModes[' + i + ']'),
+            );
+        }
+        if (e.mediaInputs !== undefined) {
+            const media = array(e.mediaInputs, path + '.mediaInputs');
+            if (media && !media.length) issue(path + '.mediaInputs', 'must not be empty');
+            const ids = new Set();
+            media?.forEach((raw, i) => {
+                const mp = path + '.mediaInputs[' + i + ']',
+                    m = object(raw, ['id', 'kinds', 'multiple', 'purpose', 'emptyBehavior'], mp);
+                if (!m) return;
+                name(m.id, mp + '.id');
+                if (ids.has(m.id)) issue(mp + '.id', 'must be unique');
+                ids.add(m.id);
+                const kinds = array(m.kinds, mp + '.kinds');
+                if (kinds && (!kinds.length || new Set(kinds).size !== kinds.length))
+                    issue(mp + '.kinds', 'must be non-empty and unique');
+                kinds?.forEach((kind, j) => enumeration(kind, ['image', 'video'], mp + '.kinds[' + j + ']'));
+                if (typeof m.multiple !== 'boolean') issue(mp + '.multiple', 'must be boolean');
+                text(m.purpose, mp + '.purpose');
+                text(m.emptyBehavior, mp + '.emptyBehavior');
+            });
+        }
         name(e.key, `${path}.key`);
         name(e.type, `${path}.type`);
         enumeration(e.origin, ['existing', 'new'], `${path}.origin`);

@@ -53,3 +53,7 @@ controls 可为空。每项含唯一 id、label、kind、parameterId、targets�
 ## 元素 Seed 能力
 
 仅当 frame.seed 能改变该元素支持的实际画面（含可选随机分支）时，在元素定义声明 usesSeed:true；不使用时省略，不能写 false。宿主只为声明此能力的实例提供可清空的独立 Seed，空值按会话随机；非随机元素不保存 Seed。不要依据共享辅助代码中出现 seed 就声明能力，也不要把尚未接入 Seed 的 Shader 噪声标为已支持。该声明参与元素 hash；更新时提升元素版本，并同步预设的精确引用。算法 ABI 的 frame.seed 仍为数字，非声明元素收到 0 占位。
+
+## ABI 3 扩展
+
+媒体输入、预设 none 绑定、受控 sampler2D 以及显式执行模式见[媒体输入](media-inputs.md)。这些字段仅由 ABI 3 声明；不扩展数值参数来源。
