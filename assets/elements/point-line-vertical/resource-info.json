@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "resource": {
     "id": "point-line-vertical",
-    "version": 1,
-    "hash": "a502d3fe211e705a99910c08f187ef7b42da97b335e8f0af2b122d8bf68f5e9b"
+    "version": 2,
+    "hash": "399bf336f00ff403350293bae3ed842b33a451b8d943175886a177289cf1fe92"
   },
   "kind": "visual",
   "title": "点标记竖线（测试）",

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "resource": {
     "id": "prismatic-voyage",
-    "version": 3,
-    "hash": "10ad79b64e818bc05ce2101903ec6a493c0bc34d3af5e5c3c254d781b734a751"
+    "version": 4,
+    "hash": "58a9c9a220d06c1f7cc7698256927a823b6b86a741e85257bac6660c3e555036"
   },
   "kind": "preset",
   "title": "棱镜航行",
@@ -21,8 +21,8 @@
     },
     {
       "id": "starfield",
-      "version": 2,
-      "hash": "34030a5862a5c94ec156500fd35bcf70a87ca4b5574bed87c0729d921dd8a116"
+      "version": 3,
+      "hash": "7e00fc82bd6a472e225686c9d343e1eb79d413003756af9ad887b0152000993a"
     },
     {
       "id": "light-tunnel",
@@ -31,8 +31,8 @@
     },
     {
       "id": "radial-spectrum",
-      "version": 2,
-      "hash": "dc902d582f151d2bd1bbcc641779f2caeab7dc8d5f600ec4496381ca64752b75"
+      "version": 3,
+      "hash": "49f6c24f67b93c659c52d06c9cabcce20e26638d841df7f75842fd19d56e2f73"
     },
     {
       "id": "arc-lattice",
@@ -41,13 +41,13 @@
     },
     {
       "id": "wireform",
-      "version": 2,
-      "hash": "cadcd8bc729340ac2b8175de40140a40ba0328b6a12f8c4df28bcb8d800dbfca"
+      "version": 3,
+      "hash": "ca383386d0464a6ecb8ceaf637b4f78fe5ef6a086565b5f9c4473f38bb885c73"
     },
     {
       "id": "orbit-solids",
-      "version": 2,
-      "hash": "0a44ecd7992bb90b9d4e504defe1b8fff8b596d24fad6df9f717ad8d88ffa0d2"
+      "version": 3,
+      "hash": "c2acf23cf3133bcdf32529912e9c3d2f28e5e3e5a11ff9f937a957bde830f89e"
     }
   ],
   "order": 14

@@ -2,7 +2,7 @@
   "format": "audiosurf-visualizer-resource",
   "schemaVersion": 2,
   "id": "point-line-vertical",
-  "version": 1,
+  "version": 2,
   "algorithms": [
     {
       "id": "point-line-vertical",
@@ -112,13 +112,14 @@
   "elements": [
     {
       "id": "point-line-vertical",
-      "version": 1,
-      "hash": "a502d3fe211e705a99910c08f187ef7b42da97b335e8f0af2b122d8bf68f5e9b",
+      "version": 2,
+      "hash": "399bf336f00ff403350293bae3ed842b33a451b8d943175886a177289cf1fe92",
       "algorithm": {
         "id": "point-line-vertical",
         "version": 1,
         "hash": "7624fed8a73270c7523fc3bb78c7fe60a5c5aac24b0d3980592285eec0cb504c"
       },
+      "usesSeed": true,
       "kind": "visual",
       "title": "点标记竖线（测试）",
       "icon": "strings",

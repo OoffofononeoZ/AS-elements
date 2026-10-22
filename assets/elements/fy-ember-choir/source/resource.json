@@ -1,529 +1,530 @@
 {
-    "format": "audiosurf-visualizer-resource",
-    "schemaVersion": 2,
-    "id": "fy-ember-choir",
-    "version": 1,
-    "algorithms": [
-        {
-            "id": "fy-ember-choir",
-            "version": 1,
-            "apiVersion": 1,
-            "contract": {
-                "kind": "visual",
-                "inputParameter": "spectrum",
-                "parameters": [
-                    {
-                        "id": "spectrum",
-                        "valueKind": "vector",
-                        "allowedSourceKinds": [
-                            "analysis",
-                            "constant",
-                            "native"
-                        ],
-                        "allowEmptyVector": true,
-                        "vectorElementRange": {
-                            "min": 0,
-                            "max": 1000000
-                        },
-                        "allowedAnalysisComponents": [
-                            "default"
-                        ],
-                        "allowedAnalysisProjections": [
-                            "full"
-                        ]
-                    },
-                    {
-                        "id": "color",
-                        "valueKind": "color",
-                        "allowedSourceKinds": [
-                            "constant"
-                        ]
-                    },
-                    {
-                        "id": "accent",
-                        "valueKind": "color",
-                        "allowedSourceKinds": [
-                            "constant"
-                        ]
-                    },
-                    {
-                        "id": "opacity",
-                        "valueKind": "number",
-                        "allowedSourceKinds": [
-                            "constant"
-                        ],
-                        "range": {
-                            "min": 0,
-                            "max": 1,
-                            "integer": false,
-                            "editingPrecision": 2
-                        }
-                    },
-                    {
-                        "id": "sensitivity",
-                        "valueKind": "number",
-                        "allowedSourceKinds": [
-                            "constant"
-                        ],
-                        "range": {
-                            "min": 0,
-                            "max": 4,
-                            "integer": false,
-                            "editingPrecision": 2
-                        }
-                    },
-                    {
-                        "id": "glow",
-                        "valueKind": "number",
-                        "allowedSourceKinds": [
-                            "constant"
-                        ],
-                        "range": {
-                            "min": 0,
-                            "max": 3,
-                            "integer": false,
-                            "editingPrecision": 2
-                        }
-                    },
-                    {
-                        "id": "count",
-                        "valueKind": "number",
-                        "allowedSourceKinds": [
-                            "constant"
-                        ],
-                        "range": {
-                            "min": 40,
-                            "max": 900,
-                            "integer": true,
-                            "editingPrecision": 0
-                        }
-                    },
-                    {
-                        "id": "size",
-                        "valueKind": "number",
-                        "allowedSourceKinds": [
-                            "constant"
-                        ],
-                        "range": {
-                            "min": 0.0005,
-                            "max": 0.02,
-                            "integer": false,
-                            "editingPrecision": 5
-                        }
-                    },
-                    {
-                        "id": "speed",
-                        "valueKind": "number",
-                        "allowedSourceKinds": [
-                            "constant"
-                        ],
-                        "range": {
-                            "min": -1,
-                            "max": 1,
-                            "integer": false,
-                            "editingPrecision": 3
-                        }
-                    },
-                    {
-                        "id": "spread",
-                        "valueKind": "number",
-                        "allowedSourceKinds": [
-                            "constant"
-                        ],
-                        "range": {
-                            "min": 0.2,
-                            "max": 1.4,
-                            "integer": false,
-                            "editingPrecision": 2
-                        }
-                    },
-                    {
-                        "id": "x",
-                        "valueKind": "number",
-                        "allowedSourceKinds": [
-                            "constant"
-                        ],
-                        "range": {
-                            "min": 0,
-                            "max": 1,
-                            "integer": false,
-                            "editingPrecision": 3
-                        }
-                    },
-                    {
-                        "id": "y",
-                        "valueKind": "number",
-                        "allowedSourceKinds": [
-                            "constant"
-                        ],
-                        "range": {
-                            "min": 0,
-                            "max": 1,
-                            "integer": false,
-                            "editingPrecision": 3
-                        }
-                    },
-                    {
-                        "id": "rise",
-                        "valueKind": "number",
-                        "allowedSourceKinds": [
-                            "constant"
-                        ],
-                        "range": {
-                            "min": 0.2,
-                            "max": 1.5,
-                            "integer": false,
-                            "editingPrecision": 2
-                        }
-                    },
-                    {
-                        "id": "swirl",
-                        "valueKind": "number",
-                        "allowedSourceKinds": [
-                            "constant"
-                        ],
-                        "range": {
-                            "min": -1,
-                            "max": 1,
-                            "integer": false,
-                            "editingPrecision": 2
-                        }
-                    },
-                    {
-                        "id": "burst",
-                        "valueKind": "number",
-                        "allowedSourceKinds": [
-                            "constant"
-                        ],
-                        "range": {
-                            "min": 0,
-                            "max": 2,
-                            "integer": false,
-                            "editingPrecision": 2
-                        }
-                    },
-                    {
-                        "id": "thickness",
-                        "valueKind": "number",
-                        "allowedSourceKinds": [
-                            "constant"
-                        ],
-                        "range": {
-                            "min": 0.2,
-                            "max": 3,
-                            "integer": false,
-                            "editingPrecision": 2
-                        }
-                    },
-                    {
-                        "id": "exposure",
-                        "valueKind": "number",
-                        "allowedSourceKinds": [
-                            "constant"
-                        ],
-                        "range": {
-                            "min": 0.4,
-                            "max": 2,
-                            "integer": false,
-                            "editingPrecision": 2
-                        }
-                    }
-                ],
-                "sharedParameters": [
-                    "sensitivity",
-                    "glow"
-                ],
-                "historyParameters": []
+  "format": "audiosurf-visualizer-resource",
+  "schemaVersion": 2,
+  "id": "fy-ember-choir",
+  "version": 2,
+  "algorithms": [
+    {
+      "id": "fy-ember-choir",
+      "version": 1,
+      "apiVersion": 1,
+      "contract": {
+        "kind": "visual",
+        "inputParameter": "spectrum",
+        "parameters": [
+          {
+            "id": "spectrum",
+            "valueKind": "vector",
+            "allowedSourceKinds": [
+              "analysis",
+              "constant",
+              "native"
+            ],
+            "allowEmptyVector": true,
+            "vectorElementRange": {
+              "min": 0,
+              "max": 1000000
             },
-            "entry": "source/algorithms/ember-choir.mjs",
-            "includes": [
-                "source/shared/ember-choir.js"
+            "allowedAnalysisComponents": [
+              "default"
             ],
-            "programs": {
-                "draw": {
-                    "geometry": "triangles",
-                    "vertexFile": "source/shaders/mesh.vert.glsl",
-                    "fragmentFile": "source/shaders/mesh.frag.glsl",
-                    "uniforms": {}
-                }
+            "allowedAnalysisProjections": [
+              "full"
+            ]
+          },
+          {
+            "id": "color",
+            "valueKind": "color",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "accent",
+            "valueKind": "color",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "opacity",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
             }
+          },
+          {
+            "id": "sensitivity",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 4,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "glow",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 3,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "count",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 40,
+              "max": 900,
+              "integer": true,
+              "editingPrecision": 0
+            }
+          },
+          {
+            "id": "size",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.0005,
+              "max": 0.02,
+              "integer": false,
+              "editingPrecision": 5
+            }
+          },
+          {
+            "id": "speed",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": -1,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "spread",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.2,
+              "max": 1.4,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "x",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "y",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "rise",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.2,
+              "max": 1.5,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "swirl",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": -1,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "burst",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 2,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "thickness",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.2,
+              "max": 3,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "exposure",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.4,
+              "max": 2,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          }
+        ],
+        "sharedParameters": [
+          "sensitivity",
+          "glow"
+        ],
+        "historyParameters": []
+      },
+      "entry": "source/algorithms/ember-choir.mjs",
+      "includes": [
+        "source/shared/ember-choir.js"
+      ],
+      "programs": {
+        "draw": {
+          "geometry": "triangles",
+          "vertexFile": "source/shaders/mesh.vert.glsl",
+          "fragmentFile": "source/shaders/mesh.frag.glsl",
+          "uniforms": {}
         }
-    ],
-    "elements": [
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": "fy-ember-choir",
+      "version": 2,
+      "kind": "visual",
+      "title": "余烬圣咏（肥鱼测试）",
+      "icon": "stars",
+      "inputParameter": "spectrum",
+      "parameters": [
         {
-            "id": "fy-ember-choir",
-            "version": 1,
-            "kind": "visual",
-            "title": "余烬圣咏（肥鱼测试）",
-            "icon": "stars",
-            "inputParameter": "spectrum",
-            "parameters": [
-                {
-                    "id": "spectrum",
-                    "label": "频谱输入",
-                    "valueKind": "vector",
-                    "defaultValue": [],
-                    "allowedSourceKinds": [
-                        "analysis",
-                        "constant",
-                        "native"
-                    ],
-                    "allowEmptyVector": true,
-                    "vectorElementRange": {
-                        "min": 0,
-                        "max": 1000000
-                    },
-                    "allowedAnalysisComponents": [
-                        "default"
-                    ],
-                    "allowedAnalysisProjections": [
-                        "full"
-                    ],
-                    "defaultBinding": {
-                        "source": {
-                            "kind": "analysis",
-                            "featureId": "amplitudeSpectrum",
-                            "projection": {
-                                "kind": "full"
-                            }
-                        }
-                    }
-                },
-                {
-                    "id": "color",
-                    "label": "余烬主色",
-                    "valueKind": "color",
-                    "defaultValue": "#ffb15a",
-                    "allowedSourceKinds": [
-                        "constant"
-                    ]
-                },
-                {
-                    "id": "accent",
-                    "label": "尾焰/爆闪色",
-                    "valueKind": "color",
-                    "defaultValue": "#ff4f8b",
-                    "allowedSourceKinds": [
-                        "constant"
-                    ]
-                },
-                {
-                    "id": "opacity",
-                    "label": "不透明度",
-                    "valueKind": "number",
-                    "defaultValue": 1,
-                    "allowedSourceKinds": [
-                        "constant"
-                    ],
-                    "range": {
-                        "min": 0,
-                        "max": 1,
-                        "integer": false,
-                        "editingPrecision": 2
-                    }
-                },
-                {
-                    "id": "sensitivity",
-                    "label": "响应系数",
-                    "valueKind": "number",
-                    "defaultValue": 1,
-                    "allowedSourceKinds": [
-                        "constant"
-                    ],
-                    "range": {
-                        "min": 0,
-                        "max": 4,
-                        "integer": false,
-                        "editingPrecision": 2
-                    }
-                },
-                {
-                    "id": "glow",
-                    "label": "光晕",
-                    "valueKind": "number",
-                    "defaultValue": 1.2,
-                    "allowedSourceKinds": [
-                        "constant"
-                    ],
-                    "range": {
-                        "min": 0,
-                        "max": 3,
-                        "integer": false,
-                        "editingPrecision": 2
-                    }
-                },
-                {
-                    "id": "count",
-                    "label": "粒子数",
-                    "valueKind": "number",
-                    "defaultValue": 420,
-                    "allowedSourceKinds": [
-                        "constant"
-                    ],
-                    "range": {
-                        "min": 40,
-                        "max": 900,
-                        "integer": true,
-                        "editingPrecision": 0
-                    }
-                },
-                {
-                    "id": "size",
-                    "label": "基础尺寸",
-                    "valueKind": "number",
-                    "defaultValue": 0.004,
-                    "allowedSourceKinds": [
-                        "constant"
-                    ],
-                    "range": {
-                        "min": 0.0005,
-                        "max": 0.02,
-                        "integer": false,
-                        "editingPrecision": 5
-                    }
-                },
-                {
-                    "id": "speed",
-                    "label": "上升速度",
-                    "valueKind": "number",
-                    "defaultValue": 0.22,
-                    "allowedSourceKinds": [
-                        "constant"
-                    ],
-                    "range": {
-                        "min": -1,
-                        "max": 1,
-                        "integer": false,
-                        "editingPrecision": 3
-                    }
-                },
-                {
-                    "id": "spread",
-                    "label": "横向散布",
-                    "valueKind": "number",
-                    "defaultValue": 0.95,
-                    "allowedSourceKinds": [
-                        "constant"
-                    ],
-                    "range": {
-                        "min": 0.2,
-                        "max": 1.4,
-                        "integer": false,
-                        "editingPrecision": 2
-                    }
-                },
-                {
-                    "id": "x",
-                    "label": "发射中心 X",
-                    "valueKind": "number",
-                    "defaultValue": 0.5,
-                    "allowedSourceKinds": [
-                        "constant"
-                    ],
-                    "range": {
-                        "min": 0,
-                        "max": 1,
-                        "integer": false,
-                        "editingPrecision": 3
-                    }
-                },
-                {
-                    "id": "y",
-                    "label": "发射中心 Y",
-                    "valueKind": "number",
-                    "defaultValue": 0.64,
-                    "allowedSourceKinds": [
-                        "constant"
-                    ],
-                    "range": {
-                        "min": 0,
-                        "max": 1,
-                        "integer": false,
-                        "editingPrecision": 3
-                    }
-                },
-                {
-                    "id": "rise",
-                    "label": "上升幅度",
-                    "valueKind": "number",
-                    "defaultValue": 1,
-                    "allowedSourceKinds": [
-                        "constant"
-                    ],
-                    "range": {
-                        "min": 0.2,
-                        "max": 1.5,
-                        "integer": false,
-                        "editingPrecision": 2
-                    }
-                },
-                {
-                    "id": "swirl",
-                    "label": "螺旋强度",
-                    "valueKind": "number",
-                    "defaultValue": 0.45,
-                    "allowedSourceKinds": [
-                        "constant"
-                    ],
-                    "range": {
-                        "min": -1,
-                        "max": 1,
-                        "integer": false,
-                        "editingPrecision": 2
-                    }
-                },
-                {
-                    "id": "burst",
-                    "label": "爆闪响应",
-                    "valueKind": "number",
-                    "defaultValue": 1,
-                    "allowedSourceKinds": [
-                        "constant"
-                    ],
-                    "range": {
-                        "min": 0,
-                        "max": 2,
-                        "integer": false,
-                        "editingPrecision": 2
-                    }
-                },
-                {
-                    "id": "thickness",
-                    "label": "拖尾线宽",
-                    "valueKind": "number",
-                    "defaultValue": 1,
-                    "allowedSourceKinds": [
-                        "constant"
-                    ],
-                    "range": {
-                        "min": 0.2,
-                        "max": 3,
-                        "integer": false,
-                        "editingPrecision": 2
-                    }
-                },
-                {
-                    "id": "exposure",
-                    "label": "曝光",
-                    "valueKind": "number",
-                    "defaultValue": 1.1,
-                    "allowedSourceKinds": [
-                        "constant"
-                    ],
-                    "range": {
-                        "min": 0.4,
-                        "max": 2,
-                        "integer": false,
-                        "editingPrecision": 2
-                    }
-                }
-            ],
-            "algorithm": {
-                "id": "fy-ember-choir",
-                "version": 1,
-                "hash": ""
+          "id": "spectrum",
+          "label": "频谱输入",
+          "valueKind": "vector",
+          "defaultValue": [],
+          "allowedSourceKinds": [
+            "analysis",
+            "constant",
+            "native"
+          ],
+          "allowEmptyVector": true,
+          "vectorElementRange": {
+            "min": 0,
+            "max": 1000000
+          },
+          "allowedAnalysisComponents": [
+            "default"
+          ],
+          "allowedAnalysisProjections": [
+            "full"
+          ],
+          "defaultBinding": {
+            "source": {
+              "kind": "analysis",
+              "featureId": "amplitudeSpectrum",
+              "projection": {
+                "kind": "full"
+              }
             }
+          }
+        },
+        {
+          "id": "color",
+          "label": "余烬主色",
+          "valueKind": "color",
+          "defaultValue": "#ffb15a",
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "accent",
+          "label": "尾焰/爆闪色",
+          "valueKind": "color",
+          "defaultValue": "#ff4f8b",
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "opacity",
+          "label": "不透明度",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "sensitivity",
+          "label": "响应系数",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 4,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "glow",
+          "label": "光晕",
+          "valueKind": "number",
+          "defaultValue": 1.2,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 3,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "count",
+          "label": "粒子数",
+          "valueKind": "number",
+          "defaultValue": 420,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 40,
+            "max": 900,
+            "integer": true,
+            "editingPrecision": 0
+          }
+        },
+        {
+          "id": "size",
+          "label": "基础尺寸",
+          "valueKind": "number",
+          "defaultValue": 0.004,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.0005,
+            "max": 0.02,
+            "integer": false,
+            "editingPrecision": 5
+          }
+        },
+        {
+          "id": "speed",
+          "label": "上升速度",
+          "valueKind": "number",
+          "defaultValue": 0.22,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": -1,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "spread",
+          "label": "横向散布",
+          "valueKind": "number",
+          "defaultValue": 0.95,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.2,
+            "max": 1.4,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "x",
+          "label": "发射中心 X",
+          "valueKind": "number",
+          "defaultValue": 0.5,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "y",
+          "label": "发射中心 Y",
+          "valueKind": "number",
+          "defaultValue": 0.64,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "rise",
+          "label": "上升幅度",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.2,
+            "max": 1.5,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "swirl",
+          "label": "螺旋强度",
+          "valueKind": "number",
+          "defaultValue": 0.45,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": -1,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "burst",
+          "label": "爆闪响应",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 2,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "thickness",
+          "label": "拖尾线宽",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.2,
+            "max": 3,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "exposure",
+          "label": "曝光",
+          "valueKind": "number",
+          "defaultValue": 1.1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.4,
+            "max": 2,
+            "integer": false,
+            "editingPrecision": 2
+          }
         }
-    ],
-    "presets": []
+      ],
+      "algorithm": {
+        "id": "fy-ember-choir",
+        "version": 1,
+        "hash": ""
+      },
+      "usesSeed": true
+    }
+  ],
+  "presets": []
 }

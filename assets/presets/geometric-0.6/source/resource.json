@@ -2,12 +2,12 @@
   "format": "audiosurf-visualizer-resource",
   "schemaVersion": 2,
   "id": "geometric-0.6",
-  "version": 3,
+  "version": 4,
   "elements": [],
   "presets": [
     {
       "id": "geometric-0.6",
-      "version": 3,
+      "version": 4,
       "title": "几何律动",
       "description": "双环频谱与旋转几何 · 响应系数 0.6",
       "preview": "geometric",
@@ -47,7 +47,7 @@
           "key": "element-1",
           "element": {
             "id": "radial-spectrum",
-            "version": 2,
+            "version": 3,
             "hash": ""
           },
           "name": "环形频谱",
@@ -151,7 +151,7 @@
           "key": "element-2",
           "element": {
             "id": "radial-spectrum",
-            "version": 2,
+            "version": 3,
             "hash": ""
           },
           "name": "环形频谱",
@@ -255,7 +255,7 @@
           "key": "element-3",
           "element": {
             "id": "orbit-solids",
-            "version": 2,
+            "version": 3,
             "hash": ""
           },
           "name": "轨道几何体",
@@ -498,7 +498,7 @@
           "key": "element-5",
           "element": {
             "id": "wireform",
-            "version": 2,
+            "version": 3,
             "hash": ""
           },
           "name": "旋转线框",
@@ -616,7 +616,7 @@
           "key": "element-6",
           "element": {
             "id": "wireform",
-            "version": 2,
+            "version": 3,
             "hash": ""
           },
           "name": "旋转线框",
@@ -734,7 +734,7 @@
           "key": "element-7",
           "element": {
             "id": "orbit-solids",
-            "version": 2,
+            "version": 3,
             "hash": ""
           },
           "name": "轨道几何体",
@@ -866,7 +866,7 @@
           "key": "element-8",
           "element": {
             "id": "wireform",
-            "version": 2,
+            "version": 3,
             "hash": ""
           },
           "name": "旋转线框",
@@ -984,7 +984,7 @@
           "key": "element-9",
           "element": {
             "id": "wireform",
-            "version": 2,
+            "version": 3,
             "hash": ""
           },
           "name": "旋转线框",
@@ -1102,7 +1102,7 @@
           "key": "element-10",
           "element": {
             "id": "wireform",
-            "version": 2,
+            "version": 3,
             "hash": ""
           },
           "name": "旋转线框",

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "resource": {
     "id": "fy-helios-cathedral",
-    "version": 1,
-    "hash": "80ddd9519559504a1362c537377ea04f3a9c94d6597f2fd46a93fea92b6e5b92"
+    "version": 2,
+    "hash": "a72db3297da5b9b2e8f294f7ab1fc9a812e5707163a34c6fbab8211352c6d20b"
   },
   "kind": "preset",
   "title": "赫利俄斯圣殿（肥鱼测试）",
@@ -26,8 +26,8 @@
     },
     {
       "id": "fy-ember-choir",
-      "version": 1,
-      "hash": "cf89fd1cdda16e88f34b2b1bceff05a8df983071aa7acd00c530cda63fade21a"
+      "version": 2,
+      "hash": "ead98fece771d81f590f7e5b5ef3f17810c576ab92a73c776c3b269aecfc35e9"
     },
     {
       "id": "fy-solar-grade",

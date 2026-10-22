@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "resource": {
     "id": "wireform",
-    "version": 2,
-    "hash": "cadcd8bc729340ac2b8175de40140a40ba0328b6a12f8c4df28bcb8d800dbfca"
+    "version": 3,
+    "hash": "ca383386d0464a6ecb8ceaf637b4f78fe5ef6a086565b5f9c4473f38bb885c73"
   },
   "kind": "visual",
   "title": "旋转线框",

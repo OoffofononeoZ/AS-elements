@@ -2,12 +2,12 @@
   "format": "audiosurf-visualizer-resource",
   "schemaVersion": 2,
   "id": "prismatic-voyage",
-  "version": 3,
+  "version": 4,
   "elements": [],
   "presets": [
     {
       "id": "prismatic-voyage",
-      "version": 3,
+      "version": 4,
       "title": "棱镜航行",
       "description": "光轨隧道与跃迁星尘 · 四段动态构图",
       "preview": "cinematic",
@@ -47,7 +47,7 @@
           "key": "element-1",
           "element": {
             "id": "starfield",
-            "version": 2,
+            "version": 3,
             "hash": ""
           },
           "name": "跃迁星尘",
@@ -616,7 +616,7 @@
           "key": "element-6",
           "element": {
             "id": "radial-spectrum",
-            "version": 2,
+            "version": 3,
             "hash": ""
           },
           "name": "环形频谱",
@@ -831,7 +831,7 @@
           "key": "element-8",
           "element": {
             "id": "wireform",
-            "version": 2,
+            "version": 3,
             "hash": ""
           },
           "name": "旋转线框",
@@ -949,7 +949,7 @@
           "key": "element-9",
           "element": {
             "id": "wireform",
-            "version": 2,
+            "version": 3,
             "hash": ""
           },
           "name": "旋转线框",
@@ -1067,7 +1067,7 @@
           "key": "element-10",
           "element": {
             "id": "wireform",
-            "version": 2,
+            "version": 3,
             "hash": ""
           },
           "name": "旋转线框",
@@ -1185,7 +1185,7 @@
           "key": "element-11",
           "element": {
             "id": "orbit-solids",
-            "version": 2,
+            "version": 3,
             "hash": ""
           },
           "name": "轨道几何体",

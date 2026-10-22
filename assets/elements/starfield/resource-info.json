@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "resource": {
     "id": "starfield",
-    "version": 2,
-    "hash": "34030a5862a5c94ec156500fd35bcf70a87ca4b5574bed87c0729d921dd8a116"
+    "version": 3,
+    "hash": "7e00fc82bd6a472e225686c9d343e1eb79d413003756af9ad887b0152000993a"
   },
   "kind": "visual",
   "title": "跃迁星尘",

@@ -1,557 +1,557 @@
 {
-    "format": "audiosurf-visualizer-resource",
-    "schemaVersion": 2,
-    "id": "fy-helios-cathedral",
-    "version": 1,
-    "algorithms": [],
-    "elements": [],
-    "presets": [
+  "format": "audiosurf-visualizer-resource",
+  "schemaVersion": 2,
+  "id": "fy-helios-cathedral",
+  "version": 2,
+  "algorithms": [],
+  "elements": [],
+  "presets": [
+    {
+      "id": "fy-helios-cathedral",
+      "version": 2,
+      "title": "赫利俄斯圣殿（肥鱼测试）",
+      "description": "在日冕深处升起的哥特光之圣殿：日冕纱幕、悬浮圣殿、上升余烬与棱镜色散组成的四幕光色仪式。",
+      "preview": "cinematic",
+      "elements": [
         {
-            "id": "fy-helios-cathedral",
+          "key": "veil",
+          "element": {
+            "id": "fy-corona-veil",
             "version": 1,
-            "title": "赫利俄斯圣殿（肥鱼测试）",
-            "description": "在日冕深处升起的哥特光之圣殿：日冕纱幕、悬浮圣殿、上升余烬与棱镜色散组成的四幕光色仪式。",
-            "preview": "cinematic",
-            "elements": [
-                {
-                    "key": "veil",
-                    "element": {
-                        "id": "fy-corona-veil",
-                        "version": 1,
-                        "hash": ""
-                    },
-                    "name": "日冕纱幕（肥鱼测试）",
-                    "enabled": true,
-                    "bindings": [
-                        {
-                            "parameterId": "spectrum",
-                            "source": {
-                                "kind": "analysis",
-                                "featureId": "amplitudeSpectrum",
-                                "projection": {
-                                    "kind": "full"
-                                }
-                            }
-                        },
-                        {
-                            "parameterId": "colorHot",
-                            "source": {
-                                "kind": "constant",
-                                "value": "#ff5a1f"
-                            }
-                        },
-                        {
-                            "parameterId": "colorCool",
-                            "source": {
-                                "kind": "constant",
-                                "value": "#6fe6ff"
-                            }
-                        },
-                        {
-                            "parameterId": "colorVoid",
-                            "source": {
-                                "kind": "constant",
-                                "value": "#03040a"
-                            }
-                        },
-                        {
-                            "parameterId": "opacity",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.95
-                            }
-                        },
-                        {
-                            "parameterId": "sensitivity",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.9
-                            }
-                        },
-                        {
-                            "parameterId": "glow",
-                            "source": {
-                                "kind": "constant",
-                                "value": 1.4
-                            }
-                        },
-                        {
-                            "parameterId": "density",
-                            "source": {
-                                "kind": "constant",
-                                "value": 1.15
-                            }
-                        },
-                        {
-                            "parameterId": "rays",
-                            "source": {
-                                "kind": "constant",
-                                "value": 16
-                            }
-                        },
-                        {
-                            "parameterId": "speed",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.14
-                            }
-                        },
-                        {
-                            "parameterId": "x",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.5
-                            }
-                        },
-                        {
-                            "parameterId": "y",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.46
-                            }
-                        },
-                        {
-                            "parameterId": "idle",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.24
-                            }
-                        },
-                        {
-                            "parameterId": "exposure",
-                            "source": {
-                                "kind": "constant",
-                                "value": 1.05
-                            }
-                        }
-                    ],
-                    "timing": {
-                        "kind": "relative",
-                        "start": 0,
-                        "end": 1
-                    }
-                },
-                {
-                    "key": "cathedral",
-                    "element": {
-                        "id": "fy-corona-cathedral",
-                        "version": 1,
-                        "hash": ""
-                    },
-                    "name": "日冕圣殿（肥鱼测试）",
-                    "enabled": true,
-                    "bindings": [
-                        {
-                            "parameterId": "spectrum",
-                            "source": {
-                                "kind": "analysis",
-                                "featureId": "amplitudeSpectrum",
-                                "projection": {
-                                    "kind": "full"
-                                }
-                            }
-                        },
-                        {
-                            "parameterId": "color",
-                            "source": {
-                                "kind": "constant",
-                                "value": "#ffd36b"
-                            }
-                        },
-                        {
-                            "parameterId": "accent",
-                            "source": {
-                                "kind": "constant",
-                                "value": "#6fe6ff"
-                            }
-                        },
-                        {
-                            "parameterId": "glass",
-                            "source": {
-                                "kind": "constant",
-                                "value": "#ff9a3c"
-                            }
-                        },
-                        {
-                            "parameterId": "opacity",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.9
-                            }
-                        },
-                        {
-                            "parameterId": "sensitivity",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.9
-                            }
-                        },
-                        {
-                            "parameterId": "glow",
-                            "source": {
-                                "kind": "constant",
-                                "value": 1.4
-                            }
-                        },
-                        {
-                            "parameterId": "count",
-                            "source": {
-                                "kind": "constant",
-                                "value": 6
-                            }
-                        },
-                        {
-                            "parameterId": "radius",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.24
-                            }
-                        },
-                        {
-                            "parameterId": "speed",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.11
-                            }
-                        },
-                        {
-                            "parameterId": "x",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.5
-                            }
-                        },
-                        {
-                            "parameterId": "y",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.5
-                            }
-                        },
-                        {
-                            "parameterId": "depth",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.62
-                            }
-                        },
-                        {
-                            "parameterId": "fill",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.16
-                            }
-                        },
-                        {
-                            "parameterId": "twist",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.12
-                            }
-                        },
-                        {
-                            "parameterId": "height",
-                            "source": {
-                                "kind": "constant",
-                                "value": 1
-                            }
-                        },
-                        {
-                            "parameterId": "thickness",
-                            "source": {
-                                "kind": "constant",
-                                "value": 1.05
-                            }
-                        }
-                    ],
-                    "timing": {
-                        "kind": "relative",
-                        "start": 0.1,
-                        "end": 0.94
-                    }
-                },
-                {
-                    "key": "embers",
-                    "element": {
-                        "id": "fy-ember-choir",
-                        "version": 1,
-                        "hash": ""
-                    },
-                    "name": "余烬圣咏（肥鱼测试）",
-                    "enabled": true,
-                    "bindings": [
-                        {
-                            "parameterId": "spectrum",
-                            "source": {
-                                "kind": "analysis",
-                                "featureId": "amplitudeSpectrum",
-                                "projection": {
-                                    "kind": "full"
-                                }
-                            }
-                        },
-                        {
-                            "parameterId": "color",
-                            "source": {
-                                "kind": "constant",
-                                "value": "#ffb15a"
-                            }
-                        },
-                        {
-                            "parameterId": "accent",
-                            "source": {
-                                "kind": "constant",
-                                "value": "#ff4f8b"
-                            }
-                        },
-                        {
-                            "parameterId": "opacity",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.9
-                            }
-                        },
-                        {
-                            "parameterId": "sensitivity",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.9
-                            }
-                        },
-                        {
-                            "parameterId": "glow",
-                            "source": {
-                                "kind": "constant",
-                                "value": 1.4
-                            }
-                        },
-                        {
-                            "parameterId": "count",
-                            "source": {
-                                "kind": "constant",
-                                "value": 520
-                            }
-                        },
-                        {
-                            "parameterId": "size",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.0055
-                            }
-                        },
-                        {
-                            "parameterId": "speed",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.2
-                            }
-                        },
-                        {
-                            "parameterId": "spread",
-                            "source": {
-                                "kind": "constant",
-                                "value": 1
-                            }
-                        },
-                        {
-                            "parameterId": "x",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.5
-                            }
-                        },
-                        {
-                            "parameterId": "y",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.62
-                            }
-                        },
-                        {
-                            "parameterId": "rise",
-                            "source": {
-                                "kind": "constant",
-                                "value": 1.05
-                            }
-                        },
-                        {
-                            "parameterId": "swirl",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.5
-                            }
-                        },
-                        {
-                            "parameterId": "burst",
-                            "source": {
-                                "kind": "constant",
-                                "value": 1.15
-                            }
-                        },
-                        {
-                            "parameterId": "thickness",
-                            "source": {
-                                "kind": "constant",
-                                "value": 1
-                            }
-                        },
-                        {
-                            "parameterId": "exposure",
-                            "source": {
-                                "kind": "constant",
-                                "value": 1.1
-                            }
-                        }
-                    ],
-                    "timing": {
-                        "kind": "relative",
-                        "start": 0.24,
-                        "end": 1
-                    }
-                },
-                {
-                    "key": "grade",
-                    "element": {
-                        "id": "fy-solar-grade",
-                        "version": 1,
-                        "hash": ""
-                    },
-                    "name": "日冕色散（肥鱼测试）",
-                    "enabled": true,
-                    "bindings": [
-                        {
-                            "parameterId": "amount",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.62
-                            }
-                        },
-                        {
-                            "parameterId": "bloom",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.8
-                            }
-                        },
-                        {
-                            "parameterId": "aberration",
-                            "source": {
-                                "kind": "constant",
-                                "value": 2.4
-                            }
-                        },
-                        {
-                            "parameterId": "vignette",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.65
-                            }
-                        },
-                        {
-                            "parameterId": "grain",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.05
-                            }
-                        },
-                        {
-                            "parameterId": "temperature",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.24
-                            }
-                        },
-                        {
-                            "parameterId": "warp",
-                            "source": {
-                                "kind": "constant",
-                                "value": 0.12
-                            }
-                        },
-                        {
-                            "parameterId": "exposure",
-                            "source": {
-                                "kind": "constant",
-                                "value": 1.05
-                            }
-                        },
-                        {
-                            "parameterId": "pulse",
-                            "source": {
-                                "kind": "analysis",
-                                "featureId": "energy",
-                                "projection": {
-                                    "kind": "scalar"
-                                }
-                            },
-                            "transform": {
-                                "inputMin": 0,
-                                "inputMax": 30,
-                                "outputMin": 0,
-                                "outputMax": 1,
-                                "clamp": true,
-                                "invert": false,
-                                "attackSeconds": 0.08,
-                                "releaseSeconds": 0.3
-                            }
-                        }
-                    ],
-                    "timing": {
-                        "kind": "relative",
-                        "start": 0,
-                        "end": 1
-                    },
-                    "targets": {
-                        "kind": "composition"
-                    }
+            "hash": ""
+          },
+          "name": "日冕纱幕（肥鱼测试）",
+          "enabled": true,
+          "bindings": [
+            {
+              "parameterId": "spectrum",
+              "source": {
+                "kind": "analysis",
+                "featureId": "amplitudeSpectrum",
+                "projection": {
+                  "kind": "full"
                 }
-            ],
-            "controls": [
-                {
-                    "id": "sensitivity",
-                    "label": "响应系数",
-                    "kind": "value",
-                    "parameterId": "sensitivity",
-                    "targets": [
-                        "veil",
-                        "cathedral",
-                        "embers"
-                    ],
-                    "value": 0.9
-                },
-                {
-                    "id": "glow",
-                    "label": "光晕",
-                    "kind": "value",
-                    "parameterId": "glow",
-                    "targets": [
-                        "veil",
-                        "cathedral",
-                        "embers"
-                    ],
-                    "value": 1.4
-                },
-                {
-                    "id": "spectrum",
-                    "label": "频谱输入",
-                    "kind": "binding",
-                    "parameterId": "spectrum",
-                    "targets": [
-                        "veil",
-                        "cathedral",
-                        "embers"
-                    ],
-                    "value": {
-                        "source": {
-                            "kind": "analysis",
-                            "featureId": "amplitudeSpectrum",
-                            "projection": {
-                                "kind": "full"
-                            }
-                        }
-                    }
+              }
+            },
+            {
+              "parameterId": "colorHot",
+              "source": {
+                "kind": "constant",
+                "value": "#ff5a1f"
+              }
+            },
+            {
+              "parameterId": "colorCool",
+              "source": {
+                "kind": "constant",
+                "value": "#6fe6ff"
+              }
+            },
+            {
+              "parameterId": "colorVoid",
+              "source": {
+                "kind": "constant",
+                "value": "#03040a"
+              }
+            },
+            {
+              "parameterId": "opacity",
+              "source": {
+                "kind": "constant",
+                "value": 0.95
+              }
+            },
+            {
+              "parameterId": "sensitivity",
+              "source": {
+                "kind": "constant",
+                "value": 0.9
+              }
+            },
+            {
+              "parameterId": "glow",
+              "source": {
+                "kind": "constant",
+                "value": 1.4
+              }
+            },
+            {
+              "parameterId": "density",
+              "source": {
+                "kind": "constant",
+                "value": 1.15
+              }
+            },
+            {
+              "parameterId": "rays",
+              "source": {
+                "kind": "constant",
+                "value": 16
+              }
+            },
+            {
+              "parameterId": "speed",
+              "source": {
+                "kind": "constant",
+                "value": 0.14
+              }
+            },
+            {
+              "parameterId": "x",
+              "source": {
+                "kind": "constant",
+                "value": 0.5
+              }
+            },
+            {
+              "parameterId": "y",
+              "source": {
+                "kind": "constant",
+                "value": 0.46
+              }
+            },
+            {
+              "parameterId": "idle",
+              "source": {
+                "kind": "constant",
+                "value": 0.24
+              }
+            },
+            {
+              "parameterId": "exposure",
+              "source": {
+                "kind": "constant",
+                "value": 1.05
+              }
+            }
+          ],
+          "timing": {
+            "kind": "relative",
+            "start": 0,
+            "end": 1
+          }
+        },
+        {
+          "key": "cathedral",
+          "element": {
+            "id": "fy-corona-cathedral",
+            "version": 1,
+            "hash": ""
+          },
+          "name": "日冕圣殿（肥鱼测试）",
+          "enabled": true,
+          "bindings": [
+            {
+              "parameterId": "spectrum",
+              "source": {
+                "kind": "analysis",
+                "featureId": "amplitudeSpectrum",
+                "projection": {
+                  "kind": "full"
                 }
-            ]
+              }
+            },
+            {
+              "parameterId": "color",
+              "source": {
+                "kind": "constant",
+                "value": "#ffd36b"
+              }
+            },
+            {
+              "parameterId": "accent",
+              "source": {
+                "kind": "constant",
+                "value": "#6fe6ff"
+              }
+            },
+            {
+              "parameterId": "glass",
+              "source": {
+                "kind": "constant",
+                "value": "#ff9a3c"
+              }
+            },
+            {
+              "parameterId": "opacity",
+              "source": {
+                "kind": "constant",
+                "value": 0.9
+              }
+            },
+            {
+              "parameterId": "sensitivity",
+              "source": {
+                "kind": "constant",
+                "value": 0.9
+              }
+            },
+            {
+              "parameterId": "glow",
+              "source": {
+                "kind": "constant",
+                "value": 1.4
+              }
+            },
+            {
+              "parameterId": "count",
+              "source": {
+                "kind": "constant",
+                "value": 6
+              }
+            },
+            {
+              "parameterId": "radius",
+              "source": {
+                "kind": "constant",
+                "value": 0.24
+              }
+            },
+            {
+              "parameterId": "speed",
+              "source": {
+                "kind": "constant",
+                "value": 0.11
+              }
+            },
+            {
+              "parameterId": "x",
+              "source": {
+                "kind": "constant",
+                "value": 0.5
+              }
+            },
+            {
+              "parameterId": "y",
+              "source": {
+                "kind": "constant",
+                "value": 0.5
+              }
+            },
+            {
+              "parameterId": "depth",
+              "source": {
+                "kind": "constant",
+                "value": 0.62
+              }
+            },
+            {
+              "parameterId": "fill",
+              "source": {
+                "kind": "constant",
+                "value": 0.16
+              }
+            },
+            {
+              "parameterId": "twist",
+              "source": {
+                "kind": "constant",
+                "value": 0.12
+              }
+            },
+            {
+              "parameterId": "height",
+              "source": {
+                "kind": "constant",
+                "value": 1
+              }
+            },
+            {
+              "parameterId": "thickness",
+              "source": {
+                "kind": "constant",
+                "value": 1.05
+              }
+            }
+          ],
+          "timing": {
+            "kind": "relative",
+            "start": 0.1,
+            "end": 0.94
+          }
+        },
+        {
+          "key": "embers",
+          "element": {
+            "id": "fy-ember-choir",
+            "version": 2,
+            "hash": ""
+          },
+          "name": "余烬圣咏（肥鱼测试）",
+          "enabled": true,
+          "bindings": [
+            {
+              "parameterId": "spectrum",
+              "source": {
+                "kind": "analysis",
+                "featureId": "amplitudeSpectrum",
+                "projection": {
+                  "kind": "full"
+                }
+              }
+            },
+            {
+              "parameterId": "color",
+              "source": {
+                "kind": "constant",
+                "value": "#ffb15a"
+              }
+            },
+            {
+              "parameterId": "accent",
+              "source": {
+                "kind": "constant",
+                "value": "#ff4f8b"
+              }
+            },
+            {
+              "parameterId": "opacity",
+              "source": {
+                "kind": "constant",
+                "value": 0.9
+              }
+            },
+            {
+              "parameterId": "sensitivity",
+              "source": {
+                "kind": "constant",
+                "value": 0.9
+              }
+            },
+            {
+              "parameterId": "glow",
+              "source": {
+                "kind": "constant",
+                "value": 1.4
+              }
+            },
+            {
+              "parameterId": "count",
+              "source": {
+                "kind": "constant",
+                "value": 520
+              }
+            },
+            {
+              "parameterId": "size",
+              "source": {
+                "kind": "constant",
+                "value": 0.0055
+              }
+            },
+            {
+              "parameterId": "speed",
+              "source": {
+                "kind": "constant",
+                "value": 0.2
+              }
+            },
+            {
+              "parameterId": "spread",
+              "source": {
+                "kind": "constant",
+                "value": 1
+              }
+            },
+            {
+              "parameterId": "x",
+              "source": {
+                "kind": "constant",
+                "value": 0.5
+              }
+            },
+            {
+              "parameterId": "y",
+              "source": {
+                "kind": "constant",
+                "value": 0.62
+              }
+            },
+            {
+              "parameterId": "rise",
+              "source": {
+                "kind": "constant",
+                "value": 1.05
+              }
+            },
+            {
+              "parameterId": "swirl",
+              "source": {
+                "kind": "constant",
+                "value": 0.5
+              }
+            },
+            {
+              "parameterId": "burst",
+              "source": {
+                "kind": "constant",
+                "value": 1.15
+              }
+            },
+            {
+              "parameterId": "thickness",
+              "source": {
+                "kind": "constant",
+                "value": 1
+              }
+            },
+            {
+              "parameterId": "exposure",
+              "source": {
+                "kind": "constant",
+                "value": 1.1
+              }
+            }
+          ],
+          "timing": {
+            "kind": "relative",
+            "start": 0.24,
+            "end": 1
+          }
+        },
+        {
+          "key": "grade",
+          "element": {
+            "id": "fy-solar-grade",
+            "version": 1,
+            "hash": ""
+          },
+          "name": "日冕色散（肥鱼测试）",
+          "enabled": true,
+          "bindings": [
+            {
+              "parameterId": "amount",
+              "source": {
+                "kind": "constant",
+                "value": 0.62
+              }
+            },
+            {
+              "parameterId": "bloom",
+              "source": {
+                "kind": "constant",
+                "value": 0.8
+              }
+            },
+            {
+              "parameterId": "aberration",
+              "source": {
+                "kind": "constant",
+                "value": 2.4
+              }
+            },
+            {
+              "parameterId": "vignette",
+              "source": {
+                "kind": "constant",
+                "value": 0.65
+              }
+            },
+            {
+              "parameterId": "grain",
+              "source": {
+                "kind": "constant",
+                "value": 0.05
+              }
+            },
+            {
+              "parameterId": "temperature",
+              "source": {
+                "kind": "constant",
+                "value": 0.24
+              }
+            },
+            {
+              "parameterId": "warp",
+              "source": {
+                "kind": "constant",
+                "value": 0.12
+              }
+            },
+            {
+              "parameterId": "exposure",
+              "source": {
+                "kind": "constant",
+                "value": 1.05
+              }
+            },
+            {
+              "parameterId": "pulse",
+              "source": {
+                "kind": "analysis",
+                "featureId": "energy",
+                "projection": {
+                  "kind": "scalar"
+                }
+              },
+              "transform": {
+                "inputMin": 0,
+                "inputMax": 30,
+                "outputMin": 0,
+                "outputMax": 1,
+                "clamp": true,
+                "invert": false,
+                "attackSeconds": 0.08,
+                "releaseSeconds": 0.3
+              }
+            }
+          ],
+          "timing": {
+            "kind": "relative",
+            "start": 0,
+            "end": 1
+          },
+          "targets": {
+            "kind": "composition"
+          }
         }
-    ]
+      ],
+      "controls": [
+        {
+          "id": "sensitivity",
+          "label": "响应系数",
+          "kind": "value",
+          "parameterId": "sensitivity",
+          "targets": [
+            "veil",
+            "cathedral",
+            "embers"
+          ],
+          "value": 0.9
+        },
+        {
+          "id": "glow",
+          "label": "光晕",
+          "kind": "value",
+          "parameterId": "glow",
+          "targets": [
+            "veil",
+            "cathedral",
+            "embers"
+          ],
+          "value": 1.4
+        },
+        {
+          "id": "spectrum",
+          "label": "频谱输入",
+          "kind": "binding",
+          "parameterId": "spectrum",
+          "targets": [
+            "veil",
+            "cathedral",
+            "embers"
+          ],
+          "value": {
+            "source": {
+              "kind": "analysis",
+              "featureId": "amplitudeSpectrum",
+              "projection": {
+                "kind": "full"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
 }

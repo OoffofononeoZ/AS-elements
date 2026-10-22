@@ -2,7 +2,7 @@
   "format": "audiosurf-visualizer-resource",
   "schemaVersion": 2,
   "id": "wireform",
-  "version": 2,
+  "version": 3,
   "algorithms": [
     {
       "id": "wireform",
@@ -214,7 +214,7 @@
   "elements": [
     {
       "id": "wireform",
-      "version": 2,
+      "version": 3,
       "kind": "visual",
       "title": "旋转线框",
       "icon": "wireform",
@@ -441,7 +441,8 @@
         "id": "wireform",
         "version": 1,
         "hash": ""
-      }
+      },
+      "usesSeed": true
     }
   ],
   "presets": []

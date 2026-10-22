@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "resource": {
     "id": "spectral-strings",
-    "version": 2,
-    "hash": "5dffa53fd97976e511da787f169445870de16feee8c078f16153563b4e2d4d2c"
+    "version": 3,
+    "hash": "a1be3e3fd6607d3217661dfd34779ffbf8808f960d11f3e4b0a1b2badcbbbaf3"
   },
   "kind": "visual",
   "title": "频谱弦线",

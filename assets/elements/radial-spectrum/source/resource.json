@@ -2,7 +2,7 @@
   "format": "audiosurf-visualizer-resource",
   "schemaVersion": 2,
   "id": "radial-spectrum",
-  "version": 2,
+  "version": 3,
   "algorithms": [
     {
       "id": "radial-spectrum",
@@ -188,7 +188,7 @@
   "elements": [
     {
       "id": "radial-spectrum",
-      "version": 2,
+      "version": 3,
       "kind": "visual",
       "title": "环形频谱",
       "icon": "radial",
@@ -385,7 +385,8 @@
         "id": "radial-spectrum",
         "version": 1,
         "hash": ""
-      }
+      },
+      "usesSeed": true
     }
   ],
   "presets": []

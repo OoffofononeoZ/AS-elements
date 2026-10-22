@@ -2,7 +2,7 @@
   "format": "audiosurf-visualizer-resource",
   "schemaVersion": 2,
   "id": "spectral-strings",
-  "version": 2,
+  "version": 3,
   "algorithms": [
     {
       "id": "spectral-strings",
@@ -252,7 +252,7 @@
   "elements": [
     {
       "id": "spectral-strings",
-      "version": 2,
+      "version": 3,
       "kind": "visual",
       "title": "频谱弦线",
       "icon": "strings",
@@ -455,7 +455,8 @@
         "id": "spectral-strings",
         "version": 1,
         "hash": ""
-      }
+      },
+      "usesSeed": true
     }
   ],
   "presets": []

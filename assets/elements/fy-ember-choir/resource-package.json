@@ -2,7 +2,7 @@
   "format": "audiosurf-visualizer-resource",
   "schemaVersion": 2,
   "id": "fy-ember-choir",
-  "version": 1,
+  "version": 2,
   "algorithms": [
     {
       "id": "fy-ember-choir",
@@ -250,13 +250,14 @@
   "elements": [
     {
       "id": "fy-ember-choir",
-      "version": 1,
-      "hash": "cf89fd1cdda16e88f34b2b1bceff05a8df983071aa7acd00c530cda63fade21a",
+      "version": 2,
+      "hash": "ead98fece771d81f590f7e5b5ef3f17810c576ab92a73c776c3b269aecfc35e9",
       "algorithm": {
         "id": "fy-ember-choir",
         "version": 1,
         "hash": "21df0b8e0c868fd3b9436691611b6b5eb918a80c4db36239f033c19ff3de6e5d"
       },
+      "usesSeed": true,
       "kind": "visual",
       "title": "余烬圣咏（肥鱼测试）",
       "icon": "stars",

@@ -2,7 +2,7 @@
   "format": "audiosurf-visualizer-resource",
   "schemaVersion": 2,
   "id": "point-line-horizontal",
-  "version": 1,
+  "version": 2,
   "algorithms": [
     {
       "id": "point-line-horizontal",
@@ -112,13 +112,14 @@
   "elements": [
     {
       "id": "point-line-horizontal",
-      "version": 1,
-      "hash": "a111a981536e88032a323cbc0d8477bd931437139055df21f39d650b62033e89",
+      "version": 2,
+      "hash": "3506190d6ce4a63229922d0cc1cd022f45ab4fc444955beafa3309f4e2e46838",
       "algorithm": {
         "id": "point-line-horizontal",
         "version": 1,
         "hash": "634dd2b0fbc3a5731ac731eb813f84ff4f2fa0a79f846c688dfce21a93431e86"
       },
+      "usesSeed": true,
       "kind": "visual",
       "title": "点标记横线（测试）",
       "icon": "strings",

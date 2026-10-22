@@ -2,7 +2,7 @@
   "format": "audiosurf-visualizer-resource",
   "schemaVersion": 2,
   "id": "spectral-strings",
-  "version": 2,
+  "version": 3,
   "algorithms": [
     {
       "id": "spectral-strings",
@@ -249,13 +249,14 @@
   "elements": [
     {
       "id": "spectral-strings",
-      "version": 2,
-      "hash": "5dffa53fd97976e511da787f169445870de16feee8c078f16153563b4e2d4d2c",
+      "version": 3,
+      "hash": "a1be3e3fd6607d3217661dfd34779ffbf8808f960d11f3e4b0a1b2badcbbbaf3",
       "algorithm": {
         "id": "spectral-strings",
         "version": 1,
         "hash": "d0b4f2cf2c03fa8fdceda0bb15694c71f326afba15b7d29c3d0d11a2a2fceca3"
       },
+      "usesSeed": true,
       "kind": "visual",
       "title": "频谱弦线",
       "icon": "strings",

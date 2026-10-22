@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "resource": {
     "id": "radial-spectrum",
-    "version": 2,
-    "hash": "dc902d582f151d2bd1bbcc641779f2caeab7dc8d5f600ec4496381ca64752b75"
+    "version": 3,
+    "hash": "49f6c24f67b93c659c52d06c9cabcce20e26638d841df7f75842fd19d56e2f73"
   },
   "kind": "visual",
   "title": "环形频谱",

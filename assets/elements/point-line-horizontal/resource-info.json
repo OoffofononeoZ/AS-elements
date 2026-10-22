@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "resource": {
     "id": "point-line-horizontal",
-    "version": 1,
-    "hash": "a111a981536e88032a323cbc0d8477bd931437139055df21f39d650b62033e89"
+    "version": 2,
+    "hash": "3506190d6ce4a63229922d0cc1cd022f45ab4fc444955beafa3309f4e2e46838"
   },
   "kind": "visual",
   "title": "点标记横线（测试）",

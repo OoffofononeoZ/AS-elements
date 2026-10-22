@@ -1,5 +1,3 @@
-// Generated standalone V2 codec snapshot; bundled from the approved runtime. No external imports.
-
 // src/data/analyzerData.ts
 var analyzerData = [
   {
@@ -249,11 +247,7 @@ var FEATURE_IDS = [
   "complexSpectrum",
   "buffer"
 ];
-var M7_FEATURE_IDS = [
-  "rms",
-  "amplitudeSpectrum",
-  "chroma"
-];
+var M7_FEATURE_IDS = ["rms", "amplitudeSpectrum", "chroma"];
 var M8_SCALAR_FEATURE_IDS = [
   "zcr",
   "energy",
@@ -273,19 +267,12 @@ var M8_AVAILABLE_FEATURE_IDS = [
   ...M7_FEATURE_IDS,
   ...M8_SCALAR_FEATURE_IDS
 ];
-var M9_FEATURE_IDS = [
-  "powerSpectrum",
-  "mfcc",
-  "buffer"
-];
+var M9_FEATURE_IDS = ["powerSpectrum", "mfcc", "buffer"];
 var M9_AVAILABLE_FEATURE_IDS = [
   ...M8_AVAILABLE_FEATURE_IDS,
   ...M9_FEATURE_IDS
 ];
-var M10_FEATURE_IDS = [
-  "loudness",
-  "complexSpectrum"
-];
+var M10_FEATURE_IDS = ["loudness", "complexSpectrum"];
 var M10_AVAILABLE_FEATURE_IDS = [
   ...M9_AVAILABLE_FEATURE_IDS,
   ...M10_FEATURE_IDS
@@ -490,6 +477,199 @@ var FEATURE_REGISTRY = {
   })
 };
 
+// src/processing/sha256.ts
+var K = new Uint32Array([
+  1116352408,
+  1899447441,
+  3049323471,
+  3921009573,
+  961987163,
+  1508970993,
+  2453635748,
+  2870763221,
+  3624381080,
+  310598401,
+  607225278,
+  1426881987,
+  1925078388,
+  2162078206,
+  2614888103,
+  3248222580,
+  3835390401,
+  4022224774,
+  264347078,
+  604807628,
+  770255983,
+  1249150122,
+  1555081692,
+  1996064986,
+  2554220882,
+  2821834349,
+  2952996808,
+  3210313671,
+  3336571891,
+  3584528711,
+  113926993,
+  338241895,
+  666307205,
+  773529912,
+  1294757372,
+  1396182291,
+  1695183700,
+  1986661051,
+  2177026350,
+  2456956037,
+  2730485921,
+  2820302411,
+  3259730800,
+  3345764771,
+  3516065817,
+  3600352804,
+  4094571909,
+  275423344,
+  430227734,
+  506948616,
+  659060556,
+  883997877,
+  958139571,
+  1322822218,
+  1537002063,
+  1747873779,
+  1955562222,
+  2024104815,
+  2227730452,
+  2361852424,
+  2428436474,
+  2756734187,
+  3204031479,
+  3329325298
+]);
+var r = (x, n) => x >>> n | x << 32 - n;
+var Sha256 = class {
+  h = new Uint32Array([1779033703, 3144134277, 1013904242, 2773480762, 1359893119, 2600822924, 528734635, 1541459225]);
+  block = new Uint8Array(64);
+  words = new Uint32Array(64);
+  used = 0;
+  bytes = 0;
+  finished = false;
+  update(input) {
+    if (this.finished) throw new Error("Hash already finalized.");
+    this.bytes += input.length;
+    for (let start = 0; start < input.length; ) {
+      const count = Math.min(64 - this.used, input.length - start);
+      this.block.set(input.subarray(start, start + count), this.used);
+      this.used += count;
+      start += count;
+      if (this.used === 64) {
+        this.compress();
+        this.used = 0;
+      }
+    }
+    return this;
+  }
+  compress() {
+    const w = this.words, view = new DataView(this.block.buffer);
+    for (let i = 0; i < 16; i++) w[i] = view.getUint32(i * 4, false);
+    for (let i = 16; i < 64; i++) {
+      const a2 = w[i - 15], b2 = w[i - 2];
+      w[i] = w[i - 16] + (r(a2, 7) ^ r(a2, 18) ^ a2 >>> 3) + w[i - 7] + (r(b2, 17) ^ r(b2, 19) ^ b2 >>> 10);
+    }
+    let [a, b, c, d, e, f, g, h] = Array.from(this.h);
+    for (let i = 0; i < 64; i++) {
+      const t1 = h + (r(e, 6) ^ r(e, 11) ^ r(e, 25)) + (e & f ^ ~e & g) + K[i] + w[i] >>> 0;
+      const t2 = (r(a, 2) ^ r(a, 13) ^ r(a, 22)) + (a & b ^ a & c ^ b & c) >>> 0;
+      h = g;
+      g = f;
+      f = e;
+      e = d + t1 >>> 0;
+      d = c;
+      c = b;
+      b = a;
+      a = t1 + t2 >>> 0;
+    }
+    [a, b, c, d, e, f, g, h].forEach((v, i) => {
+      this.h[i] = this.h[i] + v;
+    });
+  }
+  hex() {
+    if (this.finished) throw new Error("Hash already finalized.");
+    const bits = this.bytes * 8;
+    this.block[this.used++] = 128;
+    if (this.used > 56) {
+      this.block.fill(0, this.used);
+      this.compress();
+      this.used = 0;
+    }
+    this.block.fill(0, this.used, 56);
+    const view = new DataView(this.block.buffer);
+    view.setUint32(56, Math.floor(bits / 4294967296), false);
+    view.setUint32(60, bits >>> 0, false);
+    this.compress();
+    this.finished = true;
+    return Array.from(this.h, (v) => v.toString(16).padStart(8, "0")).join("");
+  }
+};
+var hashBytes = (input) => new Sha256().update(input).hex();
+
+// src/processing/modelManifest.ts
+var FT_ROLES = ["drums", "bass", "other", "vocals"];
+var FT_RATE = 44100;
+var FT_FRAMES = 343980;
+var FT_OVERLAP = 85995;
+var FT_STRIDE = FT_FRAMES - FT_OVERLAP;
+var FT_CONFIG = {
+  version: "ft-browser-p1-v3",
+  sampleRate: FT_RATE,
+  frames: FT_FRAMES,
+  runtimeBuild: "ort-all-jsep",
+  graphOptimization: "disabled",
+  overlap: FT_OVERLAP,
+  stride: FT_STRIDE,
+  normalization: "none-export-graph",
+  window: "linear-25pct-f32-uncovered-endpoint-1e-8",
+  padding: "zero",
+  resampler: "blackman-sinc-64tap-1024phase-zero-phase-v1",
+  modelInput: "native-44100-or-task-opfs-44100-stereo-reuse-v1",
+  sourceHash: "descriptor-v1-and-native-channel-chunks-16384-le-f32",
+  energy: "30hz-channel-mean-square-rms-dbfs-minus80-zero-u16"
+};
+var FT_CONFIG_HASH = hashBytes(new TextEncoder().encode(JSON.stringify(FT_CONFIG)));
+var revisions = [
+  "44f630d49a19053a61c12df7244fe1f01b9ccc4f",
+  "6b68834ec1a38cd0b52df39daef934b0129bf8df",
+  "fbcaddbf49915896c2b1e8f53dc648e069ba16e9",
+  "fd6ed435870341162ac4b3e7dcc9c8a89c3ecc60"
+];
+var checksums = [
+  "047764dff888cfb87da917013377d4ec7a134f7419cbe486d9c339aa17975ddd",
+  "b533037176b14b2df31c92a5d5b3d5660d0811b9b360d3db761964768b079961",
+  "b739171a7057b3107bb0711c6222d4a619b41b13a8f04026431d30f32ad2bd71",
+  "0cbe651f535415c9d26a7bb614f7d322dd5a080fa0298f2e50f478030a994dce"
+];
+var FT_MODELS = FT_ROLES.map((role, row) => ({
+  role,
+  row,
+  repository: `StemSplitio/htdemucs-ft-${role}-onnx`,
+  revision: revisions[row],
+  sha256: checksums[row],
+  bytes: 165612636,
+  file: `htdemucs_ft_${role}_fp16weights.onnx`,
+  license: "MIT",
+  get url() {
+    return `https://huggingface.co/${this.repository}/resolve/${this.revision}/${this.file}`;
+  }
+}));
+
+// src/analysis/sources.ts
+var STEM_FEATURE_IDS = [
+  "wallpaperEngineSpectrum",
+  "energy",
+  "amplitudeSpectrum",
+  "buffer"
+];
+var isStemRole = (value) => typeof value === "string" && FT_ROLES.includes(value);
+var isStemFeature = (value) => STEM_FEATURE_IDS.includes(value);
+
 // src/visualizer/projectValidation.ts
 var COMPONENTS = /* @__PURE__ */ new Set([
   "default",
@@ -656,16 +836,12 @@ var assertProjectionCompatible = (featureId, component, projection, parameter3) 
 };
 var canonicalTransform = (input, path, fullVector) => {
   const value = record(input, path);
-  keys(value, [
-    "inputMin",
-    "inputMax",
-    "outputMin",
-    "outputMax",
-    "clamp",
-    "invert",
-    "attackSeconds",
-    "releaseSeconds"
-  ], [], path);
+  keys(
+    value,
+    ["inputMin", "inputMax", "outputMin", "outputMax", "clamp", "invert", "attackSeconds", "releaseSeconds"],
+    [],
+    path
+  );
   const result = {
     inputMin: finite(value.inputMin, `${path}.inputMin`),
     inputMax: finite(value.inputMax, `${path}.inputMax`),
@@ -695,9 +871,7 @@ var canonicalBinding = (input, parameter3, editorProject, path) => {
     invalid(`${path}.parameterId does not match the registry order.`);
   }
   const sourceValue = record(value.source, `${path}.source`);
-  if (typeof sourceValue.kind !== "string" || !parameter3.allowedSourceKinds.includes(
-    sourceValue.kind
-  )) {
+  if (typeof sourceValue.kind !== "string" || !parameter3.allowedSourceKinds.includes(sourceValue.kind)) {
     invalid(`${path}.source.kind is not allowed for ${parameter3.id}.`);
   }
   let source;
@@ -711,32 +885,28 @@ var canonicalBinding = (input, parameter3, editorProject, path) => {
     if (!["number", "vector"].includes(parameter3.valueKind)) {
       invalid(`${path} parameter cannot use analysis data.`);
     }
-    keys(sourceValue, ["kind", "featureId", "projection"], ["component"], `${path}.source`);
+    keys(sourceValue, ["kind", "featureId", "projection"], ["component", "stemRole"], `${path}.source`);
     const rawFeatureId = sourceValue.featureId;
     if (!isFeatureId(rawFeatureId)) invalid(`${path}.source.featureId is invalid.`);
     const featureId = rawFeatureId;
+    if (sourceValue.stemRole !== void 0 && (!isStemRole(sourceValue.stemRole) || !isStemFeature(featureId) || parameter3.valueKind !== "vector"))
+      invalid(`${path}.source.stemRole requires a compatible spectrum input.`);
     const component = sourceValue.component === void 0 ? "default" : sourceValue.component;
     if (typeof component !== "string" || !COMPONENTS.has(component)) {
       invalid(`${path}.source.component is invalid.`);
     }
     const projection = canonicalProjection(sourceValue.projection, `${path}.source.projection`);
-    if (!parameter3.allowedAnalysisComponents?.includes(
-      component
-    )) {
+    if (!parameter3.allowedAnalysisComponents?.includes(component)) {
       invalid(`${path}.source.component is not allowed for ${parameter3.id}.`);
     }
     if (!parameter3.allowedAnalysisProjections?.includes(projection.kind)) {
       invalid(`${path}.source.projection is not allowed for ${parameter3.id}.`);
     }
-    assertProjectionCompatible(
-      featureId,
-      component,
-      projection,
-      parameter3
-    );
+    assertProjectionCompatible(featureId, component, projection, parameter3);
     source = {
       kind: "analysis",
       featureId,
+      ...sourceValue.stemRole === void 0 ? {} : { stemRole: sourceValue.stemRole },
       ...sourceValue.component === void 0 ? {} : { component },
       projection
     };
@@ -774,140 +944,6 @@ var canonicalBinding = (input, parameter3, editorProject, path) => {
   }
   return { parameterId: parameter3.id, source, ...transform ? { transform } : {} };
 };
-
-// src/processing/sha256.ts
-var K = new Uint32Array([
-  1116352408,
-  1899447441,
-  3049323471,
-  3921009573,
-  961987163,
-  1508970993,
-  2453635748,
-  2870763221,
-  3624381080,
-  310598401,
-  607225278,
-  1426881987,
-  1925078388,
-  2162078206,
-  2614888103,
-  3248222580,
-  3835390401,
-  4022224774,
-  264347078,
-  604807628,
-  770255983,
-  1249150122,
-  1555081692,
-  1996064986,
-  2554220882,
-  2821834349,
-  2952996808,
-  3210313671,
-  3336571891,
-  3584528711,
-  113926993,
-  338241895,
-  666307205,
-  773529912,
-  1294757372,
-  1396182291,
-  1695183700,
-  1986661051,
-  2177026350,
-  2456956037,
-  2730485921,
-  2820302411,
-  3259730800,
-  3345764771,
-  3516065817,
-  3600352804,
-  4094571909,
-  275423344,
-  430227734,
-  506948616,
-  659060556,
-  883997877,
-  958139571,
-  1322822218,
-  1537002063,
-  1747873779,
-  1955562222,
-  2024104815,
-  2227730452,
-  2361852424,
-  2428436474,
-  2756734187,
-  3204031479,
-  3329325298
-]);
-var r = (x, n) => x >>> n | x << 32 - n;
-var Sha256 = class {
-  h = new Uint32Array([1779033703, 3144134277, 1013904242, 2773480762, 1359893119, 2600822924, 528734635, 1541459225]);
-  block = new Uint8Array(64);
-  words = new Uint32Array(64);
-  used = 0;
-  bytes = 0;
-  finished = false;
-  update(input) {
-    if (this.finished) throw new Error("Hash already finalized.");
-    this.bytes += input.length;
-    for (let start = 0; start < input.length; ) {
-      const count = Math.min(64 - this.used, input.length - start);
-      this.block.set(input.subarray(start, start + count), this.used);
-      this.used += count;
-      start += count;
-      if (this.used === 64) {
-        this.compress();
-        this.used = 0;
-      }
-    }
-    return this;
-  }
-  compress() {
-    const w = this.words, view = new DataView(this.block.buffer);
-    for (let i = 0; i < 16; i++) w[i] = view.getUint32(i * 4, false);
-    for (let i = 16; i < 64; i++) {
-      const a2 = w[i - 15], b2 = w[i - 2];
-      w[i] = w[i - 16] + (r(a2, 7) ^ r(a2, 18) ^ a2 >>> 3) + w[i - 7] + (r(b2, 17) ^ r(b2, 19) ^ b2 >>> 10);
-    }
-    let [a, b, c, d, e, f, g, h] = Array.from(this.h);
-    for (let i = 0; i < 64; i++) {
-      const t1 = h + (r(e, 6) ^ r(e, 11) ^ r(e, 25)) + (e & f ^ ~e & g) + K[i] + w[i] >>> 0;
-      const t2 = (r(a, 2) ^ r(a, 13) ^ r(a, 22)) + (a & b ^ a & c ^ b & c) >>> 0;
-      h = g;
-      g = f;
-      f = e;
-      e = d + t1 >>> 0;
-      d = c;
-      c = b;
-      b = a;
-      a = t1 + t2 >>> 0;
-    }
-    [a, b, c, d, e, f, g, h].forEach((v, i) => {
-      this.h[i] = this.h[i] + v;
-    });
-  }
-  hex() {
-    if (this.finished) throw new Error("Hash already finalized.");
-    const bits = this.bytes * 8;
-    this.block[this.used++] = 128;
-    if (this.used > 56) {
-      this.block.fill(0, this.used);
-      this.compress();
-      this.used = 0;
-    }
-    this.block.fill(0, this.used, 56);
-    const view = new DataView(this.block.buffer);
-    view.setUint32(56, Math.floor(bits / 4294967296), false);
-    view.setUint32(60, bits >>> 0, false);
-    this.compress();
-    this.finished = true;
-    return Array.from(this.h, (v) => v.toString(16).padStart(8, "0")).join("");
-  }
-};
-var hashBytes = (input) => new Sha256().update(input).hex();
 
 // src/visualizer/resourceIdentity.ts
 function canonicalJson(value) {
@@ -1494,9 +1530,10 @@ function elementDefinition(input, algorithms) {
   keys(
     v,
     ["id", "version", "hash", "algorithm", "kind", "title", "icon", "parameters"],
-    ["inputParameter", "markerInputs"]
+    ["inputParameter", "markerInputs", "usesSeed"]
   );
   const ref = identity(v);
+  if (v.usesSeed !== void 0 && v.usesSeed !== true) return invalid("Seed \u80FD\u529B\u58F0\u660E\u5FC5\u987B\u4E3A true \u6216\u7701\u7565\u3002");
   const algorithm = validateResourceRef(v.algorithm), definition = algorithms.find((a) => sameResource(a, algorithm));
   if (!definition) return invalid("\u7ED8\u5236\u7B97\u6CD5\u4F9D\u8D56\u7F3A\u5931\u3002");
   const kernel = definition.contract;
@@ -1508,6 +1545,7 @@ function elementDefinition(input, algorithms) {
   return {
     ...ref,
     algorithm,
+    ...v.usesSeed === true ? { usesSeed: true } : {},
     kind: kernel.kind,
     title: text(v.title, "\u5143\u7D20\u540D\u79F0"),
     icon: String(v.icon),

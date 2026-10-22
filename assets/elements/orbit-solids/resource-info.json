@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "resource": {
     "id": "orbit-solids",
-    "version": 2,
-    "hash": "0a44ecd7992bb90b9d4e504defe1b8fff8b596d24fad6df9f717ad8d88ffa0d2"
+    "version": 3,
+    "hash": "c2acf23cf3133bcdf32529912e9c3d2f28e5e3e5a11ff9f937a957bde830f89e"
   },
   "kind": "visual",
   "title": "轨道几何体",

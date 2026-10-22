@@ -2,7 +2,7 @@
   "format": "audiosurf-visualizer-resource",
   "schemaVersion": 2,
   "id": "starfield",
-  "version": 2,
+  "version": 3,
   "algorithms": [
     {
       "id": "starfield",
@@ -179,13 +179,14 @@
   "elements": [
     {
       "id": "starfield",
-      "version": 2,
-      "hash": "34030a5862a5c94ec156500fd35bcf70a87ca4b5574bed87c0729d921dd8a116",
+      "version": 3,
+      "hash": "7e00fc82bd6a472e225686c9d343e1eb79d413003756af9ad887b0152000993a",
       "algorithm": {
         "id": "starfield",
         "version": 1,
         "hash": "1f6c6faada7610d05fe3952188961ae8b6d2b4fd8585c3826894f22571cc5cad"
       },
+      "usesSeed": true,
       "kind": "visual",
       "title": "跃迁星尘",
       "icon": "stars",

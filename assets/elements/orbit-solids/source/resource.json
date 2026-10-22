@@ -2,7 +2,7 @@
   "format": "audiosurf-visualizer-resource",
   "schemaVersion": 2,
   "id": "orbit-solids",
-  "version": 2,
+  "version": 3,
   "algorithms": [
     {
       "id": "orbit-solids",
@@ -240,7 +240,7 @@
   "elements": [
     {
       "id": "orbit-solids",
-      "version": 2,
+      "version": 3,
       "kind": "visual",
       "title": "轨道几何体",
       "icon": "orbit",
@@ -497,7 +497,8 @@
         "id": "orbit-solids",
         "version": 1,
         "hash": ""
-      }
+      },
+      "usesSeed": true
     }
   ],
   "presets": []
