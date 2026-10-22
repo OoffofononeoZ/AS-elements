@@ -1,6 +1,6 @@
 {
     "name": "visualizer-content-generator",
-    "version": "2.3.0",
+    "version": "2.4.0",
     "private": true,
     "type": "module",
     "engines": {
@@ -8,5 +8,11 @@
     },
     "dependencies": {
         "typescript": "5.9.3"
+    },
+    "scripts": {
+        "test": "node scripts/test.mjs"
+    },
+    "devDependencies": {
+        "vitest": "4.1.10"
     }
 }
