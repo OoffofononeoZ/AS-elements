@@ -1,0 +1,737 @@
+{
+  "format": "audiosurf-visualizer-resource",
+  "schemaVersion": 2,
+  "id": "circular-visualizer-893418273",
+  "version": 1,
+  "algorithms": [],
+  "elements": [],
+  "presets": [
+    {
+      "id": "circular-visualizer-893418273",
+      "version": 1,
+      "title": "Circular Visualizer",
+      "description": "复刻 893418273 的黑白圆形音乐可视化：扩散粒子、镜像环形频谱、中心圆与可变媒体背景。Responsiveness 默认 50。",
+      "preview": "geometric",
+      "elements": [
+        {
+          "key": "background",
+          "element": {
+            "id": "circular-background",
+            "version": 1,
+            "hash": "8d8b6dfce48f84646becc0802be758242bb93f61e14d5e85b8814e0eacb5efd4"
+          },
+          "name": "可变背景",
+          "enabled": true,
+          "bindings": [
+            {
+              "parameterId": "color",
+              "source": {
+                "kind": "constant",
+                "value": "#000000"
+              }
+            }
+          ],
+          "mediaBindings": {
+            "background": {
+              "kind": "none"
+            }
+          },
+          "timing": {
+            "kind": "relative",
+            "start": 0,
+            "end": 1
+          }
+        },
+        {
+          "key": "particles",
+          "element": {
+            "id": "circular-particles",
+            "version": 1,
+            "hash": "aca4e588119a3ca47a855eae3c519566903b18da49c0cae12faf0346963ef0f4"
+          },
+          "name": "扩散粒子",
+          "enabled": true,
+          "bindings": [
+            {
+              "parameterId": "spectrum",
+              "source": {
+                "kind": "analysis",
+                "featureId": "wallpaperEngineSpectrum",
+                "projection": {
+                  "kind": "full"
+                }
+              }
+            },
+            {
+              "parameterId": "responsiveness",
+              "source": {
+                "kind": "constant",
+                "value": 50
+              }
+            },
+            {
+              "parameterId": "noise",
+              "source": {
+                "kind": "constant",
+                "value": true
+              }
+            },
+            {
+              "parameterId": "normalize",
+              "source": {
+                "kind": "constant",
+                "value": true
+              }
+            },
+            {
+              "parameterId": "color",
+              "source": {
+                "kind": "constant",
+                "value": "#ffffff"
+              }
+            },
+            {
+              "parameterId": "opacity",
+              "source": {
+                "kind": "constant",
+                "value": 1
+              }
+            },
+            {
+              "parameterId": "count",
+              "source": {
+                "kind": "constant",
+                "value": 2
+              }
+            },
+            {
+              "parameterId": "silenceCount",
+              "source": {
+                "kind": "constant",
+                "value": 0
+              }
+            },
+            {
+              "parameterId": "size",
+              "source": {
+                "kind": "constant",
+                "value": 0
+              }
+            },
+            {
+              "parameterId": "rainbow",
+              "source": {
+                "kind": "constant",
+                "value": false
+              }
+            },
+            {
+              "parameterId": "twinkle",
+              "source": {
+                "kind": "constant",
+                "value": false
+              }
+            }
+          ],
+          "timing": {
+            "kind": "relative",
+            "start": 0,
+            "end": 1
+          }
+        },
+        {
+          "key": "depth",
+          "element": {
+            "id": "circular-depth",
+            "version": 1,
+            "hash": "1d4de1c843d056b1e1fc07f098f2775562c304a3fec27ed2af395e3626ee309b"
+          },
+          "name": "纵深粒子",
+          "enabled": false,
+          "bindings": [
+            {
+              "parameterId": "spectrum",
+              "source": {
+                "kind": "analysis",
+                "featureId": "wallpaperEngineSpectrum",
+                "projection": {
+                  "kind": "full"
+                }
+              }
+            },
+            {
+              "parameterId": "responsiveness",
+              "source": {
+                "kind": "constant",
+                "value": 50
+              }
+            },
+            {
+              "parameterId": "noise",
+              "source": {
+                "kind": "constant",
+                "value": true
+              }
+            },
+            {
+              "parameterId": "normalize",
+              "source": {
+                "kind": "constant",
+                "value": true
+              }
+            },
+            {
+              "parameterId": "color",
+              "source": {
+                "kind": "constant",
+                "value": "#ffffff"
+              }
+            },
+            {
+              "parameterId": "opacity",
+              "source": {
+                "kind": "constant",
+                "value": 1
+              }
+            },
+            {
+              "parameterId": "count",
+              "source": {
+                "kind": "constant",
+                "value": 100
+              }
+            },
+            {
+              "parameterId": "size",
+              "source": {
+                "kind": "constant",
+                "value": 0
+              }
+            }
+          ],
+          "timing": {
+            "kind": "relative",
+            "start": 0,
+            "end": 1
+          }
+        },
+        {
+          "key": "bars",
+          "element": {
+            "id": "circular-bars",
+            "version": 1,
+            "hash": "64fbe7cc3612c4d5a55bb3cbd5775618931e8c570e6f2e31827a4f9048a0ebbc"
+          },
+          "name": "环形音乐 bar",
+          "enabled": true,
+          "bindings": [
+            {
+              "parameterId": "spectrum",
+              "source": {
+                "kind": "analysis",
+                "featureId": "wallpaperEngineSpectrum",
+                "projection": {
+                  "kind": "full"
+                }
+              }
+            },
+            {
+              "parameterId": "responsiveness",
+              "source": {
+                "kind": "constant",
+                "value": 50
+              }
+            },
+            {
+              "parameterId": "noise",
+              "source": {
+                "kind": "constant",
+                "value": true
+              }
+            },
+            {
+              "parameterId": "normalize",
+              "source": {
+                "kind": "constant",
+                "value": true
+              }
+            },
+            {
+              "parameterId": "color",
+              "source": {
+                "kind": "constant",
+                "value": "#ffffff"
+              }
+            },
+            {
+              "parameterId": "opacity",
+              "source": {
+                "kind": "constant",
+                "value": 1
+              }
+            },
+            {
+              "parameterId": "x",
+              "source": {
+                "kind": "constant",
+                "value": 0.5
+              }
+            },
+            {
+              "parameterId": "y",
+              "source": {
+                "kind": "constant",
+                "value": 0.5
+              }
+            },
+            {
+              "parameterId": "radius",
+              "source": {
+                "kind": "constant",
+                "value": 64
+              }
+            },
+            {
+              "parameterId": "bassMultiplier",
+              "source": {
+                "kind": "constant",
+                "value": 10
+              }
+            },
+            {
+              "parameterId": "shake",
+              "source": {
+                "kind": "constant",
+                "value": 12
+              }
+            },
+            {
+              "parameterId": "shakeTolerance",
+              "source": {
+                "kind": "constant",
+                "value": 0
+              }
+            },
+            {
+              "parameterId": "count",
+              "source": {
+                "kind": "constant",
+                "value": 128
+              }
+            },
+            {
+              "parameterId": "gap",
+              "source": {
+                "kind": "constant",
+                "value": 16
+              }
+            },
+            {
+              "parameterId": "height",
+              "source": {
+                "kind": "constant",
+                "value": 100
+              }
+            },
+            {
+              "parameterId": "width",
+              "source": {
+                "kind": "constant",
+                "value": 1
+              }
+            },
+            {
+              "parameterId": "arc",
+              "source": {
+                "kind": "constant",
+                "value": 360
+              }
+            },
+            {
+              "parameterId": "rotation",
+              "source": {
+                "kind": "constant",
+                "value": 270
+              }
+            },
+            {
+              "parameterId": "rotationSpeed",
+              "source": {
+                "kind": "constant",
+                "value": 0
+              }
+            },
+            {
+              "parameterId": "spectrumRotation",
+              "source": {
+                "kind": "constant",
+                "value": 0
+              }
+            },
+            {
+              "parameterId": "reverse",
+              "source": {
+                "kind": "constant",
+                "value": false
+              }
+            },
+            {
+              "parameterId": "rainbow",
+              "source": {
+                "kind": "constant",
+                "value": false
+              }
+            },
+            {
+              "parameterId": "rainbowRotation",
+              "source": {
+                "kind": "constant",
+                "value": 0
+              }
+            },
+            {
+              "parameterId": "rainbowSpeed",
+              "source": {
+                "kind": "constant",
+                "value": 0
+              }
+            }
+          ],
+          "timing": {
+            "kind": "relative",
+            "start": 0,
+            "end": 1
+          }
+        },
+        {
+          "key": "outer",
+          "element": {
+            "id": "circular-outer",
+            "version": 1,
+            "hash": "393b9d9cca0c7ab2a6b36fd63a581458f5d40bb9ef3f05264a52a5f0b585b328"
+          },
+          "name": "外层圆",
+          "enabled": true,
+          "bindings": [
+            {
+              "parameterId": "spectrum",
+              "source": {
+                "kind": "analysis",
+                "featureId": "wallpaperEngineSpectrum",
+                "projection": {
+                  "kind": "full"
+                }
+              }
+            },
+            {
+              "parameterId": "responsiveness",
+              "source": {
+                "kind": "constant",
+                "value": 50
+              }
+            },
+            {
+              "parameterId": "noise",
+              "source": {
+                "kind": "constant",
+                "value": true
+              }
+            },
+            {
+              "parameterId": "normalize",
+              "source": {
+                "kind": "constant",
+                "value": true
+              }
+            },
+            {
+              "parameterId": "color",
+              "source": {
+                "kind": "constant",
+                "value": "#000000"
+              }
+            },
+            {
+              "parameterId": "opacity",
+              "source": {
+                "kind": "constant",
+                "value": 0.6
+              }
+            },
+            {
+              "parameterId": "x",
+              "source": {
+                "kind": "constant",
+                "value": 0.5
+              }
+            },
+            {
+              "parameterId": "y",
+              "source": {
+                "kind": "constant",
+                "value": 0.5
+              }
+            },
+            {
+              "parameterId": "radius",
+              "source": {
+                "kind": "constant",
+                "value": 88
+              }
+            },
+            {
+              "parameterId": "bassMultiplier",
+              "source": {
+                "kind": "constant",
+                "value": 10
+              }
+            },
+            {
+              "parameterId": "shake",
+              "source": {
+                "kind": "constant",
+                "value": 12
+              }
+            },
+            {
+              "parameterId": "shakeTolerance",
+              "source": {
+                "kind": "constant",
+                "value": 0
+              }
+            },
+            {
+              "parameterId": "arc",
+              "source": {
+                "kind": "constant",
+                "value": 360
+              }
+            },
+            {
+              "parameterId": "rotation",
+              "source": {
+                "kind": "constant",
+                "value": 0
+              }
+            },
+            {
+              "parameterId": "logoSpeed",
+              "source": {
+                "kind": "constant",
+                "value": 0
+              }
+            }
+          ],
+          "timing": {
+            "kind": "relative",
+            "start": 0,
+            "end": 1
+          }
+        },
+        {
+          "key": "center",
+          "element": {
+            "id": "circular-center",
+            "version": 1,
+            "hash": "dbe29aaff5cd6da23700d6f6619318568360a5f5e973a9e14fc199147032ac79"
+          },
+          "name": "中心圆／Logo",
+          "enabled": true,
+          "bindings": [
+            {
+              "parameterId": "spectrum",
+              "source": {
+                "kind": "analysis",
+                "featureId": "wallpaperEngineSpectrum",
+                "projection": {
+                  "kind": "full"
+                }
+              }
+            },
+            {
+              "parameterId": "responsiveness",
+              "source": {
+                "kind": "constant",
+                "value": 50
+              }
+            },
+            {
+              "parameterId": "noise",
+              "source": {
+                "kind": "constant",
+                "value": true
+              }
+            },
+            {
+              "parameterId": "normalize",
+              "source": {
+                "kind": "constant",
+                "value": true
+              }
+            },
+            {
+              "parameterId": "color",
+              "source": {
+                "kind": "constant",
+                "value": "#ffffff"
+              }
+            },
+            {
+              "parameterId": "opacity",
+              "source": {
+                "kind": "constant",
+                "value": 1
+              }
+            },
+            {
+              "parameterId": "x",
+              "source": {
+                "kind": "constant",
+                "value": 0.5
+              }
+            },
+            {
+              "parameterId": "y",
+              "source": {
+                "kind": "constant",
+                "value": 0.5
+              }
+            },
+            {
+              "parameterId": "radius",
+              "source": {
+                "kind": "constant",
+                "value": 64
+              }
+            },
+            {
+              "parameterId": "bassMultiplier",
+              "source": {
+                "kind": "constant",
+                "value": 10
+              }
+            },
+            {
+              "parameterId": "shake",
+              "source": {
+                "kind": "constant",
+                "value": 12
+              }
+            },
+            {
+              "parameterId": "shakeTolerance",
+              "source": {
+                "kind": "constant",
+                "value": 0
+              }
+            },
+            {
+              "parameterId": "arc",
+              "source": {
+                "kind": "constant",
+                "value": 360
+              }
+            },
+            {
+              "parameterId": "rotation",
+              "source": {
+                "kind": "constant",
+                "value": 0
+              }
+            },
+            {
+              "parameterId": "logoSpeed",
+              "source": {
+                "kind": "constant",
+                "value": 0
+              }
+            }
+          ],
+          "mediaBindings": {
+            "logo": {
+              "kind": "none"
+            }
+          },
+          "timing": {
+            "kind": "relative",
+            "start": 0,
+            "end": 1
+          }
+        },
+        {
+          "key": "foreground",
+          "element": {
+            "id": "circular-foreground",
+            "version": 1,
+            "hash": "4281a28b9ef3537fbe71e04e438b7f813dc6ade3f55d4e9c9109648fdb5cbffe"
+          },
+          "name": "前景图片",
+          "enabled": false,
+          "bindings": [
+            {
+              "parameterId": "x",
+              "source": {
+                "kind": "constant",
+                "value": 0.5
+              }
+            },
+            {
+              "parameterId": "y",
+              "source": {
+                "kind": "constant",
+                "value": 0.5
+              }
+            },
+            {
+              "parameterId": "width",
+              "source": {
+                "kind": "constant",
+                "value": 1920
+              }
+            },
+            {
+              "parameterId": "height",
+              "source": {
+                "kind": "constant",
+                "value": 1080
+              }
+            },
+            {
+              "parameterId": "opacity",
+              "source": {
+                "kind": "constant",
+                "value": 1
+              }
+            }
+          ],
+          "mediaBindings": {
+            "foreground": {
+              "kind": "none"
+            }
+          },
+          "timing": {
+            "kind": "relative",
+            "start": 0,
+            "end": 1
+          }
+        }
+      ],
+      "controls": [
+        {
+          "id": "responsiveness",
+          "label": "Responsiveness",
+          "kind": "value",
+          "parameterId": "responsiveness",
+          "targets": [
+            "particles",
+            "depth",
+            "bars",
+            "outer",
+            "center"
+          ],
+          "value": 50
+        }
+      ]
+    }
+  ]
+}

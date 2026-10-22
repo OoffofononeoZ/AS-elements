@@ -1,0 +1,536 @@
+{
+  "format": "audiosurf-visualizer-resource",
+  "schemaVersion": 2,
+  "id": "circular-center",
+  "version": 1,
+  "algorithms": [
+    {
+      "id": "circular-center",
+      "version": 1,
+      "apiVersion": 3,
+      "contract": {
+        "kind": "visual",
+        "parameters": [
+          {
+            "id": "spectrum",
+            "valueKind": "vector",
+            "allowedSourceKinds": [
+              "analysis",
+              "constant"
+            ],
+            "allowEmptyVector": true,
+            "vectorElementRange": {
+              "min": 0,
+              "max": 1.7976931348623157e+308
+            },
+            "allowedAnalysisComponents": [
+              "default"
+            ],
+            "allowedAnalysisProjections": [
+              "full"
+            ]
+          },
+          {
+            "id": "responsiveness",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 100,
+              "integer": true,
+              "editingPrecision": 0
+            }
+          },
+          {
+            "id": "noise",
+            "valueKind": "boolean",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "normalize",
+            "valueKind": "boolean",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "color",
+            "valueKind": "color",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "opacity",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "x",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "y",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "radius",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 500,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "bassMultiplier",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 100,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "shake",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 25,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "shakeTolerance",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": -1,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "arc",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 360,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "rotation",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 360,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "logoSpeed",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": -120,
+              "max": 120,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          }
+        ],
+        "sharedParameters": [
+          "responsiveness"
+        ],
+        "historyParameters": [
+          "spectrum"
+        ],
+        "executionModes": [
+          "timeline",
+          "realtime"
+        ],
+        "inputParameter": "spectrum",
+        "mediaInputs": [
+          {
+            "id": "logo",
+            "kinds": [
+              "image"
+            ],
+            "multiple": false
+          }
+        ]
+      },
+      "entry": "source/algorithms/circular-center.mjs",
+      "includes": [
+        "source/shared/circular.js"
+      ],
+      "programs": {
+        "draw": {
+          "geometry": "quad",
+          "uniforms": {
+            "uViewport": {
+              "type": "vec2"
+            },
+            "uColor": {
+              "type": "color"
+            },
+            "uOpacity": {
+              "type": "number"
+            },
+            "uPosition": {
+              "type": "vec2"
+            },
+            "uRadius": {
+              "type": "number"
+            },
+            "uArc": {
+              "type": "number"
+            },
+            "uRotation": {
+              "type": "number"
+            },
+            "uLogoAngle": {
+              "type": "number"
+            },
+            "uExtent": {
+              "type": "vec2"
+            },
+            "uHasMedia": {
+              "type": "boolean"
+            },
+            "uMediaSize": {
+              "type": "vec2"
+            },
+            "uNextSize": {
+              "type": "vec2"
+            },
+            "uMix": {
+              "type": "number"
+            },
+            "uFit": {
+              "type": "int"
+            },
+            "uImage": {
+              "type": "media",
+              "inputId": "logo",
+              "slot": "current"
+            },
+            "uNext": {
+              "type": "media",
+              "inputId": "logo",
+              "slot": "next"
+            }
+          },
+          "vertexFile": "source/shaders/draw.vert.glsl",
+          "fragmentFile": "source/shaders/draw.frag.glsl"
+        }
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": "circular-center",
+      "version": 1,
+      "algorithm": {
+        "id": "circular-center",
+        "version": 1,
+        "hash": ""
+      },
+      "kind": "visual",
+      "title": "中心圆／Logo",
+      "icon": "rings",
+      "parameters": [
+        {
+          "id": "spectrum",
+          "label": "WE 频谱输入",
+          "valueKind": "vector",
+          "defaultValue": [],
+          "allowedSourceKinds": [
+            "analysis",
+            "constant"
+          ],
+          "allowEmptyVector": true,
+          "vectorElementRange": {
+            "min": 0,
+            "max": 1.7976931348623157e+308
+          },
+          "allowedAnalysisComponents": [
+            "default"
+          ],
+          "allowedAnalysisProjections": [
+            "full"
+          ],
+          "defaultBinding": {
+            "source": {
+              "kind": "analysis",
+              "featureId": "wallpaperEngineSpectrum",
+              "projection": {
+                "kind": "full"
+              }
+            }
+          }
+        },
+        {
+          "id": "responsiveness",
+          "label": "Responsiveness",
+          "valueKind": "number",
+          "defaultValue": 50,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 100,
+            "integer": true,
+            "editingPrecision": 0
+          }
+        },
+        {
+          "id": "noise",
+          "label": "粉噪校准",
+          "valueKind": "boolean",
+          "defaultValue": true,
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "normalize",
+          "label": "相邻平滑",
+          "valueKind": "boolean",
+          "defaultValue": true,
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "color",
+          "label": "颜色",
+          "valueKind": "color",
+          "defaultValue": "#ffffff",
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "opacity",
+          "label": "透明度",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "x",
+          "label": "水平位置",
+          "valueKind": "number",
+          "defaultValue": 0.5,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "y",
+          "label": "垂直位置",
+          "valueKind": "number",
+          "defaultValue": 0.5,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "radius",
+          "label": "基础半径（1080p 像素）",
+          "valueKind": "number",
+          "defaultValue": 64,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 500,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "bassMultiplier",
+          "label": "低频扩张系数",
+          "valueKind": "number",
+          "defaultValue": 10,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 100,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "shake",
+          "label": "低频抖动（1080p 像素）",
+          "valueKind": "number",
+          "defaultValue": 12,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 25,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "shakeTolerance",
+          "label": "抖动阈值偏移",
+          "valueKind": "number",
+          "defaultValue": 0,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": -1,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "arc",
+          "label": "圆弧角度",
+          "valueKind": "number",
+          "defaultValue": 360,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 360,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "rotation",
+          "label": "圆弧旋转",
+          "valueKind": "number",
+          "defaultValue": 0,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 360,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "logoSpeed",
+          "label": "Logo 旋转（度／秒）",
+          "valueKind": "number",
+          "defaultValue": 0,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": -120,
+            "max": 120,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        }
+      ],
+      "inputParameter": "spectrum",
+      "mediaInputs": [
+        {
+          "id": "logo",
+          "label": "中心 Logo",
+          "kinds": [
+            "image"
+          ],
+          "multiple": false
+        }
+      ]
+    }
+  ],
+  "presets": []
+}

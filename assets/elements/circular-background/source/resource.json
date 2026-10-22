@@ -1,0 +1,143 @@
+{
+  "format": "audiosurf-visualizer-resource",
+  "schemaVersion": 2,
+  "id": "circular-background",
+  "version": 1,
+  "algorithms": [
+    {
+      "id": "circular-background",
+      "version": 1,
+      "apiVersion": 3,
+      "contract": {
+        "kind": "visual",
+        "parameters": [
+          {
+            "id": "color",
+            "valueKind": "color",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          }
+        ],
+        "sharedParameters": [],
+        "historyParameters": [],
+        "executionModes": [
+          "timeline",
+          "realtime"
+        ],
+        "mediaInputs": [
+          {
+            "id": "background",
+            "kinds": [
+              "image",
+              "video"
+            ],
+            "multiple": true
+          }
+        ]
+      },
+      "entry": "source/algorithms/circular-background.mjs",
+      "includes": [
+        "source/shared/circular.js"
+      ],
+      "programs": {
+        "draw": {
+          "geometry": "quad",
+          "uniforms": {
+            "uViewport": {
+              "type": "vec2"
+            },
+            "uColor": {
+              "type": "color"
+            },
+            "uOpacity": {
+              "type": "number"
+            },
+            "uPosition": {
+              "type": "vec2"
+            },
+            "uRadius": {
+              "type": "number"
+            },
+            "uArc": {
+              "type": "number"
+            },
+            "uRotation": {
+              "type": "number"
+            },
+            "uLogoAngle": {
+              "type": "number"
+            },
+            "uExtent": {
+              "type": "vec2"
+            },
+            "uHasMedia": {
+              "type": "boolean"
+            },
+            "uMediaSize": {
+              "type": "vec2"
+            },
+            "uNextSize": {
+              "type": "vec2"
+            },
+            "uMix": {
+              "type": "number"
+            },
+            "uFit": {
+              "type": "int"
+            },
+            "uImage": {
+              "type": "media",
+              "inputId": "background",
+              "slot": "current"
+            },
+            "uNext": {
+              "type": "media",
+              "inputId": "background",
+              "slot": "next"
+            }
+          },
+          "vertexFile": "source/shaders/draw.vert.glsl",
+          "fragmentFile": "source/shaders/draw.frag.glsl"
+        }
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": "circular-background",
+      "version": 1,
+      "algorithm": {
+        "id": "circular-background",
+        "version": 1,
+        "hash": ""
+      },
+      "kind": "visual",
+      "title": "可变背景",
+      "icon": "square",
+      "parameters": [
+        {
+          "id": "color",
+          "label": "背景颜色",
+          "valueKind": "color",
+          "defaultValue": "#000000",
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        }
+      ],
+      "mediaInputs": [
+        {
+          "id": "background",
+          "label": "背景图片／视频",
+          "kinds": [
+            "image",
+            "video"
+          ],
+          "multiple": true
+        }
+      ]
+    }
+  ],
+  "presets": []
+}

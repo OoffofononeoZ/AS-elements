@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "circular-depth",
+    "version": 1,
+    "hash": "8e0a40c52e9102d6c90900dbb37a58093ac39f300700dc67f169b192ccb29c5b"
+  },
+  "kind": "visual",
+  "title": "纵深粒子",
+  "description": "Circular Visualizer 893418273 · 纵深粒子",
+  "creator": "default",
+  "createdAt": "2026-10-22T09:27:32.040Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 32
+}

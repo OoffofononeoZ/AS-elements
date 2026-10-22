@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "circular-bars",
+    "version": 1,
+    "hash": "cde24dd4cdbda8952508ac3a3c1c7a8856dfaa53e3b9c751939beb8bf50eddd1"
+  },
+  "kind": "visual",
+  "title": "环形音乐 bar",
+  "description": "Circular Visualizer 893418273 · 环形音乐 bar",
+  "creator": "default",
+  "createdAt": "2026-10-22T09:27:32.040Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 33
+}

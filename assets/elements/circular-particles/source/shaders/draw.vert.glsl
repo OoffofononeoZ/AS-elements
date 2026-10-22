@@ -1,0 +1,9 @@
+attribute vec4 ink;
+attribute vec2 edge;
+varying vec4 vInk;
+varying vec2 vEdge;
+void main(){
+    vInk=ink;
+    vEdge=edge;
+    gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);
+}

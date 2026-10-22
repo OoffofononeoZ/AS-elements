@@ -1,0 +1,696 @@
+{
+  "format": "audiosurf-visualizer-resource",
+  "schemaVersion": 2,
+  "id": "circular-bars",
+  "version": 1,
+  "algorithms": [
+    {
+      "id": "circular-bars",
+      "version": 1,
+      "apiVersion": 3,
+      "contract": {
+        "kind": "visual",
+        "parameters": [
+          {
+            "id": "spectrum",
+            "valueKind": "vector",
+            "allowedSourceKinds": [
+              "analysis",
+              "constant"
+            ],
+            "allowEmptyVector": true,
+            "vectorElementRange": {
+              "min": 0,
+              "max": 1.7976931348623157e+308
+            },
+            "allowedAnalysisComponents": [
+              "default"
+            ],
+            "allowedAnalysisProjections": [
+              "full"
+            ]
+          },
+          {
+            "id": "responsiveness",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 100,
+              "integer": true,
+              "editingPrecision": 0
+            }
+          },
+          {
+            "id": "noise",
+            "valueKind": "boolean",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "normalize",
+            "valueKind": "boolean",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "color",
+            "valueKind": "color",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "opacity",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "x",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "y",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "radius",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 500,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "bassMultiplier",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 100,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "shake",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 25,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "shakeTolerance",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": -1,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "count",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 1,
+              "max": 896,
+              "integer": true,
+              "editingPrecision": 0
+            }
+          },
+          {
+            "id": "gap",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 200,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "height",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1000,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "width",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0.3,
+              "max": 40,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "arc",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 360,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "rotation",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 360,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "rotationSpeed",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": -120,
+              "max": 120,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "spectrumRotation",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 127,
+              "integer": true,
+              "editingPrecision": 0
+            }
+          },
+          {
+            "id": "reverse",
+            "valueKind": "boolean",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "rainbow",
+            "valueKind": "boolean",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "rainbowRotation",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 127,
+              "integer": true,
+              "editingPrecision": 0
+            }
+          },
+          {
+            "id": "rainbowSpeed",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": -120,
+              "max": 120,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          }
+        ],
+        "sharedParameters": [
+          "responsiveness"
+        ],
+        "historyParameters": [
+          "spectrum"
+        ],
+        "executionModes": [
+          "timeline",
+          "realtime"
+        ],
+        "inputParameter": "spectrum"
+      },
+      "entry": "source/algorithms/circular-bars.mjs",
+      "includes": [
+        "source/shared/circular.js"
+      ],
+      "programs": {
+        "draw": {
+          "geometry": "triangles",
+          "uniforms": {
+            "uRound": {
+              "type": "int"
+            }
+          },
+          "vertexFile": "source/shaders/draw.vert.glsl",
+          "fragmentFile": "source/shaders/draw.frag.glsl"
+        }
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": "circular-bars",
+      "version": 1,
+      "algorithm": {
+        "id": "circular-bars",
+        "version": 1,
+        "hash": ""
+      },
+      "kind": "visual",
+      "title": "环形音乐 bar",
+      "icon": "radial",
+      "parameters": [
+        {
+          "id": "spectrum",
+          "label": "WE 频谱输入",
+          "valueKind": "vector",
+          "defaultValue": [],
+          "allowedSourceKinds": [
+            "analysis",
+            "constant"
+          ],
+          "allowEmptyVector": true,
+          "vectorElementRange": {
+            "min": 0,
+            "max": 1.7976931348623157e+308
+          },
+          "allowedAnalysisComponents": [
+            "default"
+          ],
+          "allowedAnalysisProjections": [
+            "full"
+          ],
+          "defaultBinding": {
+            "source": {
+              "kind": "analysis",
+              "featureId": "wallpaperEngineSpectrum",
+              "projection": {
+                "kind": "full"
+              }
+            }
+          }
+        },
+        {
+          "id": "responsiveness",
+          "label": "Responsiveness",
+          "valueKind": "number",
+          "defaultValue": 50,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 100,
+            "integer": true,
+            "editingPrecision": 0
+          }
+        },
+        {
+          "id": "noise",
+          "label": "粉噪校准",
+          "valueKind": "boolean",
+          "defaultValue": true,
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "normalize",
+          "label": "相邻平滑",
+          "valueKind": "boolean",
+          "defaultValue": true,
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "color",
+          "label": "颜色",
+          "valueKind": "color",
+          "defaultValue": "#ffffff",
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "opacity",
+          "label": "透明度",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "x",
+          "label": "水平位置",
+          "valueKind": "number",
+          "defaultValue": 0.5,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "y",
+          "label": "垂直位置",
+          "valueKind": "number",
+          "defaultValue": 0.5,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "radius",
+          "label": "基础半径（1080p 像素）",
+          "valueKind": "number",
+          "defaultValue": 64,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 500,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "bassMultiplier",
+          "label": "低频扩张系数",
+          "valueKind": "number",
+          "defaultValue": 10,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 100,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "shake",
+          "label": "低频抖动（1080p 像素）",
+          "valueKind": "number",
+          "defaultValue": 12,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 25,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "shakeTolerance",
+          "label": "抖动阈值偏移",
+          "valueKind": "number",
+          "defaultValue": 0,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": -1,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "count",
+          "label": "频谱条数",
+          "valueKind": "number",
+          "defaultValue": 128,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 1,
+            "max": 896,
+            "integer": true,
+            "editingPrecision": 0
+          }
+        },
+        {
+          "id": "gap",
+          "label": "圆与频谱间距",
+          "valueKind": "number",
+          "defaultValue": 16,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 200,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "height",
+          "label": "频谱高度",
+          "valueKind": "number",
+          "defaultValue": 100,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1000,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "width",
+          "label": "线宽",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0.3,
+            "max": 40,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "arc",
+          "label": "圆弧角度",
+          "valueKind": "number",
+          "defaultValue": 360,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 360,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "rotation",
+          "label": "初始旋转",
+          "valueKind": "number",
+          "defaultValue": 270,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 360,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "rotationSpeed",
+          "label": "旋转速度（度／秒）",
+          "valueKind": "number",
+          "defaultValue": 0,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": -120,
+            "max": 120,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "spectrumRotation",
+          "label": "频谱偏移",
+          "valueKind": "number",
+          "defaultValue": 0,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 127,
+            "integer": true,
+            "editingPrecision": 0
+          }
+        },
+        {
+          "id": "reverse",
+          "label": "右半环同序",
+          "valueKind": "boolean",
+          "defaultValue": false,
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "rainbow",
+          "label": "彩虹频谱",
+          "valueKind": "boolean",
+          "defaultValue": false,
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "rainbowRotation",
+          "label": "彩虹偏移",
+          "valueKind": "number",
+          "defaultValue": 0,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 127,
+            "integer": true,
+            "editingPrecision": 0
+          }
+        },
+        {
+          "id": "rainbowSpeed",
+          "label": "彩虹旋转（度／秒）",
+          "valueKind": "number",
+          "defaultValue": 0,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": -120,
+            "max": 120,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        }
+      ],
+      "inputParameter": "spectrum"
+    }
+  ],
+  "presets": []
+}

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "circular-background",
+    "version": 1,
+    "hash": "7224980c7ff79577b807323eb8c51d22c1d9c660af0ee93aef8078af1a6e3350"
+  },
+  "kind": "visual",
+  "title": "可变背景",
+  "description": "Circular Visualizer 893418273 · 可变背景",
+  "creator": "default",
+  "createdAt": "2026-10-22T09:27:32.040Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 30
+}

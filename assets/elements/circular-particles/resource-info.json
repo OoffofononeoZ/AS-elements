@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "circular-particles",
+    "version": 1,
+    "hash": "db4ef96dee1a9bdb8d84c9024e13b353f78f38533d99953b755a5d72623c2c2b"
+  },
+  "kind": "visual",
+  "title": "扩散粒子",
+  "description": "Circular Visualizer 893418273 · 扩散粒子",
+  "creator": "default",
+  "createdAt": "2026-10-22T09:27:32.040Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 31
+}

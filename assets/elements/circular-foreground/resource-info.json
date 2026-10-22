@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "circular-foreground",
+    "version": 1,
+    "hash": "4ab9ef7e9b0cbba6b382558da40bae0f4bf3250cea288d155d69450b028718fb"
+  },
+  "kind": "visual",
+  "title": "前景图片",
+  "description": "Circular Visualizer 893418273 · 前景图片",
+  "creator": "default",
+  "createdAt": "2026-10-22T09:27:32.040Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 36
+}

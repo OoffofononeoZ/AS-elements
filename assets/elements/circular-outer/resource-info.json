@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "circular-outer",
+    "version": 1,
+    "hash": "1efe59ed79f3a262605367f22a5f74c9d539d0aeb88757c1fb83eb1ee3146456"
+  },
+  "kind": "visual",
+  "title": "外层圆",
+  "description": "Circular Visualizer 893418273 · 外层圆",
+  "creator": "default",
+  "createdAt": "2026-10-22T09:27:32.040Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 34
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "circular-visualizer-893418273",
+    "version": 1,
+    "hash": "a5ef6d8354a3248e411f9ee7ee14da151c4f932d9c8deae062da5832fbb691f8"
+  },
+  "kind": "preset",
+  "title": "Circular Visualizer",
+  "description": "复刻 893418273 的黑白圆形音乐可视化：扩散粒子、镜像环形频谱、中心圆与可变媒体背景。Responsiveness 默认 50。",
+  "creator": "default",
+  "createdAt": "2026-10-22T09:36:38.633Z",
+  "previewPath": "preview.png",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [
+    {
+      "id": "circular-background",
+      "version": 1,
+      "hash": "7224980c7ff79577b807323eb8c51d22c1d9c660af0ee93aef8078af1a6e3350"
+    },
+    {
+      "id": "circular-particles",
+      "version": 1,
+      "hash": "db4ef96dee1a9bdb8d84c9024e13b353f78f38533d99953b755a5d72623c2c2b"
+    },
+    {
+      "id": "circular-depth",
+      "version": 1,
+      "hash": "8e0a40c52e9102d6c90900dbb37a58093ac39f300700dc67f169b192ccb29c5b"
+    },
+    {
+      "id": "circular-bars",
+      "version": 1,
+      "hash": "cde24dd4cdbda8952508ac3a3c1c7a8856dfaa53e3b9c751939beb8bf50eddd1"
+    },
+    {
+      "id": "circular-outer",
+      "version": 1,
+      "hash": "1efe59ed79f3a262605367f22a5f74c9d539d0aeb88757c1fb83eb1ee3146456"
+    },
+    {
+      "id": "circular-center",
+      "version": 1,
+      "hash": "c3868233f070a64cc80e096e00cc3a3839198c7c991737c8a77f951c5dde8ad5"
+    },
+    {
+      "id": "circular-foreground",
+      "version": 1,
+      "hash": "4ab9ef7e9b0cbba6b382558da40bae0f4bf3250cea288d155d69450b028718fb"
+    }
+  ],
+  "order": 30
+}

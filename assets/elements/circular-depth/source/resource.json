@@ -1,0 +1,273 @@
+{
+  "format": "audiosurf-visualizer-resource",
+  "schemaVersion": 2,
+  "id": "circular-depth",
+  "version": 1,
+  "algorithms": [
+    {
+      "id": "circular-depth",
+      "version": 1,
+      "apiVersion": 3,
+      "contract": {
+        "kind": "visual",
+        "parameters": [
+          {
+            "id": "spectrum",
+            "valueKind": "vector",
+            "allowedSourceKinds": [
+              "analysis",
+              "constant"
+            ],
+            "allowEmptyVector": true,
+            "vectorElementRange": {
+              "min": 0,
+              "max": 1.7976931348623157e+308
+            },
+            "allowedAnalysisComponents": [
+              "default"
+            ],
+            "allowedAnalysisProjections": [
+              "full"
+            ]
+          },
+          {
+            "id": "responsiveness",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 100,
+              "integer": true,
+              "editingPrecision": 0
+            }
+          },
+          {
+            "id": "noise",
+            "valueKind": "boolean",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "normalize",
+            "valueKind": "boolean",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "color",
+            "valueKind": "color",
+            "allowedSourceKinds": [
+              "constant"
+            ]
+          },
+          {
+            "id": "opacity",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "count",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 50,
+              "max": 5000,
+              "integer": true,
+              "editingPrecision": 0
+            }
+          },
+          {
+            "id": "size",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 40,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          }
+        ],
+        "sharedParameters": [
+          "responsiveness"
+        ],
+        "historyParameters": [
+          "spectrum"
+        ],
+        "executionModes": [
+          "timeline",
+          "realtime"
+        ],
+        "inputParameter": "spectrum"
+      },
+      "entry": "source/algorithms/circular-depth.mjs",
+      "includes": [
+        "source/shared/circular.js"
+      ],
+      "programs": {
+        "draw": {
+          "geometry": "triangles",
+          "uniforms": {
+            "uRound": {
+              "type": "int"
+            }
+          },
+          "vertexFile": "source/shaders/draw.vert.glsl",
+          "fragmentFile": "source/shaders/draw.frag.glsl"
+        }
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": "circular-depth",
+      "version": 1,
+      "algorithm": {
+        "id": "circular-depth",
+        "version": 1,
+        "hash": ""
+      },
+      "kind": "visual",
+      "title": "纵深粒子",
+      "icon": "stars",
+      "parameters": [
+        {
+          "id": "spectrum",
+          "label": "WE 频谱输入",
+          "valueKind": "vector",
+          "defaultValue": [],
+          "allowedSourceKinds": [
+            "analysis",
+            "constant"
+          ],
+          "allowEmptyVector": true,
+          "vectorElementRange": {
+            "min": 0,
+            "max": 1.7976931348623157e+308
+          },
+          "allowedAnalysisComponents": [
+            "default"
+          ],
+          "allowedAnalysisProjections": [
+            "full"
+          ],
+          "defaultBinding": {
+            "source": {
+              "kind": "analysis",
+              "featureId": "wallpaperEngineSpectrum",
+              "projection": {
+                "kind": "full"
+              }
+            }
+          }
+        },
+        {
+          "id": "responsiveness",
+          "label": "Responsiveness",
+          "valueKind": "number",
+          "defaultValue": 50,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 100,
+            "integer": true,
+            "editingPrecision": 0
+          }
+        },
+        {
+          "id": "noise",
+          "label": "粉噪校准",
+          "valueKind": "boolean",
+          "defaultValue": true,
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "normalize",
+          "label": "相邻平滑",
+          "valueKind": "boolean",
+          "defaultValue": true,
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "color",
+          "label": "颜色",
+          "valueKind": "color",
+          "defaultValue": "#ffffff",
+          "allowedSourceKinds": [
+            "constant"
+          ]
+        },
+        {
+          "id": "opacity",
+          "label": "透明度",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "count",
+          "label": "粒子数量",
+          "valueKind": "number",
+          "defaultValue": 100,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 50,
+            "max": 5000,
+            "integer": true,
+            "editingPrecision": 0
+          }
+        },
+        {
+          "id": "size",
+          "label": "粒径增量",
+          "valueKind": "number",
+          "defaultValue": 0,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 40,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        }
+      ],
+      "inputParameter": "spectrum",
+      "usesSeed": true
+    }
+  ],
+  "presets": []
+}

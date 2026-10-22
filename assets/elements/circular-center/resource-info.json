@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "resource": {
+    "id": "circular-center",
+    "version": 1,
+    "hash": "c3868233f070a64cc80e096e00cc3a3839198c7c991737c8a77f951c5dde8ad5"
+  },
+  "kind": "visual",
+  "title": "中心圆／Logo",
+  "description": "Circular Visualizer 893418273 · 中心圆／Logo",
+  "creator": "default",
+  "createdAt": "2026-10-22T09:27:32.040Z",
+  "previewPath": "preview.svg",
+  "sourceEntry": "source/resource.json",
+  "packagePath": "resource-package.json",
+  "dependencies": [],
+  "order": 35
+}

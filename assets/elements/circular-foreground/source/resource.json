@@ -1,0 +1,265 @@
+{
+  "format": "audiosurf-visualizer-resource",
+  "schemaVersion": 2,
+  "id": "circular-foreground",
+  "version": 1,
+  "algorithms": [
+    {
+      "id": "circular-foreground",
+      "version": 1,
+      "apiVersion": 3,
+      "contract": {
+        "kind": "visual",
+        "parameters": [
+          {
+            "id": "x",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "y",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 3
+            }
+          },
+          {
+            "id": "width",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 1,
+              "max": 7680,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "height",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 1,
+              "max": 4320,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          },
+          {
+            "id": "opacity",
+            "valueKind": "number",
+            "allowedSourceKinds": [
+              "constant"
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "integer": false,
+              "editingPrecision": 2
+            }
+          }
+        ],
+        "sharedParameters": [],
+        "historyParameters": [],
+        "executionModes": [
+          "timeline",
+          "realtime"
+        ],
+        "mediaInputs": [
+          {
+            "id": "foreground",
+            "kinds": [
+              "image"
+            ],
+            "multiple": false
+          }
+        ]
+      },
+      "entry": "source/algorithms/circular-foreground.mjs",
+      "includes": [
+        "source/shared/circular.js"
+      ],
+      "programs": {
+        "draw": {
+          "geometry": "quad",
+          "uniforms": {
+            "uViewport": {
+              "type": "vec2"
+            },
+            "uColor": {
+              "type": "color"
+            },
+            "uOpacity": {
+              "type": "number"
+            },
+            "uPosition": {
+              "type": "vec2"
+            },
+            "uRadius": {
+              "type": "number"
+            },
+            "uArc": {
+              "type": "number"
+            },
+            "uRotation": {
+              "type": "number"
+            },
+            "uLogoAngle": {
+              "type": "number"
+            },
+            "uExtent": {
+              "type": "vec2"
+            },
+            "uHasMedia": {
+              "type": "boolean"
+            },
+            "uMediaSize": {
+              "type": "vec2"
+            },
+            "uNextSize": {
+              "type": "vec2"
+            },
+            "uMix": {
+              "type": "number"
+            },
+            "uFit": {
+              "type": "int"
+            },
+            "uImage": {
+              "type": "media",
+              "inputId": "foreground",
+              "slot": "current"
+            },
+            "uNext": {
+              "type": "media",
+              "inputId": "foreground",
+              "slot": "next"
+            }
+          },
+          "vertexFile": "source/shaders/draw.vert.glsl",
+          "fragmentFile": "source/shaders/draw.frag.glsl"
+        }
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": "circular-foreground",
+      "version": 1,
+      "algorithm": {
+        "id": "circular-foreground",
+        "version": 1,
+        "hash": ""
+      },
+      "kind": "visual",
+      "title": "前景图片",
+      "icon": "square",
+      "parameters": [
+        {
+          "id": "x",
+          "label": "水平位置",
+          "valueKind": "number",
+          "defaultValue": 0.5,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "y",
+          "label": "垂直位置",
+          "valueKind": "number",
+          "defaultValue": 0.5,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 3
+          }
+        },
+        {
+          "id": "width",
+          "label": "显示宽度（1080p 像素）",
+          "valueKind": "number",
+          "defaultValue": 1920,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 1,
+            "max": 7680,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "height",
+          "label": "显示高度（1080p 像素）",
+          "valueKind": "number",
+          "defaultValue": 1080,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 1,
+            "max": 4320,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        },
+        {
+          "id": "opacity",
+          "label": "透明度",
+          "valueKind": "number",
+          "defaultValue": 1,
+          "allowedSourceKinds": [
+            "constant"
+          ],
+          "range": {
+            "min": 0,
+            "max": 1,
+            "integer": false,
+            "editingPrecision": 2
+          }
+        }
+      ],
+      "mediaInputs": [
+        {
+          "id": "foreground",
+          "label": "前景图片",
+          "kinds": [
+            "image"
+          ],
+          "multiple": false
+        }
+      ]
+    }
+  ],
+  "presets": []
+}
